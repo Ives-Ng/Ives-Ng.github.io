@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>瑞士 | 蘇黎世 - 毅行記</title>
+  <!-- 引用 Bootstrap 與你在 index.html 用的 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+  <link rel="stylesheet" href="style.css"> 
+  <link rel="stylesheet" href="childStyle.css"> 
+  
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const toggleBtn = document.getElementById("toggle-catalog");
+      const tocList = document.getElementById("catalog-list");
+
+      toggleBtn.addEventListener("click", function () {
+        const isVisible = tocList.style.display !== "none";
+        tocList.style.display = isVisible ? "none" : "block";
+        toggleBtn.textContent = isVisible ? "顯示" : "隱藏";
+        toggleBtn.setAttribute("aria-expanded", !isVisible);
+      });
+    });
+
+  </script>
+
+
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand logo-title" href="index.html" id="logo-title"><img src="images/logo.png" class="logo-img" alt="Project 1"></a>
+   
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+
+
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav ">
+                   <li class="nav-item"><a class="nav-link active" href="index.html">首頁</a></li>
+                   <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="destinationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">歐洲</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="Zurich.html">瑞士 | 蘇黎世</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="destinationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">亞洲</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="Kaohsiung.html">台南 | 高雄</a>
+                            <a class="dropdown-item" href="Seoul.html">南韓 | 首爾</a>
+                            <a class="dropdown-item" href="Tokyo.html">日本 | 東京</a>
+                        </div>
+                    </li>
+                   <li class="nav-item"><a class="nav-link active" href="GameZone.html">互動區</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </nav>
+
+
+
+  <main class="container my-4">
+    <div class="row">
+      <div class="col-md-8 content">
+        <h2 class="text-left mb-2">瑞士 | 蘇黎世 | 2025 6日湖畔到雪山冒險</h2>
+        <div class="mb-4">
+          <time datetime="2023-10-01">🕒 2025/12/01</time>
+        </div>
+        <img src="images/蘇黎世v2.jpg" alt="首爾" class="img-fluid rounded mb-4">
+
+        <div class="catalog-container">
+          <div class="catalog-header">
+            <span>📚 目錄</span>
+            <button id="toggle-catalog" aria-expanded="true">隱藏</button>
+          </div>
+          <ol id="catalog-list">
+            <li><a href="#air">航空交通</a></li>
+            <li><a href="#stay">房間住宿</a></li>
+            <li><a href="#history">歷史與文化</a></li>
+            <li>
+              <a href="#tourist">必訪景點</a>
+              <ol>
+                <li><a href="#tourist">Flumserberg 滑雪場</a></li>
+                <li><a href="#tourist">瑞士國家博物館</a></li>
+                <li><a href="#tourist">蘇黎世湖</a></li>
+              </ol>           
+            </li>
+            
+            <li><a href="#tips">旅遊實用資訊</a></li>
+            <li><a href="#map">住宿地點</a></li>
+            <li><a href="#tripVideo">旅遊回顧</a></li>
+          </ol>
+        </div>
+
+        <section class="mb-5" id="air">
+          <h3>航空交通</h3>
+          <p>
+            香港至蘇黎世的航線是連接亞洲與歐洲的重要航點。旅客可選擇直航航班，
+            由瑞士航空或國泰航空營運，航程約 12–13小時。若希望節省票價或增加彈性，
+            亦可選擇轉機航班，如卡塔爾航空、阿聯酋航空、土耳其航空等，
+            通常在多哈、杜拜或伊斯坦堡中轉。這些航班的總旅程時間約 15–20小時。
+          </p>
+          <p>
+            票價方面，經濟艙單程票最低約 HK$4,000–HK$5,000，若提前預訂或選擇轉機航班，
+            甚至能找到更優惠的價格。商務艙與頭等艙則提供更寬敞的座位與高端餐飲，
+            適合長途旅客或商務人士。
+          </p>
+        </section>
+        
+        <section class="mb-5" id="stay">
+          <h3>房間住宿</h3>
+          <p>
+           蘇黎世作為瑞士的金融與文化中心，住宿選擇豐富多樣。若追求奢華體驗，
+           市中心的 Baur au Lac、Park Hyatt Zurich 或 Mandarin Oriental Savoy 
+           等五星級酒店，提供寬敞房間、精緻餐飲與湖畔美景，適合商務旅客或高端休閒。
+           這些酒店通常設有健身房、水療中心與專屬禮賓服務，讓旅程更舒適。
+          </p>
+          <p>
+            對於預算有限或背包客，蘇黎世也有許多 青年旅舍與平價旅館，
+            如 Zurich Youth Hostel，提供乾淨簡單的房間與公共設施，價格相對親民。
+            這些住宿通常位於交通便利的地點，方便旅人自由安排行程。
+          </p>
+        </section>        
+
+
+        <section class="mb-5" id="history">
+          <h3>歷史與文化</h3>
+          <p>
+            早在新石器時代便有人類在蘇黎世湖畔定居。公元前 57 年，
+            羅馬人在此建立了名為 Turicum 的關稅站，成為歐洲貿易的重要據點2。
+            中世紀時期，蘇黎世的政治與宗教權力集中在格羅斯大教堂 (Grossmünster) 
+            與聖母大教堂 (Fraumünster)，修道院在城市發展中扮演核心角色。
+          </p>
+          <p>
+           14 世紀的行會革命使蘇黎世加入瑞士邦聯，逐漸成為重要的自治城市。
+           16 世紀，宗教改革領袖慈運理(Huldrych Zwingli) 在蘇黎世推動改革，
+           使城市成為新教思想的中心。隨後，蘇黎世因絲綢與紡織業而繁榮，奠定了經濟基礎。
+          </p>
+           今日的蘇黎世不僅是瑞士的金融樞紐，也是文化重鎮。
+           古老的舊城區保存著蜿蜒街道與中世紀建築，而現代的美術館、
+           劇院與音樂廳則展現城市的創新精神。蘇黎世的文化特色在於古今交融：
+           遊客既能在歷史遺跡中感受過去的厚重，也能在當代藝術與設計中體驗未來的活力。
+          <p>
+
+          </p>
+        </section>
+
+        <section class="mb-5" id="tourist">
+          <h3>必訪景點</h3>
+          <ul>
+            <li>
+              <h4>🎿 Flumserberg 滑雪場</h4>
+              <p>
+              距離蘇黎世約 90 分鐘車程的 Flumserberg，是最近且最受歡迎的滑雪場。
+              擁有多條雪道，適合初學者與高手。冬季可體驗滑雪、單板與雪橇，
+              並享受山中餐廳的瑞士美食。這裡是蘇黎世旅人冬季必訪的滑雪天堂。
+              </p>
+              <div class="img-magnifier-container">
+                <img src="images/Zurich/滑雪場-1.jpg" alt="滑雪場環境" class="img-fluid rounded mb-4 touristImg">
+              </div>
+              <div class="img-magnifier-container">
+                <img src="images/Zurich/滑雪場-2.jpg" alt="滑雪場環境" class="img-fluid rounded mb-4 touristImg">
+              </div>
+            </li>
+
+            <li>
+              <h4>🏛️ 瑞士國家博物館</h4>
+              <p>
+              位於市中心的國家博物館，外觀如童話城堡，館內展示瑞士歷史、
+              文化與藝術。從古代文物到現代設計，展品豐富。
+              這裡是了解瑞士多元文化與民族精神的最佳場所，適合喜愛歷史的旅人。
+              </p>
+              <div class="img-magnifier-container">
+                <img src="images/Zurich/瑞士國家博物館-1.jpg" alt="瑞士國家博物館環境" class="img-fluid rounded mb-4 touristImg">
+              </div>
+              <div class="img-magnifier-container">
+                <img src="images/Zurich/瑞士國家博物館-2.jpg" alt="瑞士國家博物館環境" class="img-fluid rounded mb-4 touristImg">
+              </div>
+            </li>
+
+            <li>
+              <h4>🌊 蘇黎世湖</h4>
+              <p>
+                蘇黎世湖是市民休閒的好去處，湖畔步道適合散步、騎行或乘船遊湖。
+                夏季可在湖邊野餐或游泳，冬季則欣賞雪景。湖光山色交織，
+                展現瑞士自然之美，是放鬆心情的最佳地點。
+              </p>
+              <div class="img-magnifier-container">
+                <img src="images/Zurich/蘇黎世湖-1.jpg" alt="蘇黎世湖環境" class="img-fluid rounded mb-4 touristImg">
+              </div>
+              <div class="img-magnifier-container">
+                <img src="images/Zurich/蘇黎世湖-2.jpg" alt="蘇黎世湖環境" class="img-fluid rounded mb-4 touristImg">
+              </div>
+            </li>
+
+          </ul>
+        </section>
+
+        <section class="mb-5" id="tips">
+          <h3>旅遊實用資訊</h3>
+          <ul>
+            <li>建議購買 
+              <a href="https://www.klook.com/zh-HK/activity/119880-zurich-card-for-unlimited-travel-and-discounted-activities/" target="_blank">Zürich Card</a> 
+              可享受市內交通（電車、公車、火車、船隻）無限次搭乘，並包含博物館折扣。
+            </li>
+            <li>可租借 
+              <a href="https://songwifi.com.hk/?gad_source=1&gad_campaignid=19113621068&gbraid=0AAAAADg_ySSIsarxSvfSuTn-IrOmYZYTi&gclid=EAIaIQobChMIyuj08pKXkgMVcwp7Bx0JlSnKEAAYAiAAEgIEQfD_BwE" target="_blank"> Wi-Fi 裝置 </a>
+              或購買瑞士 SIM 卡。蘇黎世機場有多家電信櫃台。
+            </li>
+            <li>
+              建議手機安裝
+              <a href="https://play.google.com/store/apps/details?id=ch.sbb.mobile.android.b2c&hl=en" target="_blank">SBB Mobile</a>
+              和
+              <a href="https://play.google.com/store/apps/details?id=ch.mnc.zvv.oneapp&hl=en" target="_blank">ZVV Ticket App</a>
+              用於查詢火車時刻和公共交通票務。
+            </li>
+            <li>
+              當地使用瑞士法郎 (CHF)。信用卡普遍接受，但小額消費建議攜帶現金。
+            </li>
+            <li>
+              瑞士人非常重視準時，搭乘交通工具或赴約務必守時。公共場合請保持安靜，避免大聲喧嘩。
+              餐廳小費非強制，但可將帳單金額四捨五入。
+            </li>
+          </ul>
+        </section>
+
+        <section class="mb-5" id="map">
+          <h3>住宿地點</h3>
+          <div class="ratio ratio-16x9">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15731.89676718384!2d8.500279250997549!3d47.37560915993118!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47900a303faf7763%3A0x9fed8d9955a0cd14!2sCrowne%20Plaza%20Zurich%20by%20IHG!5e0!3m2!1sen!2shk!4v1768811150900!5m2!1sen!2shk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">  
+            </iframe>           
+          </div>
+        </section>
+
+        <section class="mb-5" id="tripVideo">
+          <h3>旅遊回顧</h3>
+          <div class="ratio ratio-16x9">
+          <iframe 
+            width="560" height="315" src="https://www.youtube.com/embed/gphw1nfCVwM?si=TWaQT1D9tUCKwzsd" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+          </iframe>
+          </div>
+        </section>
+      </div>
+
+      <div class="col-md-4 sidebar">
+          <aside>
+            <h5 class="mb-3">關於我</h3>
+            <section id="about-section" class="text-center">
+            
+                <img class="avatar mb-3" src="images/avatar.jpeg" alt="Avatar" />
+
+                <p class="mb-2 text-muted">
+                歡迎來到 <strong>毅行記！</strong>。這裡是一個專為旅遊愛好者打造的資訊天地，
+                帶你探索世界各地的精彩角落。我將紀錄我的所行所知，為大家呈現來自不同國家的
+                <em>歷史、文化及實用資訊</em>。&#128540;
+                我最鍾意一句說話：<q>讀萬卷書不如行萬里路</q>
+                </p>
+
+                <div class="social mt-2" aria-label="Social media links">
+                    <a href="https://www.facebook.com/" target="_blank" aria-label="Facebook link"><i class="fab fa-facebook fa-lg mx-2"></i></a>
+                    <a href="https://www.instagram.com/" target="_blank" aria-label="Instagram link"><i class="fab fa-instagram fa-lg mx-2"></i></a>
+                </div>      
+            </section>
+
+            <div class="mt-4">
+                <h5 class="mb-3">我的旅遊專屬連結</h3>
+                <ul class="list-unstyled">
+                    <li><a href="https://hk.trip.com/?locale=zh_hk" target="_blank">Trip.com訂機票住宿專屬</a></li>
+                    <li><a href="https://www.expedia.com.hk/" target="_blank">Expedia.com訂機票住宿專屬</a></li>
+                    <li><a href="https://www.kkday.com/zh-hk" target="_blank">KKDAY 全球行程</a></li>
+                    <li><a href="https://www.klook.com/zh-TW/?aid=705&utm_medium=affiliate-alwayson&utm_source=non-network&utm_campaign=705&utm_term=" target="_blank">KLOOK 全球行程</a></li>
+                </ul>
+            </div>
+          </aside>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white text-center py-3">
+    <p>版權 &copy; 2026 | 毅行記</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+ 
+  <script src="magnify.js"></script>
+  
+  
+</body>
+</html>

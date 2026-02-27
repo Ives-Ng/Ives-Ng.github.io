@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>毅行記</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+    <link rel="stylesheet" href="style.css"> 
+
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand logo-title" href="index.html" id="logo-title"><img src="images/logo.png" class="logo-img" alt="毅行記"></a>
+   
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+
+
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav ">
+                   <li class="nav-item"><a class="nav-link active" href="index.html">首頁</a></li>
+                   <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="destinationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">歐洲</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="Zurich.html">瑞士 | 蘇黎世</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="destinationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">亞洲</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="Kaohsiung.html">台南 | 高雄</a>
+                            <a class="dropdown-item" href="Seoul.html">南韓 | 首爾</a>
+                            <a class="dropdown-item" href="Tokyo.html">日本 | 東京</a>
+                        </div>
+                    </li>
+                   <li class="nav-item"><a class="nav-link active" href="GameZone.html">互動區</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </nav>
+
+    <main class="container my-4">
+
+        <div class="row">
+            <!--Left Area-->
+            <div class="col-md-8 content">
+
+                <section id="projects-section">
+                    <h2 class="text-center">2026 計劃</h2>
+
+                    <div id="projectCarousel" class="carousel slide my-2" data-bs-ride="carousel" data-bs-interval="5000">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#projectCarousel" data-bs-slide-to="0" class="active"></button>
+                            <button type="button" data-bs-target="#projectCarousel" data-bs-slide-to="1"></button>
+                            <button type="button" data-bs-target="#projectCarousel" data-bs-slide-to="2"></button>
+                        </div>
+                      
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="images/雷克雅維克v2.jpg" class="d-block w-100" alt="Project 1">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>冰島</h5>
+                                    <p>雷克雅維克</p>
+                                </div>
+                            </div>
+
+                            <div class="carousel-item">
+                                <img src="images/摩洛哥v2.jpg" class="d-block w-100" alt="Project 2">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>摩洛哥</h5>
+                                    <p>拉巴特</p>
+                                </div>
+                            </div>
+
+                            <div class="carousel-item">
+                                <img src="images/烏蘇懷亞v2.jpg" class="d-block w-100" alt="Project 3">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>阿根廷</h5>
+                                    <p>烏蘇懷亞</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <button class="carousel-control-prev" type="button" data-bs-target="#projectCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#projectCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </button>
+                    </div>
+                </section>
+
+        
+                <div class="countries my-5">
+                    <h2 class="text-center mb-4">我的遊歷</h2>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <a href="Zurich.html"><img src="images//蘇黎世v2.jpg" class="img-fluid rounded" alt="Destination 1"></a>
+                            <h4 class="mt-2">瑞士 | 蘇黎世</h4>
+                            <p>雪山與湖泊的童話國度</p>
+                            <a href="Zurich.html" class="btn btn-sm btn-outline-primary">閱讀全文</a>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <a href="Tokyo.html"><img src="images//東京v2.jpg" class="img-fluid rounded" alt="Destination 2"></a>
+                            <h4 class="mt-2">日本 | 東京</h4>
+                            <p>現代與傳統交織的魅力都市</p>
+                            <a href="Tokyo.html" class="btn btn-sm btn-outline-primary">閱讀全文</a>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <a href="Seoul.html"><img src="images/首爾v2.jpg" class="img-fluid rounded" alt="Destination 3"></a>
+                            <h4 class="mt-2">南韓 | 首爾</h4>
+                            <p>潮流與傳統交融的活力之都</p>
+                            <a href="Seoul.html" class="btn btn-sm btn-outline-primary">閱讀全文</a>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <a href="Kaohsiung.html"><img src="images/高雄v2.jpg" class="img-fluid rounded" alt="Destination 4"></a>
+                            <h4 class="mt-2">台南 | 高雄</h4>
+                            <p>文化古都與港灣魅力的雙城風情</p>
+                            <a href="Kaohsiung.html" class="btn btn-sm btn-outline-primary">閱讀全文</a>
+                        </div>
+                    </div>
+                </div>
+           
+
+        
+                <div class="container my-5">
+                    <h2 class="text-center mb-4">旅遊回顧</h2>
+                    <div class="ratio ratio-16x9">
+                        <iframe width="560" height="315" 
+                            src="https://www.youtube.com/embed/40W27HZCcso?si=ESIV6TAXraJR34fq" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <!--Right Area-->
+            <div class="col-md-4 sidebar">
+                <aside>
+                    <h5 class="mb-3">關於我</h3>
+                    <section id="about-section" class="text-center">
+                    
+                        <img class="avatar mb-3" src="images/avatar.jpeg" alt="Avatar" />
+         
+                        <p class="mb-2 text-muted">
+                        歡迎來到 <strong>毅行記！</strong>。這裡是一個專為旅遊愛好者打造的資訊天地，
+                        帶你探索世界各地的精彩角落。我將紀錄我的所行所知，為大家呈現來自不同國家的
+                        <em>歷史、文化及實用資訊</em>。&#128540;
+                        我最鍾意一句說話：<q>讀萬卷書不如行萬里路</q>
+                        </p>
+
+                        <div class="social mt-2" aria-label="Social media links">
+                            <a href="https://www.facebook.com/" target="_blank" aria-label="Facebook link"><i class="fab fa-facebook fa-lg mx-2"></i></a>
+                            <a href="https://www.instagram.com/" target="_blank" aria-label="Instagram link"><i class="fab fa-instagram fa-lg mx-2"></i></a>
+                        </div>      
+                    </section>
+
+                    <div class="mt-4">
+                        <h5 class="mb-3">我的旅遊專屬連結</h3>
+                        <ul class="list-unstyled">
+                            <li><a href="https://hk.trip.com/?locale=zh_hk" target="_blank">Trip.com訂機票住宿專屬</a></li>
+                            <li><a href="https://www.expedia.com.hk/" target="_blank">Expedia.com訂機票住宿專屬</a></li>
+                            <li><a href="https://www.kkday.com/zh-hk" target="_blank">KKDAY 全球行程</a></li>
+                            <li><a href="https://www.klook.com/zh-TW/?aid=705&utm_medium=affiliate-alwayson&utm_source=non-network&utm_campaign=705&utm_term=" target="_blank">KLOOK 全球行程</a></li>
+                        </ul>
+                    </div>
+                </aside>
+            </div>
+
+        </div>
+    </main>
+
+
+
+  <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3">
+        <p>版權 &copy; 2026 | 毅行記</p>
+    </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

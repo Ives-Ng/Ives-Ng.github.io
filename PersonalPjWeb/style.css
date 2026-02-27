@@ -1,0 +1,174 @@
+body {
+    font-family: 微軟正黑體;
+    background-color: #fff8f0;
+    color: #333;
+    padding-top: 80px;
+    overflow-y: scroll;
+}
+
+@media(max-width: 267.8px){
+    body {
+        font-family: 微軟正黑體;
+        background-color: #fff8f0;
+        color: #333;
+        padding-top: 120px;
+
+    }
+}
+
+h2,h3,h5{
+    font-weight: bold;
+}
+
+.sidebar{
+    background-color: #f0e5d8;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.navbar { 
+    background-color: #f4c987	 !important; 
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+
+}
+.navbar .nav-link { 
+    color: #000000 !important; 
+    font-size: 1.3rem;
+    font-weight: bold;
+    border-radius: 5px; 
+}
+
+.navbar-nav .nav-link:hover { 
+    background-color: #bfae9f		;
+    border-radius: 5px; 
+    transition: background-color 0.3s ease; 
+}
+
+.dropdown-item:hover { 
+    background-color: #bfae9f; 
+}
+
+.dropdown-menu{
+    background-color: #fdf6ec;
+}
+
+.navbar-brand { 
+    font-size: 1.8rem;  
+    font-weight: bold; 
+}
+
+    
+@media (max-width: 991px) { 
+    #navbarNav .navbar-nav { 
+        position: relative; 
+        left: 0; 
+    } 
+} 
+
+@media (min-width: 992px) { 
+    #navbarNav .navbar-nav { 
+        position: relative; 
+        left: -85px; 
+    } 
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='black' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+.navbar-toggler{
+    border-color:#000000;
+}
+
+.navbar-toggler:focus{
+    outline: none;
+    box-shadow: none;
+}
+
+.logo-img { 
+    width: 200px; 
+    height: auto; 
+    margin-left: 10px; 
+    vertical-align: middle;    
+}
+
+.logo-title { 
+    font-family: 'Pacifico', cursive;
+    font-size: 2.5rem; 
+    color: #30666f !important; 
+    letter-spacing: 1px;    
+}
+
+.logo-title img:hover { 
+    filter: brightness(90%); 
+}
+
+.logo-title:hover { 
+    color: #234a51 !important;
+}
+
+.emoji {
+    font-size: 2.2rem; 
+    position: relative; 
+    top: 2px;
+}
+
+.avatar {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #3e4750;
+}
+.social a { 
+    font-size: 1.6rem; 
+    margin-right: 14px; 
+    color: #343a40; 
+}
+
+.social a:hover { 
+    color: #007bff; 
+    text-decoration: none; 
+}
+
+.carousel-item img { 
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.carousel-item h5,
+.carousel-item p{
+    text-shadow: 1px 1px 1px black;
+}
+
+.countries img{
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    object-fit: cover;
+}
+
+.countries img:hover{
+    transform: scale(1.02);
+    background: rgba(77,214,255,0.10);
+    border-color: rgba(77,214,255,0.40);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+}
+
+.img-magnifier-container { position: relative; display: inline-block; /* 保持容器大小與圖片一致 */ max-width: 100%; /* 響應式 */ }
+.img-magnifier-glass {
+  position: absolute;
+  border: 3px solid #000;
+  border-radius: 50%;
+  cursor: none;
+  width: 120px;
+  height: 120px;
+  background-repeat: no-repeat;
+  background-size: 200% 200%;
+  z-index: 10;
+  display: none;
+}
+
+
+.img-magnifier-container:hover .img-magnifier-glass { display: block; }

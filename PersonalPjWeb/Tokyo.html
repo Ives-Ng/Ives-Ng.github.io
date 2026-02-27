@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>日本 | 東京 - 毅行記</title>
+  <!-- 引用 Bootstrap 與你在 index.html 用的 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+  <link rel="stylesheet" href="style.css"> 
+  <link rel="stylesheet" href="childStyle.css"> 
+
+
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const toggleBtn = document.getElementById("toggle-catalog");
+      const tocList = document.getElementById("catalog-list");
+
+      toggleBtn.addEventListener("click", function () {
+        const isVisible = tocList.style.display !== "none";
+        tocList.style.display = isVisible ? "none" : "block";
+        toggleBtn.textContent = isVisible ? "顯示" : "隱藏";
+        toggleBtn.setAttribute("aria-expanded", !isVisible);
+      });
+    });
+
+  </script>
+
+
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand logo-title" href="index.html" id="logo-title"><img src="images/logo.png" class="logo-img" alt="Project 1"></a>
+   
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+
+
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav ">
+                   <li class="nav-item"><a class="nav-link active" href="index.html">首頁</a></li>
+                   <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="destinationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">歐洲</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="Zurich.html">瑞士 | 蘇黎世</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="destinationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">亞洲</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="Kaohsiung.html">台南 | 高雄</a>
+                            <a class="dropdown-item" href="Seoul.html">南韓 | 首爾</a>
+                            <a class="dropdown-item" href="Tokyo.html">日本 | 東京</a>
+                        </div>
+                    </li>
+                   <li class="nav-item"><a class="nav-link active" href="GameZone.html">互動區</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </nav>
+
+  <main class="container my-4">
+    <div class="row">
+      <div class="col-md-8 content">
+        <h2 class="text-left mb-2">亞洲 | 日本 | 2024 5日東京賞櫻</h2>
+        <div class="mb-4">
+          <time datetime="2024-05-01">🕒 2024/05/01</time>
+        </div>
+        <img src="images/東京v2.jpg" alt="東京" class="img-fluid rounded mb-4">
+
+        <div class="catalog-container">
+          <div class="catalog-header">
+            <span>📚 目錄</span>
+            <button id="toggle-catalog" aria-expanded="true">隱藏</button>
+          </div>
+          <ol id="catalog-list">
+            <li><a href="#air">航空交通</a></li>
+            <li><a href="#stay">房間住宿</a></li>
+            <li><a href="#history">歷史與文化</a></li>
+            <li>
+              <a href="#tourist">必訪景點</a>
+              <ol>
+                <li><a href="#tourist">上野公園（賞櫻聖地）</a></li>
+                <li><a href="#tourist">淺草寺</a></li>
+                <li><a href="#tourist">東京鐵塔／晴空塔</a></li>
+              </ol>           
+            </li>
+            
+            <li><a href="#tips">旅遊實用資訊</a></li>
+            <li><a href="#map">住宿地點</a></li>
+            <li><a href="#tripVideo">旅遊回顧</a></li>
+          </ol>
+        </div>
+
+        <section class="mb-5" id="air">
+          <h3>航空交通</h3>
+          <p>
+            從香港前往東京的航班選擇十分多樣，每天有多班直飛航班，
+            主要由香港國際機場出發，飛行時間約為 4 至 5 小時。
+            旅客可選擇全服務航空公司，如國泰航空、日本航空、全日空，
+            享受舒適座位與完善餐飲服務；也能選擇廉價航空，
+            例如樂桃航空、捷星日本或香港快運，以更優惠的票價抵達東京。
+          </p>
+          <p>
+            票價依季節而異，淡季來回約 HK$2,500–4,500，
+            旺季如櫻花季或暑假則可能上漲至 HK$6,000 以上。
+            東京主要有兩個國際機場：成田國際機場與羽田機場，
+            其中羽田距離市中心更近，交通便利。無論是短途度假或長程旅遊，
+            香港出發的航班都能讓你輕鬆抵達東京，展開精彩旅程。
+          </p>
+        </section>
+        
+        <section class="mb-5" id="stay">
+          <h3>房間住宿</h3>
+          <p>
+            在東京旅行，住宿選擇相當豐富，從豪華酒店到平價旅館一應俱全。
+            若想體驗高端享受，可以選擇位於新宿、銀座或六本木的五星級酒店，
+            提供完善設施與便利交通。背包客則常選擇青年旅館或膠囊旅館，
+            不僅價格親民，還能結識來自世界各地的旅人。
+          </p>
+          <p>
+            對於家庭或長住旅客，Airbnb、公寓式酒店與商務旅館是理想選擇，
+            提供廚房與洗衣設備，生活更便利。熱門訂房平台如 Booking.com、Agoda、
+            Trip.com 及日本在地的 Jalan.net，都能找到各種房型與優惠。
+            住宿價格依地點與季節而異，淡季每晚約 ¥5,000–8,000，
+            旺季如櫻花季或暑假則可能翻倍。無論是追求舒適還是節省預算，
+            東京都能提供合適的住宿方案，讓旅程更加安心愉快。
+
+          </p>
+        </section>        
+
+
+        <section class="mb-5" id="history">
+          <h3>歷史與文化</h3>
+          <p>
+            東京的歷史可追溯至江戶時代。1603 年德川家康在此建立幕府，
+            江戶逐漸成為日本的政治與經濟中心。到了 1868 年明治維新，
+            江戶改名為「東京」，意為「東方的京都」，並正式成為日本首都。
+            自此，東京在近代化的浪潮中迅速發展，融合了傳統與現代的多元面貌。
+          </p>
+          <p>
+            文化方面，東京既保留了古老的神社與寺廟，如淺草寺、明治神宮，
+            也孕育了現代潮流文化。原宿與澀谷是年輕人時尚的象徵，
+            秋葉原則是動漫與電玩迷的天堂。東京的美食文化同樣令人驚艷，
+            壽司、拉麵、居酒屋料理遍布街頭，並且擁有世界最多的米其林星級餐廳。
+          </p>
+            此外，東京的祭典活動展現了濃厚的在地風情。春天的賞櫻、夏季的煙火大會、
+            秋天的神社祭典與冬季的燈飾點亮城市，讓人感受到四季分明的文化魅力。
+            這座城市不僅是日本的政治與經濟核心，更是傳統與現代交織的文化舞台，
+            吸引全球旅人前來探索。
+          <p>
+
+          </p>
+        </section>
+
+        <section class="mb-5" id="tourist">
+          <h3>必訪景點</h3>
+          <ul>
+            <li>
+              <h4>🌸 上野公園（賞櫻聖地）</h4>
+              <p>三月的東京，櫻花如粉色雲海般在上野公園綻放。
+                人們鋪上野餐墊，舉杯暢談，笑聲與花香交織成春日的樂章。
+                沿著湖畔散步，櫻花花瓣隨風飄落，落在肩上，
+                彷彿在低語「歡迎來到東京的春天」。
+                除了櫻花，公園內還有博物館與動物園，讓自然與人文在此交融，
+                成為旅人心中最難忘的季節記憶。
+              </p>
+              <div class="img-magnifier-container">
+                <img src="images/Tokyo/上野公園-1.jpg" alt="上野公園環境" class="img-fluid rounded mb-4 touristImg">
+              </div>
+              <div class="img-magnifier-container">
+                <img src="images/Tokyo/上野公園-2.jpg" alt="上野公園環境" class="img-fluid rounded mb-4 touristImg">
+              </div>
+            </li>
+
+            <li>
+              <h4>🏯 淺草寺</h4>
+              <p>
+                走進淺草寺，雷門的大紅燈籠映入眼簾，彷彿在迎接每一位旅人。
+                穿過仲見世商店街，香氣四溢的和菓子、琳瑯滿目的紀念品讓人目不暇給。
+                寺院的莊嚴與熱鬧的街道形成鮮明對比，既能感受古老的信仰氛圍，
+                又能體驗江戶時代的繁華。春天櫻花盛開時，寺院周邊更添浪漫，
+                讓人忍不住駐足拍照。
+              </p>
+              <div class="img-magnifier-container">
+                <img src="images/Tokyo/淺草寺-1.jpg" alt="淺草寺環境" class="img-fluid rounded mb-4 touristImg">
+              </div>
+              <div class="img-magnifier-container">
+                <img src="images/Tokyo/淺草寺-2.jpg" alt="淺草寺環境" class="img-fluid rounded mb-4 touristImg">
+              </div>
+            </li>
+
+            <li>
+              <h4>🌃 東京鐵塔／晴空塔</h4>
+              <p>
+                夜幕低垂，東京鐵塔在燈光下閃耀，紅白相間的身影成為城市浪漫的象徵。
+                晴空塔則以 634 公尺的高度直插天際，登上觀景台，整個東京盡收眼底，
+                甚至能遠眺富士山。白天是現代建築的震撼，夜晚則是夢幻的光影秀，
+                兩座塔各自展現東京的不同面貌，
+                讓人一次擁有昭和懷舊與未來科技的雙重體驗。
+              </p>
+              <div class="img-magnifier-container">
+                <img src="images/Tokyo/東京鐵塔-1.jpg" alt="東京鐵塔環境" class="img-fluid rounded mb-4 touristImg">
+              </div>
+              <div class="img-magnifier-container">
+                <img src="images/Tokyo/東京鐵塔-2.jpg" alt="東京鐵塔環境" class="img-fluid rounded mb-4 touristImg">
+              </div>
+            
+            </li>
+          </ul>
+        </section>
+
+        <section class="mb-5" id="tips">
+          <h3>旅遊實用資訊</h3>
+          <ul>
+            <li>建議購買 
+              <a href="https://www.jreast.co.jp/zh-CHT/multi/welcomesuica/welcomesuica.html" target="_blank">Suica</a> 
+              或 PASMO 交通卡，可用於地鐵、JR、巴士及便利商店。
+            </li>
+            <li>
+              東京晴空塔、<a href="https://reserve.tokyodisneyresort.jp/en/?_gl=1*12x1b3k*_gcl_au*MTYwMDk4NzE5NC4xNzY4NjMwNDAz*_ga*MTA0NzA0NzgxMy4xNzY4NjMwNDAz*_ga_CW1JLMP4BH*czE3Njg2MzA0MDIkbzEkZzEkdDE3Njg2MzA0MTMkajQ5JGwwJGgw#" target="_blank">迪士尼樂園</a>
+              、<a href="https://www.ghibli-museum.jp/en/tickets/" target="_blank">吉卜力美術館</a>
+              等熱門景點建議提前網上預訂。
+            </li>
+            <li>可租借 
+              <a href="https://www.japan-wireless.com/" target="_blank">Wi-Fi 分享器</a>
+              或購買日本 SIM 卡。
+            </li>
+            <li>最佳旅遊季節: 賞櫻(3-4月)、賞楓(10-11月)、燈飾與購物季(12月)</li>
+            <li>多數景點有英文標示，部分提供中文導覽。建議手機安裝Google Maps與Google Translate</li>
+          </ul>
+        </section>
+
+        <section class="mb-5" id="map">
+          <h3>住宿地點</h3>
+          <div class="ratio ratio-16x9">
+           <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13346.026328369222!2d139.84932880444202!3d35.664128592257555!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x601887e1138e0495%3A0xd6f2803460a5362b!2shotel%20MONday%20TOKYO%20NISHIKASAI!5e0!3m2!1szh-CN!2shk!4v1768638079056!5m2!1szh-CN!2shk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+           </iframe>
+            
+          </div>
+        </section>
+
+        <section class="mb-5" id="tripVideo">
+          <h3>旅遊回顧</h3>
+          <div class="ratio ratio-16x9">
+            <iframe  
+              src="https://www.youtube.com/embed/77lWbSfnF_g?si=AKsmV-keMmelcaQM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+            </iframe>   
+          </div>
+        </section>
+      </div>
+
+      <div class="col-md-4 sidebar">
+          <aside>
+            <h5 class="mb-3">關於我</h3>
+            <section id="about-section" class="text-center">
+            
+                <img class="avatar mb-3" src="images/avatar.jpeg" alt="Avatar" />
+
+                <p class="mb-2 text-muted">
+                歡迎來到 <strong>毅行記！</strong>。這裡是一個專為旅遊愛好者打造的資訊天地，
+                帶你探索世界各地的精彩角落。我將紀錄我的所行所知，為大家呈現來自不同國家的
+                <em>歷史、文化及實用資訊</em>。&#128540;
+                我最鍾意一句說話：<q>讀萬卷書不如行萬里路</q>
+                </p>
+
+                <div class="social mt-2" aria-label="Social media links">
+                    <a href="https://www.facebook.com/" target="_blank" aria-label="Facebook link"><i class="fab fa-facebook fa-lg mx-2"></i></a>
+                    <a href="https://www.instagram.com/" target="_blank" aria-label="Instagram link"><i class="fab fa-instagram fa-lg mx-2"></i></a>
+                </div>      
+            </section>
+
+            <div class="mt-4">
+                <h5 class="mb-3">我的旅遊專屬連結</h3>
+                <ul class="list-unstyled">
+                    <li><a href="https://hk.trip.com/?locale=zh_hk" target="_blank">Trip.com訂機票住宿專屬</a></li>
+                    <li><a href="https://www.expedia.com.hk/" target="_blank">Expedia.com訂機票住宿專屬</a></li>
+                    <li><a href="https://www.kkday.com/zh-hk" target="_blank">KKDAY 全球行程</a></li>
+                    <li><a href="https://www.klook.com/zh-TW/?aid=705&utm_medium=affiliate-alwayson&utm_source=non-network&utm_campaign=705&utm_term=" target="_blank">KLOOK 全球行程</a></li>
+                </ul>
+            </div>
+          </aside>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white text-center py-3">
+    <p>版權 &copy; 2026 | 毅行記</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="magnify.js"></script>
+</body>
+</html>

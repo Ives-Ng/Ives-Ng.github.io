@@ -1,0 +1,80 @@
+.catalog-container {
+    border: 1px solid #ccc;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    background-color: #f9f9f9;
+}
+.catalog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#toggle-catalog {
+    background: none;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+}
+
+li {
+    margin: 0.5rem 0;   /* 每個項目上下間距 */
+}
+
+
+section{
+    scroll-margin-top: 100px;
+}
+
+.touristImg{
+    width: 800px;     
+    max-width: 100%;
+    border-radius: 8px;
+    display: block;
+}
+
+.catalog-container ol{
+    counter-reset: section;
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.catalog-container li{ 
+    margin: 10px 0; 
+}
+
+.catalog-container li::before{
+    counter-increment: section;
+    content: counters(section, ".") " ";
+    font-weight: 800;
+    display: inline-block;
+    width: 30px;
+}
+
+.catalog-container ol ol{
+    padding-left: 25px;
+    margin-top: 8px;
+}
+
+#tourist ul{
+    list-style-type: none;
+}
+
+.img-magnifier-container {
+    position: relative;
+    display: inline-block;
+}
+
+.img-magnifier-glass {
+    position: absolute;
+    pointer-events: none;
+    border-radius: 50%;
+    border: 3px solid #333;
+    width: 150px;
+    height: 150px;
+    background-repeat: no-repeat;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    transform: translate(-50%, -50%); /* 讓游標在正中心 */
+}
+
+  

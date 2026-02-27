@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>台南 | 高雄 - 毅行記</title>
+  <!-- 引用 Bootstrap 與你在 index.html 用的 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+  <link rel="stylesheet" href="style.css"> 
+  <link rel="stylesheet" href="childStyle.css"> 
+
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const toggleBtn = document.getElementById("toggle-catalog");
+      const tocList = document.getElementById("catalog-list");
+
+      toggleBtn.addEventListener("click", function () {
+        const isVisible = tocList.style.display !== "none";
+        tocList.style.display = isVisible ? "none" : "block";
+        toggleBtn.textContent = isVisible ? "顯示" : "隱藏";
+        toggleBtn.setAttribute("aria-expanded", !isVisible);
+      });
+    });
+
+  </script>
+
+
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand logo-title" href="index.html" id="logo-title"><img src="images/logo.png" class="logo-img" alt="Project 1"></a>
+   
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+
+
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav ">
+                   <li class="nav-item"><a class="nav-link active" href="index.html">首頁</a></li>
+                   <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="destinationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">歐洲</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="Zurich.html">瑞士 | 蘇黎世</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="destinationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">亞洲</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="Kaohsiung.html">台南 | 高雄</a>
+                            <a class="dropdown-item" href="Seoul.html">南韓 | 首爾</a>
+                            <a class="dropdown-item" href="Tokyo.html">日本 | 東京</a>
+                        </div>
+                    </li>
+                   <li class="nav-item"><a class="nav-link active" href="GameZone.html">互動區</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </nav>
+
+
+
+  <main class="container my-4">
+    <div class="row">
+      <div class="col-md-8 content">
+        <h2 class="text-left mb-2">台南 | 高雄 | 2025 3日文化美食之旅</h2>
+        <div class="mb-4">
+          <time datetime="2025-06-01">🕒 2025/06/01</time>
+        </div>
+        <img src="images/高雄v2.jpg" alt="高雄" class="img-fluid rounded mb-4">
+
+        <div class="catalog-container">
+          <div class="catalog-header">
+            <span>📚 目錄</span>
+            <button id="toggle-catalog" aria-expanded="true">隱藏</button>
+          </div>
+          <ol id="catalog-list">
+            <li><a href="#air">航空交通</a></li>
+            <li><a href="#stay">房間住宿</a></li>
+            <li><a href="#history">歷史與文化</a></li>
+            <li>
+              <a href="#tourist">必訪景點</a>
+              <ol>
+                <li><a href="#tourist">高雄燈塔</a></li>
+                <li><a href="#tourist">光之穹頂（美麗島捷運站）</a></li>
+                <li><a href="#tourist">六合夜市</a></li>
+              </ol>           
+            </li>
+            
+            <li><a href="#tips">旅遊實用資訊</a></li>
+            <li><a href="#map">住宿地點</a></li>
+            <li><a href="#tripVideo">旅遊回顧</a></li>
+          </ol>
+        </div>
+
+        <section class="mb-5" id="air">
+          <h3>航空交通</h3>
+          <p>
+            從香港前往高雄的航空交通十分便利，兩地之間有多家航空公司提供直航航班，平均飛行時間約1.5至2小時
+            主要承運航空公司包括國泰航空、香港快運、華信航空、中華航空、長榮航空等。
+          </p>
+          <p>
+            其中，香港快運（HK Express）常提供低價優惠，適合精打細算的旅客。
+            而國泰、中華航空與長榮則提供更完整的服務與舒適度。
+          </p>
+        </section>
+        
+        <section class="mb-5" id="stay">
+          <h3>房間住宿</h3>
+          <p>
+            高雄作為台灣南部的重要城市，住宿類型涵蓋五星級酒店、精品旅館、商務飯店、
+            民宿以及青年旅館。若追求舒適與便利，
+            市中心的國際酒店如漢來大飯店或洲際酒店提供完善設施，包括游泳池、
+            健身房與高樓景觀房，適合家庭或商務旅客。精品旅館則以設計感取勝，
+            常位於駁二藝術特區或鹽埕區，讓旅客能在住宿中感受在地文化氛圍。
+          </p>
+          <p>
+            對於預算有限的旅客，民宿與青年旅館是理想選擇。高雄的民宿多位於捷運沿線，
+            交通方便，房間溫馨且價格親民；青年旅館則提供床位或多人房，
+            適合背包客或短期停留。若計劃長住，高雄也有服務式公寓，
+            提供廚房與洗衣設備，讓旅客能像在家一般自在。
+          </p>
+        </section>        
+
+        <section class="mb-5" id="history">
+          <h3>歷史與文化</h3>
+          <p>
+            高雄早期被稱為「打狗」，原為平埔族馬卡道族的居住地。15世紀時，
+            族人為防禦海盜而遍植刺竹，形成「竹林」聚落。隨著漢人移民進入，
+            地名逐漸被漢化為「打狗」。在荷治、明鄭與清治時期，高雄逐漸發展為漁業與農業重鎮。
+            到了日治時期，因「打狗」音近日本高雄山，總督府將地名改為「高雄」，
+            並開始大規模港口建設，使其成為台灣南部的重要工業與商業中心
+          </p>
+          <p>
+            文化方面，高雄兼具傳統與現代。原住民文化仍在地方祭典與語言中保存，
+            例如馬卡道族的傳統故事與祭儀。日治時期留下的建築，如鹽埕町的街屋與銀座商場，
+            至今仍是文化資產的一部分。戰後，高雄因港口與重工業發展而快速都市化，
+            但同時也孕育了獨特的在地文化，包括廟會、夜市、美食，以及駁二藝術特區等新興文化空間。
+          </p>
+            總體而言，高雄的歷史與文化是一段從原住民聚落、殖民時期到現代港都的演變過程，
+            既保留傳統，又展現創新，讓旅客能在城市中同時感受古今交融的魅力。
+          <p>
+
+          </p>
+        </section>
+
+        <section class="mb-5" id="tourist">
+          <h3>必訪景點</h3>
+          <ul>
+            <li>
+              <h4>🌅 高雄燈塔</h4>
+              <p>
+                位於旗津的高雄燈塔，最初建於 1883 年，後於 1918 年重建。
+                白色圓形塔身優雅，矗立在山丘上，能俯瞰高雄港與海景。
+                這裡是欣賞夕陽的絕佳地點，旅人可沿著步道登頂，感受海風與歷史氛圍。
+                燈塔不僅是航海指引，更是旗津的重要地標。
+              </p>
+              <div class="img-magnifier-container">
+                <img src="images/Kaohsiung/高雄燈塔-1.jpg" alt="高雄燈塔環境" class="img-fluid rounded mb-4 touristImg">
+              </div>
+              <div class="img-magnifier-container">
+                <img src="images/Kaohsiung/高雄燈塔-2.jpg" alt="高雄燈塔環境" class="img-fluid rounded mb-4 touristImg">
+              </div>
+            </li>
+
+            <li>
+              <h4>🌈 光之穹頂（美麗島捷運站）</h4>
+              <p>
+                光之穹頂位於美麗島捷運站，是世界最大的玻璃公共藝術，
+                由義大利藝術家 Narcissus Quagliata 創作。
+                直徑 30 公尺，色彩鮮豔，描繪宇宙、生命與人類精神。
+                旅人走進車站，仿佛置身光影藝術殿堂。這裡常成為拍照打卡的熱門景點，也是高雄文化象徵之一。
+              </p>
+              <div class="img-magnifier-container">
+                <img src="images/Kaohsiung/光之穹頂-1.jpg" alt="光之穹頂環境" class="img-fluid rounded mb-4 touristImg">
+              </div>
+              <div class="img-magnifier-container">
+                <img src="images/Kaohsiung/光之穹頂-2.jpg" alt="光之穹頂環境" class="img-fluid rounded mb-4 touristImg">
+              </div>
+            </li>
+
+            <li>
+              <h4>🛍️ 六合夜市</h4>
+              <p>
+                六合夜市是高雄最具代表性的夜市之一，位於市中心，交通便利。
+                攤位林立，販售海鮮、牛排、木瓜牛奶等在地美食。
+                夜晚人潮湧動，燈火通明，展現南台灣的熱情氛圍。
+                旅人可在此品嚐地道小吃，感受高雄夜生活的活力，是必訪的美食天堂。
+              </p>
+              <div class="img-magnifier-container">
+                <img src="images/Kaohsiung/六合夜市-1.jpg" alt="六合夜市環境" class="img-fluid rounded mb-4 touristImg">
+              </div>
+              <div class="img-magnifier-container">
+                <img src="images/Kaohsiung/六合夜市-2.jpg" alt="六合夜市環境" class="img-fluid rounded mb-4 touristImg">
+              </div>
+              </li>
+          </ul>
+        </section>
+
+        <section class="mb-5" id="tips">
+          <h3>旅遊實用資訊</h3>
+          <ul>
+            <li>建議購買 
+              <a href="https://www.krtc.com.tw/?utm_source=copilot.com" target="_blank">高雄捷運一日票</a> 
+              或使用一卡通，方便搭乘捷運、公車與輕軌，可在便利店或捷運站充值。
+            </li>
+            <li>可租借 
+              <a href="https://www.wifi-egg.com/order.php?d=TW" target="_blank"> Wi-Fi Egg </a>
+              或購買台灣 SIM 卡。高雄國際機場有多家電信櫃台提供即時服務。
+            </li>
+            <li>
+              建議手機安裝
+              <a href="https://play.google.com/store/apps/details?id=com.krtc.krtcapp&hl=zh_HK" target="_blank">高雄捷運APP</a>
+              查詢路線與票價，搭配 Google Maps，能更精準規劃行程。
+            </li>
+            <li>
+              夜市消費以現金為主，建議準備小額鈔票與零錢，避免找零困難。
+            </li>
+             <li>
+              高雄天氣炎熱，建議攜帶防曬用品與水壺，夏季更要注意補充水分。
+            </li>
+          </ul>
+        </section>
+
+        <section class="mb-5" id="map">
+          <h3>住宿地點</h3>
+          <div class="ratio ratio-16x9">
+         <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3682.877693719822!2d120.28658507530186!3d22.621041979457225!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346e053a0403c3e9%3A0xf15d8eb553429002!2z5rKz5pig5a6_5rKQIFJpdmVyVHJlZXMgSG90ZWw!5e0!3m2!1sen!2shk!4v1768805414945!5m2!1sen!2shk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+         </iframe>
+            
+          </div>
+        </section>
+
+        <section class="mb-5" id="tripVideo">
+          <h3>旅遊回顧</h3>
+          <div class="ratio ratio-16x9">
+          <iframe 
+            width="560" height="315" src="https://www.youtube.com/embed/JwtNvBNhXnc?si=9eMCtDl7nZwDRk6_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+          </iframe>
+          </div>
+        </section>
+      </div>
+
+      <div class="col-md-4 sidebar">
+          <aside>
+            <h5 class="mb-3">關於我</h3>
+            <section id="about-section" class="text-center">
+            
+                <img class="avatar mb-3" src="images/avatar.jpeg" alt="Avatar" />
+
+                <p class="mb-2 text-muted">
+                歡迎來到 <strong>毅行記！</strong>。這裡是一個專為旅遊愛好者打造的資訊天地，
+                帶你探索世界各地的精彩角落。我將紀錄我的所行所知，為大家呈現來自不同國家的
+                <em>歷史、文化及實用資訊</em>。&#128540;
+                我最鍾意一句說話：<q>讀萬卷書不如行萬里路</q>
+                </p>
+
+                <div class="social mt-2" aria-label="Social media links">
+                    <a href="https://www.facebook.com/" target="_blank" aria-label="Facebook link"><i class="fab fa-facebook fa-lg mx-2"></i></a>
+                    <a href="https://www.instagram.com/" target="_blank" aria-label="Instagram link"><i class="fab fa-instagram fa-lg mx-2"></i></a>
+                </div>      
+            </section>
+
+            <div class="mt-4">
+                <h5 class="mb-3">我的旅遊專屬連結</h3>
+                <ul class="list-unstyled">
+                    <li><a href="https://hk.trip.com/?locale=zh_hk" target="_blank">Trip.com訂機票住宿專屬</a></li>
+                    <li><a href="https://www.expedia.com.hk/" target="_blank">Expedia.com訂機票住宿專屬</a></li>
+                    <li><a href="https://www.kkday.com/zh-hk" target="_blank">KKDAY 全球行程</a></li>
+                    <li><a href="https://www.klook.com/zh-TW/?aid=705&utm_medium=affiliate-alwayson&utm_source=non-network&utm_campaign=705&utm_term=" target="_blank">KLOOK 全球行程</a></li>
+                </ul>
+            </div>
+          </aside>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white text-center py-3">
+    <p>版權 &copy; 2026 | 毅行記</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="magnify.js"></script>
+</body>
+</html>

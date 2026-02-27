@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>南韓 | 首爾 - 毅行記</title>
+  <!-- 引用 Bootstrap 與你在 index.html 用的 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+  <link rel="stylesheet" href="style.css"> 
+  <link rel="stylesheet" href="childStyle.css"> 
+
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const toggleBtn = document.getElementById("toggle-catalog");
+      const tocList = document.getElementById("catalog-list");
+
+      toggleBtn.addEventListener("click", function () {
+        const isVisible = tocList.style.display !== "none";
+        tocList.style.display = isVisible ? "none" : "block";
+        toggleBtn.textContent = isVisible ? "顯示" : "隱藏";
+        toggleBtn.setAttribute("aria-expanded", !isVisible);
+      });
+    });
+
+  </script>
+
+
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand logo-title" href="index.html" id="logo-title"><img src="images/logo.png" class="logo-img" alt="Project 1"></a>
+   
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+
+
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav ">
+                   <li class="nav-item"><a class="nav-link active" href="index.html">首頁</a></li>
+                   <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="destinationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">歐洲</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="Zurich.html">瑞士 | 蘇黎世</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="destinationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">亞洲</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="Kaohsiung.html">台南 | 高雄</a>
+                            <a class="dropdown-item" href="Seoul.html">南韓 | 首爾</a>
+                            <a class="dropdown-item" href="Tokyo.html">日本 | 東京</a>
+                        </div>
+                    </li>
+                   <li class="nav-item"><a class="nav-link active" href="GameZone.html">互動區</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </nav>
+
+
+
+  <main class="container my-4">
+    <div class="row">
+      <div class="col-md-8 content">
+        <h2 class="text-left mb-2">南韓 | 首爾 | 2024 3日購物樂園</h2>
+        <div class="mb-4">
+          <time datetime="2023-10-01">🕒 2024/10/01</time>
+        </div>
+        <img src="images/首爾v2.jpg" alt="首爾" class="img-fluid rounded mb-4">
+
+        <div class="catalog-container">
+          <div class="catalog-header">
+            <span>📚 目錄</span>
+            <button id="toggle-catalog" aria-expanded="true">隱藏</button>
+          </div>
+          <ol id="catalog-list">
+            <li><a href="#air">航空交通</a></li>
+            <li><a href="#stay">房間住宿</a></li>
+            <li><a href="#history">歷史與文化</a></li>
+            <li>
+              <a href="#tourist">必訪景點</a>
+              <ol>
+                <li><a href="#tourist">景福宮</a></li>
+                <li><a href="#tourist">明洞</a></li>
+                <li><a href="#tourist">南山首爾塔</a></li>
+              </ol>           
+            </li>
+            
+            <li><a href="#tips">旅遊實用資訊</a></li>
+            <li><a href="#map">住宿地點</a></li>
+            <li><a href="#tripVideo">旅遊回顧</a></li>
+          </ol>
+        </div>
+
+        <section class="mb-5" id="air">
+          <h3>航空交通</h3>
+          <p>
+            香港至首爾的航線是東亞最繁忙的國際航線之一，每天有多班直航航班，
+            主要由 國泰航空、香港快運、韓國航空、以及韓亞航空 等公司營運。
+            航程約 4小時，通常由香港國際機場出發，抵達首爾仁川國際機場。
+            仁川機場是韓國最大的航空樞紐，設施完善，並與市區有便捷的交通連接，
+            包括機場快線列車與巴士。
+          </p>
+          <p>
+            票價方面，經濟艙單程票最低可在 HK$1,100 左右找到。由於航班頻繁，
+            旅客可靈活安排早晨或晚間出發，方便規劃短途旅行或週末假期。
+            仁川機場本身也是旅遊體驗的一部分，擁有購物中心、文化展覽與美食街，
+            讓旅程在抵達前就充滿期待。
+          </p>
+        </section>
+        
+        <section class="mb-5" id="stay">
+          <h3>房間住宿</h3>
+          <p>
+            首爾作為韓國的首都與旅遊中心，住宿選擇極為多元，能滿足不同旅人的需求。
+            市中心如明洞、弘大與江南一帶，聚集了各式酒店、旅館與民宿。
+            若追求便利與購物氛圍，明洞的酒店房間通常設計現代，提供免費Wi-Fi與早餐，
+            適合短途旅行者。弘大則以青春活力著稱，周邊有許多青年旅舍與特色民宿，
+            房間裝潢常融入藝術元素，價格親民，並鼓勵旅人交流。
+          </p>
+          <p>
+            此外，首爾的住宿也逐漸融入智慧科技與環保理念，
+            部分酒店提供手機控制燈光與溫度的智慧房間，並採用環保材料。
+            無論是背包客、家庭旅遊或商務出差，首爾的房間住宿都能提供合適的選擇，
+            讓旅程更加舒適難忘。
+          </p>
+        </section>        
+
+
+        <section class="mb-5" id="history">
+          <h3>歷史與文化</h3>
+          <p>
+            首爾的歷史源遠流長，早在新石器時代便有人類居住於漢江流域。
+            公元前18年，百濟王國在此建立都城，奠定了首爾作為政治與文化中心的地位。
+            隨後在高麗與朝鮮王朝時期，首爾（當時稱為漢城）成為王朝首都，
+            並建造了景福宮、昌德宮等宏偉宮殿，象徵著王權與儒家文化的繁盛。
+          </p>
+          <p>
+            近代歷史中，首爾經歷了日本殖民統治與韓戰的破壞，但在戰後迅速復興，
+            逐漸發展為現代化大都市。今日的首爾不僅是韓國的政治與經濟中心，
+            更是文化交流的舞台。傳統韓屋村、佛教寺廟與市場依舊保存著古老風貌，
+            而同時，K-pop、韓劇與時尚潮流則展現了首爾的現代文化力量
+          </p>
+           這座城市的獨特之處在於 古今交融：遊客既能在北村韓屋村感受傳統生活氛圍，
+           也能在江南體驗尖端科技與流行文化。首爾的歷史與文化正如漢江般流淌，
+           既承載過去的記憶，也奔向未來的創新。
+          <p>
+
+          </p>
+        </section>
+
+        <section class="mb-5" id="tourist">
+          <h3>必訪景點</h3>
+          <ul>
+            <li>
+              <h4>🏯 景福宮</h4>
+              <p>
+                景福宮是朝鮮王朝的正宮，建於 1395 年，象徵王權與儒家文化。
+                宮殿群宏偉壯麗，包含勤政殿、慶會樓等代表性建築。
+                遊客可觀賞守門將交替儀式，體驗古代宮廷氛圍。春季櫻花、秋季楓葉更添美景，
+                是了解韓國歷史的最佳起點。
+              </p>
+              <div class="img-magnifier-container">
+                <img src="images/Seoul/景福宮-1.jpg" alt="景福宮環境" class="img-fluid rounded mb-4 touristImg">
+              </div>
+              <div class="img-magnifier-container">
+                <img src="images/Seoul/景福宮-2.jpg" alt="景福宮環境" class="img-fluid rounded mb-4 touristImg">
+              </div>
+            </li>
+
+            <li>
+              <h4>🛍️ 明洞</h4>
+              <p>
+                明洞是首爾最繁華的購物區之一，聚集時尚品牌、化妝品店與街頭美食。
+                白天人潮洶湧，夜晚燈火通明，氛圍熱鬧。這裡不僅是購物天堂，
+                也是品嚐韓式小吃如辣炒年糕、烤魷魚的好地方。對喜愛購物與美食的旅人而言，
+                明洞是必訪之地。
+              </p>
+              <div class="img-magnifier-container">
+                <img src="images/Seoul/明洞-1.jpg" alt="明洞環境" class="img-fluid rounded mb-4 touristImg">
+              </div>
+              <div class="img-magnifier-container">
+                <img src="images/Seoul/明洞-2.jpg" alt="明洞環境" class="img-fluid rounded mb-4 touristImg">
+              </div>
+            </li>
+
+            <li>
+              <h4>🌆 南山首爾塔</h4>
+              <p>
+                位於南山山頂的首爾塔是城市地標，觀景台能俯瞰首爾全景。
+                夜晚燈光璀璨，浪漫氛圍吸引情侶前來掛上「愛情鎖」。
+                內設有餐廳與展覽，結合娛樂與觀光。白天可登山健行，
+                夜晚則欣賞壯麗夜景，是體驗首爾浪漫的首選。
+              </p>
+              <div class="img-magnifier-container">
+                <img src="images/Seoul/南山首爾塔-1.jpg" alt="首爾塔環境" class="img-fluid rounded mb-4 touristImg">
+              </div>
+              <div class="img-magnifier-container">
+                <img src="images/Seoul/南山首爾塔-2.jpg" alt="首爾塔環境" class="img-fluid rounded mb-4 touristImg">
+              </div>
+            </li>
+          </ul>
+        </section>
+
+        <section class="mb-5" id="tips">
+          <h3>旅遊實用資訊</h3>
+          <ul>
+            <li>建議購買 
+              <a href="https://www.klook.com/zh-HK/activity/18054-klook-t-money-card-seoul/?_currency=HKD&utm_source=bing&utm_medium=cpc&campaignid=663534151&adgroupid=1319416613214326&targetid=kwd-82464976553054%3Aloc-200&matchtype=e&device=c&creative=82463781378523&extensionid=&keyword=t%20money%20%E5%8D%A1&loc_interest_ms=&loc_physical_ms=200&network=o&utm_content=campaignid_663534151_adgroupid_1319416613214326&msclkid=51bb7bd80e71137bd17212b59a1e647e" target="_blank">T-money卡</a> 
+              可用於地鐵、公車、計程車。可在便利店（如 GS25、CU）或地鐵站購買與充值。
+            </li>
+            <li>可租借 
+              <a href="https://www.japan-wireless.com/" target="_blank"> Wi-Fi Egg </a>
+              或購買韓國 SIM 卡。仁川機場有多家電信櫃台。
+            </li>
+            <li>
+              建議手機安裝KakaoMetro和
+              <a href="https://play.google.com/store/apps/details?id=com.kakao.taxi&hl=en" target="_blank">Kakao T</a>
+              用於地鐵路線查詢和叫車。另外安裝
+              <a href="https://play.google.com/store/search?q=KakaoMap&c=apps&hl=en" target="_blank">KakaoMap</a>
+              會擁有比Google Map更精準的韓國地圖
+            </li>
+            <li>
+              謹記地鐵「粉紅座位」為孕婦專用，即使空著也不要坐，
+              以及尊重長輩，避免在公共場合大聲喧嘩。
+            </li>
+          </ul>
+        </section>
+
+        <section class="mb-5" id="map">
+          <h3>住宿地點</h3>
+          <div class="ratio ratio-16x9">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3162.3612947018955!2d127.06766889425818!3d37.570109241871364!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357cbb3a80fd6ac1%3A0xb0018d5a26109562!2sHotel%20Signature!5e0!3m2!1szh-TW!2shk!4v1768790749198!5m2!1szh-TW!2shk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+            
+          </div>
+        </section>
+
+        <section class="mb-5" id="tripVideo">
+          <h3>旅遊回顧</h3>
+          <div class="ratio ratio-16x9">
+           <iframe 
+              src="https://www.youtube.com/embed/sr3O7ArQTYY?si=t8oESqpfhj-PIeZU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>  
+          </div>
+        </section>
+      </div>
+
+      <div class="col-md-4 sidebar">
+          <aside>
+            <h5 class="mb-3">關於我</h3>
+            <section id="about-section" class="text-center">
+            
+                <img class="avatar mb-3" src="images/avatar.jpeg" alt="Avatar" />
+
+                <p class="mb-2 text-muted">
+                歡迎來到 <strong>毅行記！</strong>。這裡是一個專為旅遊愛好者打造的資訊天地，
+                帶你探索世界各地的精彩角落。我將紀錄我的所行所知，為大家呈現來自不同國家的
+                <em>歷史、文化及實用資訊</em>。&#128540;
+                我最鍾意一句說話：<q>讀萬卷書不如行萬里路</q>
+                </p>
+
+                <div class="social mt-2" aria-label="Social media links">
+                    <a href="https://www.facebook.com/" target="_blank" aria-label="Facebook link"><i class="fab fa-facebook fa-lg mx-2"></i></a>
+                    <a href="https://www.instagram.com/" target="_blank" aria-label="Instagram link"><i class="fab fa-instagram fa-lg mx-2"></i></a>
+                </div>      
+            </section>
+
+            <div class="mt-4">
+                <h5 class="mb-3">我的旅遊專屬連結</h3>
+                <ul class="list-unstyled">
+                    <li><a href="https://hk.trip.com/?locale=zh_hk" target="_blank">Trip.com訂機票住宿專屬</a></li>
+                    <li><a href="https://www.expedia.com.hk/" target="_blank">Expedia.com訂機票住宿專屬</a></li>
+                    <li><a href="https://www.kkday.com/zh-hk" target="_blank">KKDAY 全球行程</a></li>
+                    <li><a href="https://www.klook.com/zh-TW/?aid=705&utm_medium=affiliate-alwayson&utm_source=non-network&utm_campaign=705&utm_term=" target="_blank">KLOOK 全球行程</a></li>
+                </ul>
+            </div>
+          </aside>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white text-center py-3">
+    <p>版權 &copy; 2026 | 毅行記</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="magnify.js"></script>
+
+</body>
+</html>

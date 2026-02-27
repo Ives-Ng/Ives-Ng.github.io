@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <title>Image Magnifier Test</title>
+
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 40px;
+      background: #f5f5f5;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    /* 關鍵：定位座標基準 */
+    .img-magnifier-container {
+      position: relative;
+      display: inline-block;
+    }
+
+    img {
+      width: 600px;        /* 模擬 RWD / 縮放 */
+      max-width: 100%;
+      border-radius: 8px;
+      display: block;
+    }
+
+    .img-magnifier-glass {
+      position: absolute;
+      pointer-events: none;
+      border-radius: 50%;
+      border: 3px solid #333;
+      width: 150px;
+      height: 150px;
+      background-repeat: no-repeat;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      transform: translate(-50%, -50%); /* 讓游標在正中心 */
+    }
+  </style>
+</head>
+
+<body>
+  <h1>🧐 Image Magnifier Demo</h1>
+  <p>把滑鼠移到圖片上，放大鏡會精準跟隨游標</p>
+
+  <div class="img-magnifier-container">
+    <img
+      id="demoImg"
+      src="https://images.unsplash.com/photo-1501785888041-af3ef285b470"
+      alt="Mountain"
+    />
+  </div>
+
+  <script>
+    function magnify(imgID, zoom) {
+      const img = document.getElementById(imgID);
+
+      const glass = document.createElement("div");
+      glass.className = "img-magnifier-glass";
+      img.parentElement.appendChild(glass);
+
+      glass.style.backgroundImage = `url('${img.src}')`;
+      glass.style.backgroundSize =
+        `${img.naturalWidth * zoom}px ${img.naturalHeight * zoom}px`;
+
+      img.addEventListener("mousemove", move);
+      glass.addEventListener("mousemove", move);
+      img.addEventListener("mouseenter", () => glass.style.display = "block");
+      img.addEventListener("mouseleave", () => glass.style.display = "none");
+
+      function move(e) {
+        e.preventDefault();
+
+        const rect = img.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        const ratioX = img.naturalWidth / img.offsetWidth;
+        const ratioY = img.naturalHeight / img.offsetHeight;
+
+        glass.style.left = `${x}px`;
+        glass.style.top = `${y}px`;
+
+        const bgX = -(x * ratioX * zoom - glass.offsetWidth / 2);
+        const bgY = -(y * ratioY * zoom - glass.offsetHeight / 2);
+
+        glass.style.backgroundPosition = `${bgX}px ${bgY}px`;
+      }
+
+      window.addEventListener("resize", () => {
+        glass.style.backgroundSize =
+          `${img.naturalWidth * zoom}px ${img.naturalHeight * zoom}px`;
+      });
+    }
+
+    magnify("demoImg", 1);
+  </script>
+</body>
+</html>
