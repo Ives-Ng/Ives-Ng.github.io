@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>漫玩天地 - 潮流商場購物資訊</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!--
+    <style>
+        :root {
+            --primary-color: #e91e63;
+            --secondary-color: #ff9800;
+            --accent-color: #9c27b0;
+            --light-bg: #fff8f6;
+            --dark-text: #5d4037;
+            --light-text: #fff;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+            --product-pink: #f8bbd9;
+            --product-brown: #8d6e63;
+            --product-cream: #fff3e0;
+        }
+        
+        body {
+            font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+            color: var(--dark-text);
+            scroll-behavior: smooth;
+            background-color: var(--light-bg);
+        }
+        
+        /* 導航列樣式 */
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            box-shadow: var(--shadow);
+            padding: 15px 0;
+            transition: var(--transition);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--light-text) !important;
+        }
+        
+        .navbar-nav .nav-link {
+            color: rgba(255, 255, 255, 0.85) !important;
+            font-weight: 500;
+            margin: 0 8px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: var(--transition);
+        }
+        
+        .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active {
+            background-color: rgba(255, 255, 255, 0.15);
+            color: var(--light-text) !important;
+        }
+        
+        /* 蛋糕商店首圖 */
+        .product-shop-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 150px 0 100px;
+            text-align: center;
+            margin-top: 80px;
+        }
+        
+        .product-shop-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        /* 內容區塊通用樣式 */
+        .content-section {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            color: var(--primary-color);
+            position: relative;
+            font-weight: 700;
+            font-size: 2.5rem;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 3px;
+        }
+        
+        /* 蛋糕商店內容樣式 */
+        .product-shop-content {
+            background-color: white;
+        }
+        
+        /* 蛋糕篩選器樣式 */
+        .product-filters {
+            background: var(--product-cream);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 100px;
+        }
+        
+        .filter-section {
+            margin-bottom: 25px;
+        }
+        
+        .filter-section h5 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .filter-option {
+            margin-bottom: 10px;
+        }
+        
+        /* 蛋糕網格樣式 */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .product-item {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid #ffeaea;
+        }
+        
+        .product-item:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(233, 30, 99, 0.15);
+        }
+        
+        .product-image {
+            height: 220px;
+            width: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .product-item:hover .product-image {
+            transform: scale(1.05);
+        }
+        
+        .product-details {
+            padding: 20px;
+            background: white;
+        }
+        
+        .product-category {
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            display: inline-block;
+            background: var(--product-pink);
+            padding: 3px 10px;
+            border-radius: 20px;
+        }
+        
+        .product-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            height: 50px;
+            overflow: hidden;
+            color: var(--dark-text);
+        }
+        
+        .product-description {
+            color: #8d6e63;
+            margin-bottom: 15px;
+            height: 60px;
+            overflow: hidden;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .product-badge {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            margin-right: 5px;
+        }
+        
+        .product-sort {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            background: var(--product-cream);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+        }
+        
+        .sort-select {
+            width: 200px;
+            border: 2px solid var(--product-pink);
+            border-radius: 10px;
+            padding: 10px 15px;
+            color: var(--dark-text);
+            font-weight: 500;
+        }
+        
+        /* 蛋糕專用頁腳樣式 */
+        .product-footer {
+            background: linear-gradient(135deg, var(--product-brown), #6d4c41);
+            color: var(--light-text);
+            padding: 60px 0 30px;
+            margin-top: 50px;
+        }
+        
+        .product-footer h4 {
+            color: var(--product-cream);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .product-footer p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+        }
+        
+        .contact-info {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+        
+        .contact-info li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .contact-info i {
+            font-size: 1.2rem;
+            color: var(--product-pink);
+            width: 25px;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .social-icon:hover {
+            background: var(--primary-color);
+            transform: translateY(-5px);
+        }
+        
+        /* 響應式調整 */
+        @media (max-width: 768px) {
+            .product-shop-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .content-section {
+                padding: 70px 0;
+            }
+            
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .product-sort {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .sort-select {
+                width: 100%;
+            }
+        }
+        
+        /* 動畫效果 */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* 蛋糕特色標籤 */
+        .product-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--primary-color);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 10;
+        }
+        
+        .product-image-container {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* 查看詳情按鈕 */
+        .view-detail-btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: var(--transition);
+            display: block;
+            width: 100%;
+            text-align: center;
+            text-decoration: none;
+        }
+        
+        .view-detail-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(233, 30, 99, 0.2);
+            color: white;
+        }
+    </style>
+-->
+    
+    <link rel="stylesheet" href="onlineshop.css">
+</head>
+<body>
+    <!-- 導航列 -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="onlineShop.html">
+                <i class="bi bi-controller"></i> 漫玩天地
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="home.html"><i class="bi bi-house-door"></i> 主頁</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="onlineShop.html"><i class="bi bi-bag"></i> 商店</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="onlineCart.html">
+                            <i class="bi bi-cart3"></i> 購物車
+                            <span class="cart-indicator" id="cartCount">0</span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 模型商店首圖 -->
+    <section class="product-shop-hero">
+        <div class="container">
+            <h1>模型專門店</h1>
+            <p class="lead">集結動漫，電玩，影視模型，一站式收藏天堂。</p>
+        </div>
+    </section>
+
+    <!-- 模型商店內容 -->
+    <section class="content-section product-shop-content">
+        <div class="container">
+            <h2 class="section-title">精選模型系列</h2>
+            <p class="text-center mb-5">模型迷的聚集地，精選各大系列精品模型。</p>
+            
+            <div class="row">
+                <!-- 篩選側邊欄 -->
+                <div class="col-lg-3">
+                    <div class="product-filters">
+                        <div class="filter-section">
+                            <h5><i class="bi bi-funnel"></i> 模型分類</h5>
+                            <div class="filter-option">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="all" id="filterAll" checked>
+                                    <label class="form-check-label" for="filterAll">
+                                        全部模型
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="filter-option">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="chocolate" id="filterChocolate" checked>
+                                    <label class="form-check-label" for="filterChocolate">
+                                        動漫系列
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="filter-option">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="fruit" id="filterFruit" checked>
+                                    <label class="form-check-label" for="filterFruit">
+                                        電影系列
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="filter-option">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="cheese" id="filterCheese" checked>
+                                    <label class="form-check-label" for="filterCheese">
+                                        遊戲系列
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="filter-option">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="wedding" id="filterWedding" checked>
+                                    <label class="form-check-label" for="filterWedding">
+                                        Chiikawa系列
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="filter-option">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="seasonal" id="filterSeasonal" checked>
+                                    <label class="form-check-label" for="filterSeasonal">
+                                        迪士尼系列
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="filter-section">
+                            <h5><i class="bi bi-tags"></i> 特色標籤</h5>
+                            <div class="filter-option">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="new" id="filterNew">
+                                    <label class="form-check-label" for="filterNew">
+                                        新品
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="filter-option">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="bestseller" id="filterBestseller">
+                                    <label class="form-check-label" for="filterBestseller">
+                                        熱銷
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="filter-option">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="vegan" id="filterVegan">
+                                    <label class="form-check-label" for="filterVegan">
+                                        特價
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="filter-option">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="glutenfree" id="filterGlutenFree">
+                                    <label class="form-check-label" for="filterGlutenFree">
+                                        預訂
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-primary w-100 mt-3" onclick="applyFilters()">
+                            <i class="bi bi-check-circle"></i> 套用篩選
+                        </button>
+                        <button class="btn btn-outline-secondary w-100 mt-2" onclick="resetFilters()">
+                            <i class="bi bi-arrow-clockwise"></i> 重設篩選
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- 蛋糕列表 -->
+                <div class="col-lg-9">
+                    <div class="product-sort">
+                        <div>
+                            顯示 <span id="itemCount">15</span> 款模型
+                        </div>
+                        <div>
+                            <select class="form-select sort-select" id="sortSelect" onchange="sortItem()">
+                                <option value="default">預設排序</option>
+                                <option value="name">名稱: A-Z</option>
+                                <option value="price">價格: 低至高</option>
+                                <option value="popular">人氣最高</option>
+                                <option value="newest">最新上市</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div id="productGrid" class="product-grid">
+                        <!-- 模型將由JavaScript動態生成 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 頁腳 -->
+    <footer class="product-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h4><i class="bi bi-product"></i> 漫玩天地</h4>
+                    <p>模型迷的聚集地，從經典到最新款，精選各大系列精品模型。</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 mb-4">
+                    <h4><i class="bi bi-clock"></i> 營業時間</h4>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="bi bi-calendar-week"></i>
+                            <div>
+                                <strong>星期一至五</strong><br>
+                                10:00 - 20:00
+                            </div>
+                        </li>
+                        <li>
+                            <i class="bi bi-calendar-week"></i>
+                            <div>
+                                <strong>星期六、日及公眾假期</strong><br>
+                                09:00 - 21:00
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-4 mb-4">
+                    <h4><i class="bi bi-geo-alt"></i> 聯絡我們</h4>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="bi bi-geo-alt-fill"></i>
+                            <div>
+                                <strong>地址</strong><br>
+                                     佐敦道 88 號
+                            </div>
+                        </li>
+                        <li>
+                            <i class="bi bi-telephone"></i>
+                            <div>
+                                <strong>電話</strong><br>
+                                +852 2345 6789
+                            </div>
+                        </li>
+                        <li>
+                            <i class="bi bi-envelope"></i>
+                            <div>
+                                <strong>電郵</strong><br>
+                                figures@trendmall.com
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="row mt-4 pt-4 border-top border-secondary">
+                <div class="col-md-6">
+                    <p>&copy; 2026 漫玩天地 - 潮流商場購物資訊 版權所有</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p>本網站僅供學習使用，圖片來源於Unsplash</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS 和 Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  
+    <script src="item.js"></script>
+</body>
+</html>

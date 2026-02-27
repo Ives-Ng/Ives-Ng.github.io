@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>北歐家居生活館 | 打造舒適生活空間</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft JhengHei', sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 標頭樣式 */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo h1 {
+            font-size: 28px;
+            color: #2c3e50;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+        
+        .logo span {
+            color: #7f8c8d;
+            font-weight: 400;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #3498db;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #2c3e50;
+            cursor: pointer;
+        }
+        
+        /* 主視覺區域 */
+        .hero {
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7)), url('https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        
+        .hero h2 {
+            font-size: 48px;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            padding: 14px 32px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: background-color 0.3s;
+        }
+        
+        .cta-button:hover {
+            background-color: #2980b9;
+        }
+        
+        /* 產品展示區 */
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            color: #2c3e50;
+            font-weight: 300;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 2px;
+            background-color: #3498db;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .section-title p {
+            color: #7f8c8d;
+            font-size: 18px;
+            max-width: 700px;
+            margin: 20px auto 0;
+        }
+        
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .product-img {
+            height: 220px;
+            width: 100%;
+            object-fit: cover;
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-info h3 {
+            font-size: 20px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        
+        .product-info p {
+            color: #7f8c8d;
+            margin-bottom: 15px;
+            font-size: 15px;
+        }
+        
+        .product-price {
+            font-size: 20px;
+            color: #3498db;
+            font-weight: 600;
+        }
+        
+        /* 關於我們區 */
+        .about {
+            display: flex;
+            align-items: center;
+            margin-bottom: 80px;
+            flex-wrap: wrap;
+        }
+        
+        .about-img {
+            flex: 1;
+            min-width: 300px;
+            height: 400px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .about-content {
+            flex: 1;
+            min-width: 300px;
+            padding: 0 40px;
+        }
+        
+        .about-content h2 {
+            font-size: 32px;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+        
+        .about-content p {
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        
+        /* 特點區 */
+        .features {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 80px;
+        }
+        
+        .feature {
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+            padding: 20px;
+            margin: 10px;
+        }
+        
+        .feature-icon {
+            font-size: 40px;
+            color: #3498db;
+            margin-bottom: 20px;
+        }
+        
+        .feature h3 {
+            font-size: 20px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+        
+        .feature p {
+            color: #7f8c8d;
+        }
+        
+        /* 頁尾 */
+        footer {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+            padding-right: 20px;
+        }
+        
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            font-weight: 500;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 2px;
+            background-color: #3498db;
+            bottom: 0;
+            left: 0;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-column ul li a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #3498db;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #34495e;
+            color: #95a5a6;
+            font-size: 14px;
+        }
+        
+        /* 響應式設計 */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            
+            
+            
+            
+            nav ul {
+                
+                margin-top: 1.5rem;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                
+                margin: 0 0.8rem;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                top: 25px;
+                right: 20px;
+            }
+            
+            .hero h2 {
+                font-size: 36px;
+            }
+            
+            .about-img, .about-content {
+                padding: 0;
+                margin-bottom: 40px;
+            }
+            
+            .feature {
+                min-width: 100%;
+            }
+        }
+        @media (max-width: 480px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+            }
+            
+            nav ul li {
+                margin: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 網站標頭 -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+            <a href="home.html"><h1>北歐<span>家居生活館</span></h1></a>    
+            </div>
+            
+            
+            
+            <nav>
+                <ul>
+                    <li><a href="home.html">首頁</a></li>
+                   
+                </ul>
+            </nav>
+            
+        </div>
+    </header>
+    
+    <!-- 主視覺區 -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h2>簡約北歐風，舒適生活空間</h2>
+            <p>我們專注於北歐風格家居用品，精選高品質傢俬與生活器物，為您打造簡約、舒適、溫暖的生活空間。從客廳到臥室，從餐桌到書房，每一件產品都經過精心挑選，體現北歐設計的實用與美感。</p>
+            <a href="#products" class="cta-button">探索產品</a>
+        </div>
+    </section>
+    
+    <!-- 產品展示區 -->
+    <section class="container" id="products">
+        <div class="section-title">
+            <h2>精選傢俬</h2>
+            <p>北歐風格家居用品，簡約設計與實用功能的完美結合</p>
+        </div>
+        
+        <div class="products">
+            <!-- 產品 1 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="北歐簡約沙發" class="product-img">
+                <div class="product-info">
+                    <h3>簡約布藝沙發</h3>
+                    <p>採用高品質棉麻布料，提供極致舒適感，簡約線條設計完美融入北歐風格空間。</p>
+                    <div class="product-price">HK$ 28,900</div>
+                </div>
+            </div>
+            
+            <!-- 產品 2 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1503602642458-232111445657?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="實木餐桌" class="product-img">
+                <div class="product-info">
+                    <h3>實木餐桌組</h3>
+                    <p>天然橡木製成，保留木材原始紋理，簡約設計適合家庭聚餐或朋友聚會。</p>
+                    <div class="product-price">HK$ 34,500</div>
+                </div>
+            </div>
+            
+            <!-- 產品 3 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?ixlib=rb-1.2.1&auto=format&fit=crop&w-1350&q=80" alt="北歐風床組" class="product-img">
+                <div class="product-info">
+                    <h3>北歐風床組</h3>
+                    <p>低床頭設計，天然實木材質，搭配舒適床墊，營造寧靜放鬆的睡眠環境。</p>
+                    <div class="product-price">HK$ 42,800</div>
+                </div>
+            </div>
+            
+            <!-- 產品 4 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="書櫃組合" class="product-img">
+                <div class="product-info">
+                    <h3>組合式書櫃</h3>
+                    <p>模組化設計，可根據空間自由組合，兼具收納功能與裝飾美感。</p>
+                    <div class="product-price">HK$ 19,900</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 關於我們區 -->
+    <section class="container" id="about">
+        <div class="section-title">
+            <h2>關於我們</h2>
+            <p>致力於將北歐生活美學帶入每個家庭</p>
+        </div>
+        
+        <div class="about">
+            <div class="about-img">
+                <img src="image/north/photos_north.jpg" alt="北歐風格展示空間">
+            </div>
+            
+            <div class="about-content">
+                <h2>打造舒適生活空間的專家</h2>
+                <p>北歐家居生活館成立於2015年，我們專注於引進北歐風格的家居用品與傢俬，致力於為台灣消費者提供高品質、簡約且實用的生活解決方案。</p>
+                <p>我們的設計理念源於北歐的「Hygge」生活哲學，強調舒適、溫馨與自然。每一件產品都經過精心挑選，確保其設計美感與實用功能並存。</p>
+                <p>我們不僅銷售傢俬，更提供整體空間規劃服務，協助客戶打造符合個人風格的生活空間，實現北歐簡約美學與舒適生活的完美結合。</p>
+                <a href="#contact" class="cta-button" style="margin-top: 20px;">聯絡我們</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 服務特色區 -->
+    <section class="container" id="features">
+        <div class="section-title">
+            <h2>服務特色</h2>
+            <p>我們提供的不只是傢俬，更是完整的生活解決方案</p>
+        </div>
+        
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">
+                    <i class="fas fa-palette"></i>
+                </div>
+                <h3>專業設計諮詢</h3>
+                <p>提供免費空間規劃與設計諮詢服務，協助客戶打造理想中的北歐風格居家環境。</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">
+                    <i class="fas fa-leaf"></i>
+                </div>
+                <h3>環保永續材料</h3>
+                <p>精選環保永續材料，所有產品均符合國際環保標準，對環境友善，對家人健康。</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">
+                    <i class="fas fa-truck"></i>
+                </div>
+                <h3>專業配送安裝</h3>
+                <p>提供專業配送與安裝服務，確保產品完好無損並正確安裝，讓您無後顧之憂。</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>完善保修服務</h3>
+                <p>所有產品提供完善的保修服務，讓您購買安心，使用放心。</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 頁尾 -->
+    <footer id="contact">
+        <div class="container">
+            
+            <div class="footer-column">
+                    <h3>聯絡資訊</h3>
+                    <ul>
+                        
+                        <li><i class="fas fa-phone"></i> (852) 1234-5678</li>
+                        <li><i class="fas fa-envelope"></i> info@nordichome.com</li>
+                        <li><i class="fas fa-clock"></i> 營業時間: 週一至週六 10:00-21:00</li>
+                    </ul>
+                </div>
+          <div class="footer-content">
+            <div class="copyright">
+                <p>&copy; 2026 北歐家居生活館 版權所有</p>
+            </div>
+        </div>
+    </div>
+    </footer>
+    
+    <!--<script>
+        // 手機選單切換
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainNav = document.getElementById('mainNav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            // 切換漢堡選單圖標
+            const icon = mobileMenuBtn.querySelector('i');
+            if (icon.classList.contains('fa-bars')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // 平滑滾動
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    // 關閉手機選單
+                    if(mainNav.classList.contains('active')) {
+                        mainNav.classList.remove('active');
+                        const icon = mobileMenuBtn.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // 滾動時標頭陰影效果
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.08)';
+            } else {
+                header.style.boxShadow = '0 2px 15px rgba(0, 0, 0, 0.05)';
+            }
+        });
+    </script>-->
+</body>
+</html>

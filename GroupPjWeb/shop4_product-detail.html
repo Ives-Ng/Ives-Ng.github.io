@@ -1,0 +1,1861 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>蛋糕詳情 - 超美蛋糕店</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #e91e63;
+            --secondary-color: #ff9800;
+            --accent-color: #9c27b0;
+            --light-bg: #fff8f6;
+            --dark-text: #5d4037;
+            --light-text: #fff;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+            --cake-pink: #f8bbd9;
+            --cake-brown: #8d6e63;
+            --cake-cream: #fff3e0;
+        }
+        
+        body {
+            font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+            color: var(--dark-text);
+            scroll-behavior: smooth;
+            background-color: var(--light-bg);
+        }
+        
+        /* 導航列樣式 */
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            box-shadow: var(--shadow);
+            padding: 15px 0;
+            transition: var(--transition);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--light-text) !important;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.2rem;
+            color: white;
+        }
+        
+        .navbar-nav .nav-link {
+            color: rgba(255, 255, 255, 0.85) !important;
+            font-weight: 500;
+            margin: 0 8px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: var(--transition);
+        }
+        
+        .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active {
+            background-color: rgba(255, 255, 255, 0.15);
+            color: var(--light-text) !important;
+        }
+        
+        /* 蛋糕詳情頁面樣式 */
+        .cake-detail-section {
+            padding-top: 150px;
+            padding-bottom: 100px;
+            background-color: white;
+        }
+        
+        /* 返回按鈕 */
+        .back-button {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            transition: var(--transition);
+            margin-bottom: 30px;
+            text-decoration: none;
+        }
+        
+        .back-button:hover {
+            transform: translateX(-5px);
+            color: white;
+            box-shadow: 0 10px 20px rgba(233, 30, 99, 0.2);
+        }
+        
+        /* 蛋糕圖片樣式 */
+        .cake-detail-image {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+        
+        .cake-thumbnails {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .cake-thumbnail {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 10px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: var(--transition);
+        }
+        
+        .cake-thumbnail:hover, .cake-thumbnail.active {
+            border-color: var(--primary-color);
+            transform: scale(1.05);
+        }
+        
+        /* 蛋糕資訊樣式 */
+        .cake-detail-info {
+            padding: 0 30px;
+        }
+        
+        .cake-detail-category {
+            color: var(--accent-color);
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            display: inline-block;
+            background: var(--cake-pink);
+            padding: 5px 15px;
+            border-radius: 20px;
+        }
+        
+        .cake-detail-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--dark-text);
+        }
+        
+        .cake-detail-description {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            color: var(--dark-text);
+        }
+        
+        .cake-meta {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #8d6e63;
+            font-weight: 500;
+        }
+        
+        .cake-badge {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: white;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        
+        /* 蛋糕規格卡片樣式 */
+        .specs-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+            height: 100%;
+            border: 1px solid #ffeaea;
+        }
+        
+        .specs-card h4 {
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        /* 蛋糕專用頁腳樣式 */
+        .cake-footer {
+            background: linear-gradient(135deg, var(--cake-brown), #6d4c41);
+            color: var(--light-text);
+            padding: 60px 0 30px;
+        }
+        
+        .cake-footer h4 {
+            color: var(--cake-cream);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .cake-footer p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+        }
+        
+        .contact-info {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+        
+        .contact-info li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .contact-info i {
+            font-size: 1.2rem;
+            color: var(--cake-pink);
+            width: 25px;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .social-icon:hover {
+            background: var(--primary-color);
+            transform: translateY(-5px);
+        }
+        
+        /* 標籤頁樣式 */
+        .cake-tabs {
+            margin-top: 50px;
+        }
+        
+        .nav-tabs {
+            border-bottom: 2px solid #ffeaea;
+        }
+        
+        .nav-tabs .nav-link {
+            color: #8d6e63;
+            font-weight: 600;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 10px 10px 0 0;
+        }
+        
+        .nav-tabs .nav-link.active {
+            color: var(--primary-color);
+            background-color: white;
+            border-bottom: 3px solid var(--primary-color);
+        }
+        
+        .tab-content {
+            background: white;
+            padding: 30px;
+            border-radius: 0 0 15px 15px;
+            box-shadow: var(--shadow);
+            border: 1px solid #ffeaea;
+            border-top: none;
+        }
+        
+        /* 評論樣式 */
+        .review-item {
+            border-bottom: 1px solid #ffeaea;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .review-rating {
+            color: #ffc107;
+        }
+        
+        /* 相關蛋糕樣式 */
+        .related-cakes {
+            background-color: var(--light-bg);
+            padding: 80px 0;
+            margin-top: 50px;
+        }
+        
+        .related-cake-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            height: 100%;
+            border: 1px solid #ffeaea;
+        }
+        
+        .related-cake-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(233, 30, 99, 0.15);
+        }
+        
+        .related-cake-img {
+            height: 180px;
+            width: 100%;
+            object-fit: cover;
+        }
+        
+        /* 響應式調整 */
+        @media (max-width: 768px) {
+            .cake-detail-section {
+                padding-top: 120px;
+                padding-bottom: 60px;
+            }
+            
+            .cake-detail-title {
+                font-size: 2rem;
+            }
+            
+            .cake-detail-info {
+                padding: 0;
+                margin-top: 30px;
+            }
+            
+            .cake-thumbnail {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .cake-detail-image {
+                height: 350px;
+            }
+        }
+        
+        /* 動畫效果 */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* 分享按鈕 */
+        .share-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .share-btn {
+            background: var(--cake-cream);
+            border: 1px solid #ffeaea;
+            color: var(--dark-text);
+            padding: 10px 15px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+        
+        .share-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        /* 蛋糕特色標籤 */
+        .cake-feature-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--primary-color);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 10;
+        }
+        
+        .cake-image-container {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* 查看詳情按鈕 */
+        .view-detail-btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: var(--transition);
+            display: block;
+            width: 100%;
+            text-align: center;
+            text-decoration: none;
+        }
+        
+        .view-detail-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(233, 30, 99, 0.2);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- 導航列 -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class='bi bi-cake' style='font-size:36px;color:green'></i>
+                <span class="logo-text">超美蛋糕店</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="home.html"><i class="bi bi-house-door"></i> 主頁</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="shop4.html"><i class="bi bi-bag"></i> 商店</a>
+                    </li>
+                   
+                    <!--<li class="nav-item">
+                        <a class="nav-link" href="member.html"><i class="bi bi-person-circle"></i> 會員登入</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="shop4.html"><i class="bi bi-cake"></i> 蛋糕商店</a>
+                    </li>-->
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 蛋糕詳情 -->
+    <section class="cake-detail-section">
+        <div class="container">
+            <!-- 返回按鈕 -->
+            <a href="shop4.html" class="back-button">
+                <i class="bi bi-arrow-left"></i> 返回蛋糕商店
+            </a>
+            
+            <div class="row">
+                <!-- 蛋糕圖片區 -->
+                <div class="col-lg-6">
+                    <div id="cakeImageContainer">
+                        <!-- 蛋糕圖片將由JavaScript動態生成 -->
+                    </div>
+                </div>
+                
+                <!-- 蛋糕資訊區 -->
+                <div class="col-lg-6">
+                    <div class="cake-detail-info">
+                        <div id="cakeInfoContent">
+                            <!-- 蛋糕資訊將由JavaScript動態生成 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 蛋糕標籤頁 -->
+            <div class="cake-tabs">
+                <ul class="nav nav-tabs" id="cakeTabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-bs-toggle="tab" href="#description">蛋糕介紹</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#ingredients">主要材料</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#storage">保存方法</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#reviews">顧客評價</a>
+                    </li>
+                </ul>
+                
+                <div class="tab-content" id="cakeTabsContent">
+                    <!-- 蛋糕介紹 -->
+                    <div class="tab-pane fade show active" id="description">
+                        <div id="cakeDescriptionContent">
+                            <!-- 蛋糕介紹將由JavaScript動態生成 -->
+                        </div>
+                    </div>
+                    
+                    <!-- 主要材料 -->
+                    <div class="tab-pane fade" id="ingredients">
+                        <div id="cakeIngredientsContent">
+                            <!-- 主要材料將由JavaScript動態生成 -->
+                        </div>
+                    </div>
+                    
+                    <!-- 保存方法 -->
+                    <div class="tab-pane fade" id="storage">
+                        <div id="cakeStorageContent">
+                            <!-- 保存方法將由JavaScript動態生成 -->
+                        </div>
+                    </div>
+                    
+                    <!-- 顧客評價 -->
+                    <div class="tab-pane fade" id="reviews">
+                        <h4>顧客評價 <span id="cakeRating">4.8</span>/5.0</h4>
+                        <div class="row mt-4">
+                            <div class="col-md-4 mb-4">
+                                <div class="specs-card text-center">
+                                    <h2 class="text-warning" id="ratingNumber">4.8</h2>
+                                    <div class="mb-3" id="ratingStars">
+                                        <!-- 評價星星將由JavaScript動態生成 -->
+                                    </div>
+                                    <p>基於 <span id="reviewCount">127</span> 個評價</p>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div id="cakeReviewsContent">
+                                    <!-- 顧客評價將由JavaScript動態生成 -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 分享按鈕 -->
+            <div class="mt-5">
+                <h5>分享這個蛋糕</h5>
+                <div class="share-buttons">
+                    <a href="#" class="share-btn" onclick="shareToFacebook()">
+                        <i class="bi bi-facebook"></i> Facebook
+                    </a>
+                    <a href="#" class="share-btn" onclick="shareToInstagram()">
+                        <i class="bi bi-instagram"></i> Instagram
+                    </a>
+                    <a href="#" class="share-btn" onclick="shareToTwitter()">
+                        <i class="bi bi-twitter"></i> Twitter
+                    </a>
+                    <a href="#" class="share-btn" onclick="copyLink()">
+                        <i class="bi bi-link"></i> 複製連結
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 相關蛋糕 -->
+    <section class="related-cakes">
+        <div class="container">
+            <h3 class="mb-4 text-center">你可能也會喜歡</h3>
+            <div class="row" id="relatedCakes">
+                <!-- 相關蛋糕將由JavaScript動態生成 -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 蛋糕專用頁腳 -->
+    <footer class="cake-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h4><i class="bi bi-cake"></i> 超美蛋糕店</h4>
+                    <p>我們專注於製作精緻美味的手工蛋糕，選用最優質的原料，每日新鮮製作，為您的生活增添甜蜜滋味。</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 mb-4">
+                    <h4><i class="bi bi-clock"></i> 營業時間</h4>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="bi bi-calendar-week"></i>
+                            <div>
+                                <strong>星期一至五</strong><br>
+                                10:00 - 20:00
+                            </div>
+                        </li>
+                        <li>
+                            <i class="bi bi-calendar-week"></i>
+                            <div>
+                                <strong>星期六、日及公眾假期</strong><br>
+                                09:00 - 21:00
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-4 mb-4">
+                    <h4><i class="bi bi-geo-alt"></i> 聯絡我們</h4>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="bi bi-geo-alt-fill"></i>
+                            <div>
+                                <strong>地址</strong><br>
+                                佐敦道 88 號 2F - 01
+                            </div>
+                        </li>
+                        <li>
+                            <i class="bi bi-telephone"></i>
+                            <div>
+                                <strong>電話</strong><br>
+                                +852 2345 6789
+                            </div>
+                        </li>
+                        <li>
+                            <i class="bi bi-envelope"></i>
+                            <div>
+                                <strong>電郵</strong><br>
+                                cake@superbeautiful.com
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="row mt-4 pt-4 border-top border-secondary">
+                <div class="col-md-6">
+                    <p>&copy; 2026 超美蛋糕店 版權所有</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p>本網站僅供學習使用，圖片來源於Unsplash</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS 和 Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    
+    <script>
+        // 15個蛋糕的完整詳細資料
+        const cakes = [
+            {
+                id: 1,
+                name: "經典巧克力蛋糕",
+                category: "chocolate",
+                images: [
+                    "image/cake/chocolate.avif",
+                    "image/cake/chocolate_1.avif",
+                    "image/cake/chocolate_2.avif"
+                ], 
+                description: "濃郁黑巧克力搭配絲滑巧克力奶油，經典不敗的選擇。",
+                fullDescription: `<p>這款經典巧克力蛋糕是超美蛋糕店的招牌產品，採用來自比利時的高品質黑巧克力製作。蛋糕體濕潤綿密，巧克力味濃郁而不甜膩，每一口都能感受到巧克力的香醇。</p>
+                                <p>我們特別選用72%可可含量的黑巧克力，搭配新鮮打發的巧克力奶油，創造出層次豐富的口感。蛋糕表面裝飾有巧克力刨花和金色食用閃粉，適合各種慶祝場合。</p>
+                                <p><strong>產品特色：</strong></p>
+                                <ul>
+                                    <li>選用比利時72%黑巧克力</li>
+                                    <li>濕潤綿密的蛋糕體</li>
+                                    <li>香醇濃郁的巧克力風味</li>
+                                    <li>精緻的巧克力刨花裝飾</li>
+                                </ul>
+                                <p><strong>建議搭配：</strong> 黑咖啡或紅茶，更能襯托出巧克力的風味。</p>`,
+                ingredients: `<ul>
+                                <li><strong>比利時黑巧克力</strong>（72%可可含量）</li>
+                                <li><strong>法國無鹽奶油</strong> - 增加香氣與濕潤度</li>
+                                <li><strong>日本麵粉</strong> - 確保蛋糕體細膩</li>
+                                <li><strong>新鮮雞蛋</strong> - 本地農場直送</li>
+                                <li><strong>細砂糖</strong> - 調整甜度</li>
+                                <li><strong>動物性鮮奶油</strong> - 製作巧克力奶油</li>
+                                <li><strong>可可粉</strong> - 增添巧克力風味</li>
+                                <li><strong>香草莢</strong> - 天然香草香氣</li>
+                            </ul>`,
+                storage: `<div class="row">
+                            <div class="col-md-6">
+                                <h5><i class="bi bi-thermometer-snow text-primary"></i> 冷藏保存</h5>
+                                <ul>
+                                    <li>請置於攝氏0-5度冷藏保存</li>
+                                    <li>最佳賞味期限為購買後3天內</li>
+                                    <li>請勿冷凍保存，以免影響口感</li>
+                                    <li>食用前請提前15分鐘取出回溫</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h5><i class="bi bi-shield-check text-primary"></i> 注意事項</h5>
+                                <p>本產品含有牛奶、雞蛋、小麥等過敏原，對特定食物過敏者請謹慎選擇。</p>
+                            </div>
+                        </div>`,
+                tags: ["bestseller", "new"],
+                rating: 4.9,
+                reviews: 128,
+                size: "6吋 / 8吋 / 10吋",
+                servings: "4-6人 / 8-10人 / 12-15人",
+                reviewsList: [
+                    { name: "王小姐", date: "2023-10-15", rating: 5, comment: "蛋糕非常美味，甜度適中，不會太甜膩。家人都很喜歡！" },
+                    { name: "陳先生", date: "2023-09-28", rating: 4, comment: "外觀精緻，味道也不錯，可惜尺寸比預期小了一點。" },
+                    { name: "李太太", date: "2023-09-10", rating: 5, comment: "買來慶祝生日，大家都讚不絕口，巧克力味很濃郁！" }
+                ]
+            },
+            {
+                id: 2,
+                name: "草莓鮮奶油蛋糕",
+                category: "fruit",
+                images: [
+                    "image/cake/strawberry_milk.avif"
+                    
+                    
+                ], 
+                description: "新鮮草莓與輕盈鮮奶油的完美組合，口感清爽不甜膩。",
+                fullDescription: `<p>草莓鮮奶油蛋糕是春夏最受歡迎的選擇，使用台灣產的新鮮草莓，每一顆都經過精心挑選。海綿蛋糕體輕盈柔軟，搭配微甜的鮮奶油，完美平衡草莓的酸甜。</p>
+                                <p>我們堅持使用動物性鮮奶油，口感清爽不膩，更能帶出草莓的自然風味。蛋糕表面裝飾有完整草莓和薄荷葉，視覺與味覺同樣令人驚艷。</p>
+                                <p><strong>產品特色：</strong></p>
+                                <ul>
+                                    <li>使用台灣本地新鮮草莓</li>
+                                    <li>動物性鮮奶油，口感清爽</li>
+                                    <li>海綿蛋糕體輕盈柔軟</li>
+                                    <li>季節限定，新鮮供應</li>
+                                </ul>
+                                <p><strong>建議搭配：</strong> 花果茶或氣泡酒，增添清新感。</p>`,
+                ingredients: `<ul>
+                                <li><strong>台灣新鮮草莓</strong> - 當季直送</li>
+                                <li><strong>動物性鮮奶油</strong> - 口感清爽不膩</li>
+                                <li><strong>日本麵粉</strong> - 製作輕盈海綿蛋糕</li>
+                                <li><strong>新鮮雞蛋</strong> - 本地農場直送</li>
+                                <li><strong>細砂糖</strong> - 微甜調味</li>
+                                <li><strong>牛奶</strong> - 增加蛋糕濕潤度</li>
+                                <li><strong>香草莢</strong> - 天然香草香氣</li>
+                                <li><strong>薄荷葉</strong> - 裝飾與提味</li>
+                            </ul>`,
+                storage: `<div class="row">
+                            <div class="col-md-6">
+                                <h5><i class="bi bi-thermometer-snow text-primary"></i> 冷藏保存</h5>
+                                <ul>
+                                    <li>請立即冷藏保存，最佳溫度為2-4°C</li>
+                                    <li>建議24小時內食用完畢</li>
+                                    <li>請勿冷凍，以免影響草莓口感</li>
+                                    <li>食用前請從冰箱取出放置10分鐘</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h5><i class="bi bi-shield-check text-primary"></i> 注意事項</h5>
+                                <p>本產品含有牛奶、雞蛋、小麥等過敏原，草莓為新鮮水果，請儘快食用。</p>
+                            </div>
+                        </div>`,
+                tags: ["bestseller"],
+                rating: 4.8,
+                reviews: 96,
+                size: "6吋 / 8吋",
+                servings: "4-6人 / 8-10人",
+                reviewsList: [
+                    { name: "張小姐", date: "2023-10-10", rating: 5, comment: "草莓很新鮮，奶油不會太甜，全家人都喜歡！" },
+                    { name: "黃先生", date: "2023-09-25", rating: 4, comment: "味道不錯，草莓給得很大方，就是價格稍高。" },
+                    { name: "林太太", date: "2023-09-05", rating: 5, comment: "買來給女兒慶生，她超喜歡的，說是最棒的生日蛋糕！" }
+                ]
+            },
+            {
+                id: 3,
+                name: "紐約芝士蛋糕",
+                category: "cheese",
+                images: [
+                    "image/cake/NW_Cheesecake.avif",
+                    "image/cake/blueberry_cheese.avif"
+                    
+                ], 
+                description: "濃郁芝士風味，口感綿密細緻，芝士愛好者首選。",
+                fullDescription: `<p>紐約芝士蛋糕以其濃郁的芝士風味和綿密口感聞名。我們使用來自法國的奶油芝士，搭配酥脆的餅乾底，每一口都是經典的美式風味。</p>
+                                <p>蛋糕表面經過輕微烘烤，形成獨特的焦糖色澤，內部則保持濕潤綿密。無論是作為下午茶點心還是節日慶祝，都是絕佳選擇。</p>
+                                <p><strong>產品特色：</strong></p>
+                                <ul>
+                                    <li>使用法國進口奶油芝士</li>
+                                    <li>經典餅乾底，酥脆可口</li>
+                                    <li>表面輕微烘烤，色澤金黃</li>
+                                    <li>口感綿密細緻</li>
+                                </ul>
+                                <p><strong>建議搭配：</strong> 濃縮咖啡或紅茶，中和芝士的濃郁感。</p>`,
+                ingredients: `<ul>
+                                <li><strong>法國奶油芝士</strong> - 主要原料</li>
+                                <li><strong>消化餅乾</strong> - 製作餅乾底</li>
+                                <li><strong>無鹽奶油</strong> - 增加香氣</li>
+                                <li><strong>新鮮雞蛋</strong> - 本地農場直送</li>
+                                <li><strong>細砂糖</strong> - 調整甜度</li>
+                                <li><strong>酸奶油</strong> - 增添風味層次</li>
+                                <li><strong>香草精</strong> - 天然香草香氣</li>
+                                <li><strong>檸檬汁</strong> - 平衡甜度</li>
+                            </ul>`,
+                storage: `<div class="row">
+                            <div class="col-md-6">
+                                <h5><i class="bi bi-thermometer-snow text-primary"></i> 冷藏保存</h5>
+                                <ul>
+                                    <li>請置於攝氏0-5度冷藏保存</li>
+                                    <li>最佳賞味期限為購買後5天內</li>
+                                    <li>可冷凍保存，建議14天內食用</li>
+                                    <li>食用前請提前30分鐘取出回溫</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h5><i class="bi bi-shield-check text-primary"></i> 注意事項</h5>
+                                <p>本產品含有牛奶、雞蛋、小麥等過敏原，對乳製品過敏者請避免食用。</p>
+                            </div>
+                        </div>`,
+                tags: ["bestseller"],
+                rating: 4.9,
+                reviews: 112,
+                size: "6吋 / 8吋",
+                servings: "6-8人 / 10-12人",
+                reviewsList: [
+                    { name: "吳小姐", date: "2023-10-12", rating: 5, comment: "芝士味很濃，口感綿密，是我吃過最好吃的芝士蛋糕！" },
+                    { name: "鄭先生", date: "2023-09-20", rating: 5, comment: "完美的紐約芝士蛋糕，跟我在美國吃到的一樣正宗。" },
+                    { name: "周太太", date: "2023-09-08", rating: 4, comment: "味道很好，就是有點太濃郁，建議搭配咖啡一起享用。" }
+                ]
+            },
+            {
+                id: 4,
+                name: "三層婚禮蛋糕",
+                category: "wedding",
+                images: [
+                    "image/cake/wedding.avif"
+                   
+                ], 
+                description: "優雅白色奶油裝飾，適合婚禮及重要慶典的三層蛋糕。",
+                fullDescription: `<p>這款三層婚禮蛋糕專為重要慶典設計，每一層都經過精心製作。蛋糕體可選擇香草或巧克力口味，外層裝飾以白色奶油為主，可根據客戶需求添加個性化裝飾。</p>
+                                <p>我們提供專業的婚禮蛋糕設計服務，可根據婚禮主題調整裝飾風格。蛋糕不僅美觀，更重要的是美味可口，讓賓客留下難忘回憶。</p>
+                                <p><strong>產品特色：</strong></p>
+                                <ul>
+                                    <li>三層設計，適合大型慶典</li>
+                                    <li>可客製化口味與裝飾</li>
+                                    <li>專業婚禮蛋糕設計</li>
+                                    <li>提供運送與現場組裝服務</li>
+                                </ul>
+                                <p><strong>注意：</strong> 此產品需提前至少14天預訂，並需進行諮詢確認細節。</p>`,
+                ingredients: `<ul>
+                                <li><strong>香草海綿蛋糕</strong> 或 <strong>巧克力蛋糕</strong>（可選擇）</li>
+                                <li><strong>瑞士蛋白奶油霜</strong> - 裝飾用</li>
+                                <li><strong>新鮮水果餡料</strong> - 可選擇草莓、藍莓等</li>
+                                <li><strong>翻糖</strong> - 製作裝飾元素</li>
+                                <li><strong>食用金粉/銀粉</strong> - 增添華麗感</li>
+                                <li><strong>新鮮花朵</strong> - 裝飾（可食用花或鮮花）</li>
+                            </ul>`,
+                storage: `<div class="row">
+                            <div class="col-md-6">
+                                <h5><i class="bi bi-thermometer-snow text-primary"></i> 冷藏保存</h5>
+                                <ul>
+                                    <li>請於活動前一日冷藏保存</li>
+                                    <li>最佳賞味期限為製作後48小時內</li>
+                                    <li>請避免劇烈震動與傾斜</li>
+                                    <li>食用前請提前1小時取出回溫</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h5><i class="bi bi-calendar-event text-primary"></i> 預訂須知</h5>
+                                <ul>
+                                    <li>需提前至少14天預訂</li>
+                                    <li>需支付50%訂金</li>
+                                    <li>提供免費諮詢與設計服務</li>
+                                    <li>可安排專業運送與現場組裝</li>
+                                </ul>
+                            </div>
+                        </div>`,
+                tags: [],
+                rating: 4.7,
+                reviews: 45,
+                size: "6吋+8吋+10吋",
+                servings: "50-70人",
+                reviewsList: [
+                    { name: "新婚的陳先生陳太太", date: "2023-09-30", rating: 5, comment: "婚禮蛋糕非常漂亮，賓客都稱讚不已，味道也很棒！" },
+                    { name: "張小姐", date: "2023-08-15", rating: 5, comment: "為我們的周年慶典訂製，設計精美，服務專業，非常滿意！" },
+                    { name: "王先生", date: "2023-07-22", rating: 4, comment: "蛋糕很美，只是運送過程有點小問題，但整體還是很滿意。" }
+                ]
+            },
+            {
+                id: 5,
+                name: "抹茶紅豆蛋糕",
+                category: "seasonal",
+                images: [
+                    "image/cake/red_bean.avif"
+        
+        
+                ], 
+                description: "日式抹茶風味搭配甜蜜紅豆，充滿東方韻味的特色蛋糕。",
+                fullDescription: `<p>抹茶紅豆蛋糕結合了日式抹茶的微苦與紅豆的香甜，創造出獨特的東方風味。我們使用來自日本京都的優質抹茶粉，茶香濃郁而不苦澀。</p>
+                                <p>蛋糕層間夾入自製的紅豆餡，口感綿密香甜。頂部裝飾有抹茶奶油和蜜紅豆，整體造型簡約優雅，適合喜歡日式風味的客人。</p>
+                                <p><strong>產品特色：</strong></p>
+                                <ul>
+                                    <li>使用日本京都抹茶粉</li>
+                                    <li>自製紅豆餡，甜度適中</li>
+                                    <li>抹茶微苦與紅豆香甜的完美平衡</li>
+                                    <li>日式簡約風格裝飾</li>
+                                </ul>
+                                <p><strong>建議搭配：</strong> 綠茶或玄米茶，更添日式風情。</p>`,
+                ingredients: `<ul>
+                                <li><strong>日本京都抹茶粉</strong> - 優質宇治抹茶</li>
+                                <li><strong>日本紅豆</strong> - 製作紅豆餡</li>
+                                <li><strong>日本麵粉</strong> - 確保細膩口感</li>
+                                <li><strong>新鮮雞蛋</strong> - 本地農場直送</li>
+                                <li><strong>細砂糖</strong> - 調整甜度</li>
+                                <li><strong>動物性鮮奶油</li>
+                                <li><strong>蜂蜜</strong> - 增添天然甜味</li>
+                                <li><strong>白巧克力</strong> - 裝飾用</li>
+                            </ul>`,
+                storage: `<div class="row">
+                            <div class="col-md-6">
+                                <h5><i class="bi bi-thermometer-snow text-primary"></i> 冷藏保存</h5>
+                                <ul>
+                                    <li>請置於攝氏0-5度冷藏保存</li>
+                                    <li>最佳賞味期限為購買後3天內</li>
+                                    <li>請避免強烈光線照射</li>
+                                    <li>食用前請提前10分鐘取出回溫</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h5><i class="bi bi-shield-check text-primary"></i> 注意事項</h5>
+                                <p>本產品含有牛奶、雞蛋、小麥等過敏原，抹茶含有咖啡因，請注意攝取量。</p>
+                            </div>
+                        </div>`,
+                tags: ["new"],
+                rating: 4.6,
+                reviews: 78,
+                size: "6吋 / 8吋",
+                servings: "4-6人 / 8-10人",
+                reviewsList: [
+                    { name: "林小姐", date: "2023-10-05", rating: 5, comment: "抹茶味很正宗，紅豆不會太甜，是我喜歡的日式風味！" },
+                    { name: "黃先生", date: "2023-09-18", rating: 4, comment: "味道不錯，但抹茶味可以再濃一點，整體還是很好吃。" },
+                    { name: "陳太太", date: "2023-09-03", rating: 5, comment: "買來招待日本朋友，他們都說很道地，非常滿意！" }
+                ]
+            },
+            {
+                id: 6,
+                name: "芒果慕斯蛋糕",
+                category: "fruit",
+                images: [
+                    "image/cake/fruit.avif"
+                    
+                ], 
+                description: "新鮮芒果製作的慕斯蛋糕，口感輕盈，果香濃郁。",
+                fullDescription: `<p>芒果慕斯蛋糕使用新鮮芒果製作，口感輕盈如雲，每一口都能感受到芒果的自然香甜。慕斯層與海綿蛋糕層交錯，創造出豐富的口感層次。</p>
+                                <p>我們選用台灣愛文芒果，果香濃郁，甜度適中。蛋糕頂部裝飾有新鮮芒果塊和薄荷葉，視覺效果清新宜人。</p>
+                                <p><strong>產品特色：</strong></p>
+                                <ul>
+                                    <li>使用台灣愛文芒果</li>
+                                    <li>慕斯口感輕盈如雲</li>
+                                    <li>果香濃郁自然</li>
+                                    <li>適合夏季享用</li>
+                                </ul>
+                                <p><strong>建議搭配：</strong> 冰茶或果汁，增添清爽感。</p>`,
+                ingredients: `<ul>
+                                <li><strong>台灣愛文芒果</strong> - 新鮮芒果果肉</li>
+                                <li><strong>鮮奶油</strong> - 製作慕斯</li>
+                                <li><strong>吉利丁片</strong> - 穩定慕斯結構</li>
+                                <li><strong>海綿蛋糕</strong> - 蛋糕底層</li>
+                                <li><strong>細砂糖</strong> - 調整甜度</li>
+                                <li><strong>芒果泥</strong> - 增添芒果風味</li>
+                                <li><strong>檸檬汁</strong> - 平衡甜度</li>
+                            </ul>`,
+                storage: `<div class="row">
+                            <div class="col-md-6">
+                                <h5><i class="bi bi-thermometer-snow text-primary"></i> 冷藏保存</h5>
+                                <ul>
+                                    <li>請立即冷藏保存，最佳溫度為2-4°C</li>
+                                    <li>建議24小時內食用完畢</li>
+                                    <li>請勿冷凍，以免影響慕斯口感</li>
+                                    <li>食用前請從冰箱取出放置5分鐘</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h5><i class="bi bi-shield-check text-primary"></i> 注意事項</h5>
+                                <p>本產品含有牛奶、雞蛋、小麥等過敏原，芒果為新鮮水果，請儘快食用。</p>
+                            </div>
+                        </div>`,
+                tags: ["new"],
+                rating: 4.8,
+                reviews: 67,
+                size: "6吋 / 8吋",
+                servings: "4-6人 / 8-10人",
+                reviewsList: [
+                    { name: "劉小姐", date: "2023-10-08", rating: 5, comment: "芒果味很濃，慕斯口感很輕盈，不會太甜膩！" },
+                    { name: "楊先生", date: "2023-09-22", rating: 5, comment: "夏季最佳選擇，清爽不膩，家人很喜歡。" },
+                    { name: "吳太太", date: "2023-09-12", rating: 4, comment: "味道不錯，但希望芒果可以再多一點。" }
+                ]
+            },
+            {
+                id: 7,
+                name: "榛果巧克力蛋糕",
+                category: "chocolate",
+                images: [
+                    "image/cake/chocolate_1.avif"
+                   
+                ], 
+                description: "香脆榛果與濃郁巧克力的雙重享受，口感層次豐富。",
+                fullDescription: `<p>榛果巧克力蛋糕結合了香脆榛果與濃郁巧克力，創造出豐富的口感層次。我們使用比利時巧克力與優質榛果，每一口都能感受到堅果的香脆與巧克力的絲滑。</p>
+                                <p>蛋糕層間夾有榛果碎片與巧克力甘納許，表面裝飾有整顆榛果與巧克力醬，不僅美味，視覺效果也十分誘人。</p>
+                                <p><strong>產品特色：</strong></p>
+                                <ul>
+                                    <li>香脆榛果與濃郁巧克力結合</li>
+                                    <li>口感層次豐富</li>
+                                    <li>選用優質比利時巧克力</li>
+                                    <li>適合堅果愛好者</li>
+                                </ul>
+                                <p><strong>建議搭配：</strong> 濃縮咖啡，中和巧克力的甜度。</p>`,
+                ingredients: `<ul>
+                                <li><strong>比利時黑巧克力</strong> - 主要原料</li>
+                                <li><strong>優質榛果</strong> - 香脆口感</li>
+                                <li><strong>法國無鹽奶油</strong></li>
+                                <li><strong>新鮮雞蛋</strong> - 本地農場直送</li>
+                                <li><strong>細砂糖</strong> - 調整甜度</li>
+                                <li><strong>可可粉</strong> - 增添巧克力風味</li>
+                                <li><strong>榛果醬</strong> - 增添堅果香氣</li>
+                            </ul>`,
+                storage: `<div class="row">
+                            <div class="col-md-6">
+                                <h5><i class="bi bi-thermometer-snow text-primary"></i> 冷藏保存</h5>
+                                <ul>
+                                    <li>請置於攝氏0-5度冷藏保存</li>
+                                    <li>最佳賞味期限為購買後4天內</li>
+                                    <li>請避免潮濕環境</li>
+                                    <li>食用前請提前20分鐘取出回溫</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h5><i class="bi bi-shield-check text-primary"></i> 注意事項</h5>
+                                <p>本產品含有堅果、牛奶、雞蛋、小麥等過敏原，對堅果過敏者請避免食用。</p>
+                            </div>
+                        </div>`,
+                tags: [],
+                rating: 4.7,
+                reviews: 89,
+                size: "6吋 / 8吋",
+                servings: "4-6人 / 8-10人",
+                reviewsList: [
+                    { name: "趙小姐", date: "2023-10-03", rating: 5, comment: "榛果很香脆，與巧克力完美結合，非常好吃！" },
+                    { name: "周先生", date: "2023-09-15", rating: 4, comment: "味道濃郁，榛果給得很大方，就是有點甜。" },
+                    { name: "鄭太太", date: "2023-09-01", rating: 5, comment: "買來送禮，朋友非常喜歡，說是最有層次的巧克力蛋糕。" }
+                ]
+            },
+            {
+                id: 8,
+                name: "純素巧克力蛋糕",
+                category: "chocolate",
+                images: [
+                    "image/cake/chocolate_2.avif"
+                   
+                ], 
+                description: "無蛋奶製作的純素巧克力蛋糕，美味與健康兼顧。",
+                fullDescription: `<p>這款純素巧克力蛋糕專為素食者和對蛋奶過敏的客人設計，使用植物性原料製作，完全不使用任何動物性產品，但依然保持濃郁的巧克力風味。</p>
+                                <p>我們使用椰子油代替奶油，亞麻籽代替雞蛋，杏仁奶代替牛奶，創造出健康又美味的純素蛋糕。口感濕潤，巧克力味濃郁，適合各種飲食習慣的客人。</p>
+                                <p><strong>產品特色：</strong></p>
+                                <ul>
+                                    <li>100%純素，無蛋奶</li>
+                                    <li>使用植物性原料</li>
+                                    <li>適合素食者和過敏體質</li>
+                                    <li>口感濕潤，巧克力味濃郁</li>
+                                </ul>
+                                <p><strong>建議搭配：</strong> 植物奶咖啡或花草茶。</p>`,
+                ingredients: `<ul>
+                                <li><strong>有機可可粉</strong> - 主要原料</li>
+                                <li><strong>椰子油</strong> - 代替奶油</li>
+                                <li><strong>亞麻籽粉</strong> - 代替雞蛋</li>
+                                <li><strong>杏仁奶</strong> - 代替牛奶</li>
+                                <li><strong>楓糖漿</strong> - 天然甜味劑</li>
+                                <li><strong>全麥麵粉</strong> - 更健康選擇</li>
+                                <li><strong>蘋果醋</strong> - 幫助發酵</li>
+                                <li><strong>小蘇打</strong> - 膨鬆劑</li>
+                            </ul>`,
+                storage: `<div class="row">
+                            <div class="col-md-6">
+                                <h5><i class="bi bi-thermometer-snow text-primary"></i> 冷藏保存</h5>
+                                <ul>
+                                    <li>請置於攝氏0-5度冷藏保存</li>
+                                    <li>最佳賞味期限為購買後4天內</li>
+                                    <li>可冷凍保存，建議7天內食用</li>
+                                    <li>食用前請提前30分鐘取出回溫</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h5><i class="bi bi-shield-check text-primary"></i> 注意事項</h5>
+                                <p>本產品為純素，不含蛋奶，但含有堅果（杏仁）和小麥，對堅果過敏者請注意。</p>
+                            </div>
+                        </div>`,
+                tags: ["vegan", "glutenfree"],
+                rating: 4.5,
+                reviews: 56,
+                size: "6吋 / 8吋",
+                servings: "4-6人 / 8-10人",
+                reviewsList: [
+                    { name: "素食者林小姐", date: "2023-10-06", rating: 5, comment: "終於找到好吃的純素蛋糕，巧克力味很濃，口感也很好！" },
+                    { name: "對蛋奶過敏的陳先生", date: "2023-09-19", rating: 5, comment: "我可以安心享用的蛋糕，味道不輸一般蛋糕。" },
+                    { name: "健康愛好者王太太", date: "2023-09-07", rating: 4, comment: "健康選擇，味道不錯，就是稍微乾了一點。" }
+                ]
+            },
+            {
+                id: 9,
+                name: "藍莓芝士蛋糕",
+                category: "cheese",
+                images: [
+                    "image/cake/blueberry_cheese.avif"
+                  
+                ], 
+                description: "酸甜藍莓果醬與濃郁芝士的完美平衡。",
+                fullDescription: `<p>藍莓芝士蛋糕結合了濃郁芝士與酸甜藍莓，創造出完美的味覺平衡。我們使用新鮮藍莓製作果醬，天然酸甜與芝士的濃郁相得益彰。</p>
+                                <p>蛋糕底層為酥脆餅乾底，中間是濃郁的芝士層，頂部鋪滿藍莓果醬和新鮮藍莓。每一口都能感受到藍莓的果香與芝士的綿密。</p>
+                                <p><strong>產品特色：</strong></p>
+                                <ul>
+                                    <li>新鮮藍莓製作果醬</li>
+                                    <li>酸甜與濃郁的完美平衡</li>
+                                    <li>酥脆餅乾底</li>
+                                    <li>適合喜歡水果芝士組合的客人</li>
+                                </ul>
+                                <p><strong>建議搭配：</strong> 英式紅茶或檸檬水。</p>`,
+                ingredients: `<ul>
+                                <li><strong>法國奶油芝士</strong> - 主要原料</li>
+                                <li><strong>新鮮藍莓</strong> - 製作果醬和裝飾</li>
+                                <li><strong>消化餅乾</strong> - 餅乾底</li>
+                                <li><strong>無鹽奶油</strong></li>
+                                <li><strong>新鮮雞蛋</strong> - 本地農場直送</li>
+                                <li><strong>細砂糖</strong> - 調整甜度</li>
+                                <li><strong>檸檬汁</strong> - 平衡甜度</li>
+                                <li><strong>玉米澱粉</strong> - 穩定果醬</li>
+                            </ul>`,
+                storage: `<div class="row">
+                            <div class="col-md-6">
+                                <h5><i class="bi bi-thermometer-snow text-primary"></i> 冷藏保存</h5>
+                                <ul>
+                                    <li>請置於攝氏0-5度冷藏保存</li>
+                                    <li>最佳賞味期限為購買後4天內</li>
+                                    <li>請勿冷凍，以免影響藍莓口感</li>
+                                    <li>食用前請提前25分鐘取出回溫</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h5><i class="bi bi-shield-check text-primary"></i> 注意事項</h5>
+                                <p>本產品含有牛奶、雞蛋、小麥等過敏原，藍莓為新鮮水果，請儘快食用。</p>
+                            </div>
+                        </div>`,
+                tags: [],
+                rating: 4.8,
+                reviews: 74,
+                size: "6吋 / 8吋",
+                servings: "4-6人 / 8-10人",
+                reviewsList: [
+                    { name: "藍莓愛好者張小姐", date: "2023-10-09", rating: 5, comment: "藍莓很新鮮，與芝士的搭配恰到好處！" },
+                    { name: "李先生", date: "2023-09-24", rating: 5, comment: "酸甜適中，不會太膩，是我最喜歡的芝士蛋糕。" },
+                    { name: "黃太太", date: "2023-09-14", rating: 4, comment: "味道很好，但希望藍莓果醬可以再多一點。" }
+                ]
+            },
+            {
+                id: 10,
+                name: "胡蘿蔔蛋糕",
+                category: "seasonal",
+                images: [
+                    "image/cake/carrot.avif"
+                    
+                ], 
+                description: "健康胡蘿蔔搭配核桃與肉桂，美式經典風味。",
+                fullDescription: `<p>胡蘿蔔蛋糕是經典的美式蛋糕，將新鮮胡蘿蔔融入蛋糕體中，搭配核桃的香脆與肉桂的香氣，創造出獨特的風味。</p>
+                                <p>我們使用新鮮胡蘿蔔現磨成泥，確保蛋糕濕潤度。表面塗有奶油芝士霜，甜度適中，與胡蘿蔔的天然甜味完美結合。</p>
+                                <p><strong>產品特色：</strong></p>
+                                <ul>
+                                    <li>新鮮胡蘿蔔現磨成泥</li>
+                                    <li>核桃增添香脆口感</li>
+                                    <li>肉桂增添香氣</li>
+                                    <li>奶油芝士霜甜度適中</li>
+                                </ul>
+                                <p><strong>建議搭配：</strong> 美式咖啡或奶茶。</p>`,
+                ingredients: `<ul>
+                                <li><strong>新鮮胡蘿蔔</strong> - 現磨成泥</li>
+                                <li><strong>核桃</strong> - 香脆口感</li>
+                                <li><strong>肉桂粉</strong> - 增添香氣</li>
+                                <li><strong>新鮮雞蛋</strong> - 本地農場直送</li>
+                                <li><strong>細砂糖</strong> - 調整甜度</li>
+                                <li><strong>植物油</strong> - 確保蛋糕濕潤</li>
+                                <li><strong>奶油芝士</strong> - 製作糖霜</li>
+                                <li><strong>糖粉</strong> - 糖霜原料</li>
+                            </ul>`,
+                storage: `<div class="row">
+                            <div class="col-md-6">
+                                <h5><i class="bi bi-thermometer-snow text-primary"></i> 冷藏保存</h5>
+                                <ul>
+                                    <li>請置於攝氏0-5度冷藏保存</li>
+                                    <li>最佳賞味期限為購買後5天內</li>
+                                    <li>可室溫保存1天</li>
+                                    <li>食用前請提前20分鐘取出回溫</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h5><i class="bi bi-shield-check text-primary"></i> 注意事項</h5>
+                                <p>本產品含有堅果、牛奶、雞蛋、小麥等過敏原，對堅果過敏者請注意。</p>
+                            </div>
+                        </div>`,
+                tags: [],
+                rating: 4.4,
+                reviews: 52,
+                size: "6吋 / 8吋",
+                servings: "4-6人 / 8-10人",
+                reviewsList: [
+                    { name: "健康愛好者陳小姐", date: "2023-10-11", rating: 4, comment: "胡蘿蔔味很自然，不會太甜，是健康的選擇。" },
+                    { name: "美式蛋糕愛好者李先生", date: "2023-09-27", rating: 5, comment: "正宗美式風味，核桃很香，肉桂味恰到好處。" },
+                    { name: "王太太", date: "2023-09-16", rating: 4, comment: "味道特別，家人一開始不習慣，但越吃越喜歡。" }
+                ]
+            },
+            {
+                id: 11,
+                name: "檸檬杯子蛋糕",
+                category: "fruit",
+                images: [
+                    "image/cake/lemon.avif",
+                    "image/cake/lemon_detail1.avif",
+                    "image/cake/lemon_detail2.avif"
+                ], 
+                description: "清新檸檬風味，小巧可愛的杯子蛋糕，適合派對分享。",
+                fullDescription: `<p>檸檬杯子蛋糕以清新檸檬風味為主，小巧可愛的造型適合各種派對和聚會。每個杯子蛋糕都有獨立的包裝，方便攜帶和分享。</p>
+                                <p>蛋糕體濕潤柔軟，帶有檸檬的天然清香。頂部裝飾有檸檬奶油霜和新鮮檸檬皮屑，酸甜適中，清新不膩。</p>
+                                <p><strong>產品特色：</strong></p>
+                                <ul>
+                                    <li>清新檸檬風味</li>
+                                    <li>小巧可愛，適合派對</li>
+                                    <li>獨立包裝，方便攜帶</li>
+                                    <li>酸甜適中，清新不膩</li>
+                                </ul>
+                                <p><strong>建議搭配：</strong> 冰檸檬茶或氣泡水。</p>`,
+                ingredients: `<ul>
+                                <li><strong>新鮮檸檬</strong> - 檸檬汁和檸檬皮屑</li>
+                                <li><strong>新鮮雞蛋</strong> - 本地農場直送</li>
+                                <li><strong>細砂糖</strong> - 調整甜度</li>
+                                <li><strong>無鹽奶油</strong></li>
+                                <li><strong>麵粉</strong></li>
+                                <li><strong>泡打粉</strong> - 幫助蛋糕膨脹</li>
+                                <li><strong>牛奶</strong> - 增加濕潤度</li>
+                                <li><strong>奶油芝士</strong> - 製作奶油霜</li>
+                            </ul>`,
+                storage: `<div class="row">
+                            <div class="col-md-6">
+                                <h5><i class="bi bi-thermometer-snow text-primary"></i> 冷藏保存</h5>
+                                <ul>
+                                    <li>請置於攝氏0-5度冷藏保存</li>
+                                    <li>最佳賞味期限為購買後3天內</li>
+                                    <li>可室溫保存1天</li>
+                                    <li>食用前請提前15分鐘取出回溫</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h5><i class="bi bi-shield-check text-primary"></i> 注意事項</h5>
+                                <p>本產品含有牛奶、雞蛋、小麥等過敏原，檸檬為新鮮水果。</p>
+                            </div>
+                        </div>`,
+                tags: ["new"],
+                rating: 4.6,
+                reviews: 63,
+                size: "6個 / 12個",
+                servings: "6人 / 12人",
+                reviewsList: [
+                    { name: "派對主辦人張小姐", date: "2023-10-13", rating: 5, comment: "派對上最受歡迎的點心，大家都說很清新！" },
+                    { name: "李先生", date: "2023-09-29", rating: 4, comment: "檸檬味很清新，不會太甜，適合夏天。" },
+                    { name: "黃太太", date: "2023-09-18", rating: 5, comment: "買來給孩子學校活動，老師和同學都很喜歡。" }
+                ]
+            },
+            {
+                id: 12,
+                name: "紅絲絨蛋糕",
+                category: "seasonal",
+                images: [
+                    "image/cake/red_velvet.avif"
+                    
+                ], 
+                description: "經典紅絲絨蛋糕，搭配特製奶油芝士霜，視覺與味覺雙重享受。",
+                fullDescription: `<p>紅絲絨蛋糕以其獨特的紅色外觀和細膩口感聞名。我們使用天然色素為蛋糕上色，搭配特製的奶油芝士霜，創造出經典的美式風味。</p>
+                                <p>蛋糕體濕潤綿密，帶有淡淡的可可香氣。奶油芝士霜甜度適中，與紅絲絨蛋糕完美搭配。表面裝飾有紅色絲絨碎屑，增添視覺效果。</p>
+                                <p><strong>產品特色：</strong></p>
+                                <ul>
+                                    <li>經典紅絲絨外觀</li>
+                                    <li>特製奶油芝士霜</li>
+                                    <li>濕潤綿密的蛋糕體</li>
+                                    <li>淡淡的可可香氣</li>
+                                </ul>
+                                <p><strong>建議搭配：</strong> 拿鐵咖啡或牛奶。</p>`,
+                ingredients: `<ul>
+                                <li><strong>麵粉</strong></li>
+                                <li><strong>可可粉</strong> - 增添風味</li>
+                                <li><strong>天然紅色色素</strong> - 為蛋糕上色</li>
+                                <li><strong>白脫牛奶</strong> - 傳統原料</li>
+                                <li><strong>新鮮雞蛋</strong> - 本地農場直送</li>
+                                <li><strong>細砂糖</strong> - 調整甜度</li>
+                                <li><strong>奶油芝士</strong> - 製作糖霜</li>
+                                <li><strong>無鹽奶油</strong></li>
+                                <li><strong>香草精</strong> - 增添香氣</li>
+                            </ul>`,
+                storage: `<div class="row">
+                            <div class="col-md-6">
+                                <h5><i class="bi bi-thermometer-snow text-primary"></i> 冷藏保存</h5>
+                                <ul>
+                                    <li>請置於攝氏0-5度冷藏保存</li>
+                                    <li>最佳賞味期限為購買後4天內</li>
+                                    <li>請避免陽光直射</li>
+                                    <li>食用前請提前25分鐘取出回溫</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h5><i class="bi bi-shield-check text-primary"></i> 注意事項</h5>
+                                <p>本產品含有牛奶、雞蛋、小麥等過敏原，使用天然色素，對人工色素敏感者請放心。</p>
+                            </div>
+                        </div>`,
+                tags: ["bestseller"],
+                rating: 4.9,
+                reviews: 105,
+                size: "6吋 / 8吋",
+                servings: "4-6人 / 8-10人",
+                reviewsList: [
+                    { name: "紅絲絨愛好者陳小姐", date: "2023-10-14", rating: 5, comment: "完美的紅絲絨蛋糕，奶油芝士霜甜度剛好！" },
+                    { name: "張先生", date: "2023-09-30", rating: 5, comment: "視覺效果滿分，味道也很棒，慶祝活動的首選。" },
+                    { name: "李太太", date: "2023-09-20", rating: 4, comment: "顏色很漂亮，味道正宗，只是價格稍高。" }
+                ]
+            },
+            {
+                id: 13,
+                name: "伯爵茶蛋糕",
+                category: "seasonal",
+                images: [
+                    "image/cake/earl_grey.avif"
+                    
+                ], 
+                description: "佛手柑香氣的伯爵茶融入蛋糕，獨特英式風味。",
+                fullDescription: `<p>伯爵茶蛋糕將英式伯爵茶的獨特風味融入蛋糕中，佛手柑的香氣與蛋糕的甜味完美結合，創造出優雅的英式下午茶體驗。</p>
+                                <p>我們使用優質伯爵茶葉現泡茶湯，確保茶香濃郁。蛋糕體濕潤柔軟，帶有淡淡的茶香。表面裝飾有伯爵茶奶油和食用金箔，增添奢華感。</p>
+                                <p><strong>產品特色：</strong></p>
+                                <ul>
+                                    <li>伯爵茶佛手柑香氣</li>
+                                    <li>優雅英式風味</li>
+                                    <li>使用優質伯爵茶葉</li>
+                                    <li>食用金箔裝飾</li>
+                                </ul>
+                                <p><strong>建議搭配：</strong> 英式下午茶或伯爵茶。</p>`,
+                ingredients: `<ul>
+                                <li><strong>優質伯爵茶葉</strong> - 現泡茶湯</li>
+                                <li><strong>新鮮雞蛋</strong> - 本地農場直送</li>
+                                <li><strong>細砂糖</strong> - 調整甜度</li>
+                                <li><strong>無鹽奶油</strong></li>
+                                <li><strong>麵粉</strong></li>
+                                <li><strong>牛奶</strong></li>
+                                <li><strong>鮮奶油</strong> - 製作奶油霜</li>
+                                <li><strong>食用金箔</strong> - 裝飾用</li>
+                            </ul>`,
+                storage: `<div class="row">
+                            <div class="col-md-6">
+                                <h5><i class="bi bi-thermometer-snow text-primary"></i> 冷藏保存</h5>
+                                <ul>
+                                    <li>請置於攝氏0-5度冷藏保存</li>
+                                    <li>最佳賞味期限為購買後4天內</li>
+                                    <li>請避免潮濕環境</li>
+                                    <li>食用前請提前20分鐘取出回溫</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h5><i class="bi bi-shield-check text-primary"></i> 注意事項</h5>
+                                <p>本產品含有牛奶、雞蛋、小麥等過敏原，伯爵茶含有咖啡因，請注意攝取量。</p>
+                            </div>
+                        </div>`,
+                tags: ["new"],
+                rating: 4.7,
+                reviews: 58,
+                size: "6吋 / 8吋",
+                servings: "4-6人 / 8-10人",
+                reviewsList: [
+                    { name: "英式茶愛好者王小姐", date: "2023-10-16", rating: 5, comment: "茶香很濃，佛手柑的香氣很特別，很有英式風味！" },
+                    { name: "陳先生", date: "2023-10-01", rating: 4, comment: "味道優雅，不會太甜，適合搭配下午茶。" },
+                    { name: "張太太", date: "2023-09-22", rating: 5, comment: "買來招待英國朋友，他們都說很道地，非常滿意。" }
+                ]
+            },
+            {
+                id: 14,
+                name: "雙層水果蛋糕",
+                category: "fruit",
+                images: [
+                    "image/cake/double_layer_fruit.avif"
+                   
+                ], 
+                description: "多種新鮮水果裝飾，色彩繽紛的節日首選蛋糕。",
+                fullDescription: `<p>雙層水果蛋糕使用多種新鮮水果裝飾，色彩繽紛，視覺效果豐富。我們根據季節選擇最新鮮的水果，確保每一口都能吃到水果的自然甜味。</p>
+                                <p>蛋糕體為經典海綿蛋糕，夾層有水果餡料和鮮奶油。表面裝飾有草莓、藍莓、奇異果、芒果等多種水果，適合各種節日和慶祝活動。</p>
+                                <p><strong>產品特色：</strong></p>
+                                <ul>
+                                    <li>多種新鮮水果裝飾</li>
+                                    <li>色彩繽紛，視覺效果好</li>
+                                    <li>根據季節選擇水果</li>
+                                    <li>適合節日和慶祝活動</li>
+                                </ul>
+                                <p><strong>建議搭配：</strong> 水果茶或香檳。</p>`,
+                ingredients: `<ul>
+                                <li><strong>多種新鮮水果</strong> - 草莓、藍莓、奇異果、芒果等</li>
+                                <li><strong>海綿蛋糕</strong></li>
+                                <li><strong>鮮奶油</strong> - 夾層和裝飾</li>
+                                <li><strong>新鮮雞蛋</strong> - 本地農場直送</li>
+                                <li><strong>細砂糖</strong> - 調整甜度</li>
+                                <li><strong>牛奶</strong></li>
+                                <li><strong>香草精</strong> - 增添香氣</li>
+                                <li><strong>果膠</strong> - 保護水果</li>
+                            </ul>`,
+                storage: `<div class="row">
+                            <div class="col-md-6">
+                                <h5><i class="bi bi-thermometer-snow text-primary"></i> 冷藏保存</h5>
+                                <ul>
+                                    <li>請立即冷藏保存，最佳溫度為2-4°C</li>
+                                    <li>建議24小時內食用完畢</li>
+                                    <li>請勿冷凍，以免影響水果口感</li>
+                                    <li>食用前請從冰箱取出放置15分鐘</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h5><i class="bi bi-shield-check text-primary"></i> 注意事項</h5>
+                                <p>本產品含有牛奶、雞蛋、小麥等過敏原，水果為新鮮食材，請儘快食用。</p>
+                            </div>
+                        </div>`,
+                tags: [],
+                rating: 4.8,
+                reviews: 71,
+                size: "雙層6吋+8吋",
+                servings: "15-20人",
+                reviewsList: [
+                    { name: "節日主辦人李小姐", date: "2023-10-17", rating: 5, comment: "聖誕派對的焦點，水果很新鮮，蛋糕很受歡迎！" },
+                    { name: "王先生", date: "2023-10-03", rating: 5, comment: "為女兒生日訂製，色彩繽紛，孩子們都很喜歡。" },
+                    { name: "陳太太", date: "2023-09-24", rating: 4, comment: "水果給得很大方，只是運送過程有些水果移位了。" }
+                ]
+            },
+            {
+                id: 15,
+                name: "焦糖海鹽蛋糕",
+                category: "chocolate",
+                images: [
+                    "image/cake/salted.avif"
+                    
+                ], 
+                description: "焦糖的甜與海鹽的鹹完美融合，創造出獨特風味層次。",
+                fullDescription: `<p>焦糖海鹽蛋糕將焦糖的甜與海鹽的鹹完美融合，創造出獨特的風味層次。我們使用自製焦糖醬，搭配法國海鹽，甜中帶鹹，層次豐富。</p>
+                                <p>蛋糕體為巧克力海綿蛋糕，夾層有焦糖奶油和海鹽焦糖醬。表面裝飾有焦糖醬和少許海鹽，每一口都能感受到甜與鹹的完美平衡。</p>
+                                <p><strong>產品特色：</strong></p>
+                                <ul>
+                                    <li>焦糖甜與海鹽鹹的完美結合</li>
+                                    <li>自製焦糖醬</li>
+                                    <li>法國海鹽</li>
+                                    <li>層次豐富的風味體驗</li>
+                                </ul>
+                                <p><strong>建議搭配：</strong> 黑咖啡或濃茶。</p>`,
+                ingredients: `<ul>
+                                <li><strong>細砂糖</strong> - 製作焦糖</li>
+                                <li><strong>法國海鹽</strong> - 增添鹹味</li>
+                                <li><strong>鮮奶油</strong> - 製作焦糖醬</li>
+                                <li><strong>巧克力海綿蛋糕</strong></li>
+                                <li><strong>新鮮雞蛋</strong> - 本地農場直送</li>
+                                <li><strong>無鹽奶油</strong></li>
+                                <li><strong>可可粉</strong> - 巧克力風味</li>
+                                <li><strong>香草精</strong> - 增添香氣</li>
+                            </ul>`,
+                storage: `<div class="row">
+                            <div class="col-md-6">
+                                <h5><i class="bi bi-thermometer-snow text-primary"></i> 冷藏保存</h5>
+                                <ul>
+                                    <li>請置於攝氏0-5度冷藏保存</li>
+                                    <li>最佳賞味期限為購買後4天內</li>
+                                    <li>請避免潮濕環境</li>
+                                    <li>食用前請提前30分鐘取出回溫</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h5><i class="bi bi-shield-check text-primary"></i> 注意事項</h5>
+                                <p>本產品含有牛奶、雞蛋、小麥等過敏原，焦糖含有糖分，糖尿病患者請注意攝取量。</p>
+                            </div>
+                        </div>`,
+                tags: ["bestseller", "new"],
+                rating: 4.9,
+                reviews: 92,
+                size: "6吋 / 8吋",
+                servings: "4-6人 / 8-10人",
+                reviewsList: [
+                    { name: "美食愛好者趙小姐", date: "2023-10-18", rating: 5, comment: "甜與鹹的平衡做得很好，風味層次豐富！" },
+                    { name: "陳先生", date: "2023-10-05", rating: 5, comment: "最特別的蛋糕，焦糖很香，海鹽點綴得恰到好處。" },
+                    { name: "張太太", date: "2023-09-26", rating: 4, comment: "味道很特別，一開始不習慣，但越吃越上癮。" }
+                ]
+            }
+        ];
+        
+        // 相關蛋糕數據 - 從所有蛋糕中隨機選擇3個與當前蛋糕不同的
+        function getRandomRelatedCakes(currentCakeId) {
+            const allCakes = [...cakes];
+            // 過濾掉當前蛋糕
+            const filteredCakes = allCakes.filter(cake => cake.id !== currentCakeId);
+            // 隨機選擇3個
+            const shuffled = [...filteredCakes].sort(() => 0.5 - Math.random());
+            return shuffled.slice(0, 3);
+        }
+        
+        $(document).ready(function() {
+            // 獲取URL參數中的蛋糕ID
+            const urlParams = new URLSearchParams(window.location.search);
+            const cakeId = parseInt(urlParams.get('id')) || 1;
+            
+            // 根據蛋糕ID獲取蛋糕數據
+            const cake = cakes.find(c => c.id === cakeId);
+            
+            if (!cake) {
+                // 如果找不到蛋糕，顯示錯誤訊息並重定向
+                document.body.innerHTML = `
+                    <div class="container text-center py-5" style="margin-top: 100px;">
+                        <h2 class="text-danger">找不到蛋糕</h2>
+                        <p>抱歉，您查找的蛋糕不存在。</p>
+                        <a href="shop4.html" class="btn btn-primary mt-3">返回蛋糕商店</a>
+                    </div>
+                `;
+                return;
+            }
+            
+            // 渲染蛋糕圖片
+            renderCakeImages(cake);
+            
+            // 渲染蛋糕資訊
+            renderCakeInfo(cake);
+            
+            // 渲染蛋糕介紹
+            renderCakeDescription(cake);
+            
+            // 渲染蛋糕材料
+            renderCakeIngredients(cake);
+            
+            // 渲染保存方法
+            renderCakeStorage(cake);
+            
+            // 渲染顧客評價
+            renderCakeReviews(cake);
+            
+            // 獲取並渲染相關蛋糕
+            const relatedCakes = getRandomRelatedCakes(cakeId);
+            renderRelatedCakes(relatedCakes);
+            
+            // 滾動動畫效果
+            function checkFadeIn() {
+                $('.fade-in').each(function() {
+                    const elementTop = $(this).offset().top;
+                    const windowBottom = $(window).scrollTop() + $(window).height();
+                    
+                    if (elementTop < windowBottom - 100) {
+                        $(this).addClass('visible');
+                    }
+                });
+            }
+            
+            checkFadeIn();
+            $(window).scroll(checkFadeIn);
+        });
+        
+        // 渲染蛋糕圖片
+        function renderCakeImages(cake) {
+            const container = $('#cakeImageContainer');
+            let imagesHTML = '';
+            
+            // 檢查是否有新品標籤
+            const isNew = cake.tags && cake.tags.includes('new');
+            
+            // 主圖片
+            imagesHTML += `
+                <div class="cake-image-container">
+                    <img src="${cake.images[0]}" class="cake-detail-image" alt="${cake.name}" id="mainCakeImage">
+                    ${isNew ? '<span class="cake-feature-tag">新品上市</span>' : ''}
+                </div>
+            `;
+            
+            // 縮圖 - 如果有多張圖片
+            if (cake.images.length > 1) {
+                imagesHTML += '<div class="cake-thumbnails">';
+                cake.images.forEach((image, index) => {
+                    imagesHTML += `
+                        <img src="${image}" class="cake-thumbnail ${index === 0 ? 'active' : ''}" 
+                             alt="${cake.name} 圖片 ${index + 1}" 
+                             onclick="changeCakeImage('${image}', this)">
+                    `;
+                });
+                imagesHTML += '</div>';
+            }
+            
+            container.html(imagesHTML);
+        }
+        
+        // 渲染蛋糕資訊
+        function renderCakeInfo(cake) {
+            const container = $('#cakeInfoContent');
+            
+            // 類別名稱
+            const categoryName = getCategoryName(cake.category);
+            
+            // 標籤HTML
+            const badgesHTML = cake.tags && cake.tags.length > 0 
+                ? cake.tags.map(tag => `<span class="cake-badge">${getTagName(tag)}</span>`).join('') 
+                : '';
+            
+            // 評價星星
+            const ratingStars = getRatingStars(cake.rating);
+            
+            const html = `
+                <div class="cake-detail-category">${categoryName}</div>
+                <h1 class="cake-detail-title">${cake.name}</h1>
+                ${badgesHTML}
+                
+                <div class="cake-meta">
+                    <div class="meta-item">
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <span>${cake.rating} (${cake.reviews} 評價)</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="bi bi-rulers"></i>
+                        <span>尺寸: ${cake.size}</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="bi bi-people"></i>
+                        <span>建議份量: ${cake.servings}</span>
+                    </div>
+                </div>
+                
+                <p class="cake-detail-description">${cake.description}</p>
+                
+                <div class="row mt-4">
+                    <div class="col-md-6 mb-4">
+                        <div class="specs-card">
+                            <h4><i class="bi bi-info-circle"></i> 蛋糕特色</h4>
+                            <ul>
+                                <li>每日新鮮製作</li>
+                                <li>選用優質原料</li>
+                                <li>手工精緻裝飾</li>
+                                <li>可客製化設計</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="specs-card">
+                            <h4><i class="bi bi-clock-history"></i> 訂購資訊</h4>
+                            <ul>
+                                <li>需提前3天預訂</li>
+                                <li>可提供送貨服務</li>
+                                <li>節日期間建議提早預訂</li>
+                                <li>提供客製化賀卡服務</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            container.html(html);
+        }
+        
+        // 渲染蛋糕介紹
+        function renderCakeDescription(cake) {
+            const container = $('#cakeDescriptionContent');
+            container.html(cake.fullDescription);
+        }
+        
+        // 渲染蛋糕材料
+        function renderCakeIngredients(cake) {
+            const container = $('#cakeIngredientsContent');
+            container.html(cake.ingredients);
+        }
+        
+        // 渲染保存方法
+        function renderCakeStorage(cake) {
+            const container = $('#cakeStorageContent');
+            container.html(cake.storage);
+        }
+        
+        // 渲染顧客評價
+        function renderCakeReviews(cake) {
+            // 更新評價區域
+            $('#cakeRating').text(cake.rating);
+            $('#ratingNumber').text(cake.rating);
+            $('#ratingStars').html(getRatingStars(cake.rating));
+            $('#reviewCount').text(cake.reviews);
+            
+            // 渲染評價列表
+            const container = $('#cakeReviewsContent');
+            let reviewsHTML = '';
+            
+            if (cake.reviewsList && cake.reviewsList.length > 0) {
+                cake.reviewsList.forEach(review => {
+                    const stars = getRatingStars(review.rating);
+                    reviewsHTML += `
+                        <div class="review-item">
+                            <div class="review-header">
+                                <div>
+                                    <strong>${review.name}</strong>
+                                    <div class="review-rating">
+                                        ${stars}
+                                    </div>
+                                </div>
+                                <span class="text-muted">${review.date}</span>
+                            </div>
+                            <p>${review.comment}</p>
+                        </div>
+                    `;
+                });
+            } else {
+                reviewsHTML = '<p>暫無評價，成為第一個評價此蛋糕的人！</p>';
+            }
+            
+            container.html(reviewsHTML);
+        }
+        
+        // 渲染相關蛋糕
+        function renderRelatedCakes(relatedCakes) {
+            const container = $('#relatedCakes');
+            let html = '';
+            
+            relatedCakes.forEach(cake => {
+                const categoryName = getCategoryName(cake.category);
+                
+                html += `
+                    <div class="col-md-4 mb-4 fade-in">
+                        <div class="related-cake-card">
+                            <img src="${cake.images[0]}" class="related-cake-img" alt="${cake.name}">
+                            <div class="p-3">
+                                <div class="cake-category">${categoryName}</div>
+                                <h5 class="cake-title">${cake.name}</h5>
+                                <p class="cake-description" style="font-size: 0.9rem; height: 40px;">${cake.description}</p>
+                                <a href="shop4_product-detail.html?id=${cake.id}" class="view-detail-btn" style="padding: 8px 15px; font-size: 0.9rem;">
+                                    <i class="bi bi-eye"></i> 查看詳情
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.html(html);
+        }
+        
+        // 更改蛋糕圖片
+        window.changeCakeImage = function(imageSrc, element) {
+            $('#mainCakeImage').attr('src', imageSrc);
+            $('.cake-thumbnail').removeClass('active');
+            $(element).addClass('active');
+        };
+        
+        // 複製連結
+        window.copyLink = function() {
+            const link = window.location.href;
+            navigator.clipboard.writeText(link).then(function() {
+                alert('連結已複製到剪貼簿！');
+            });
+        };
+        
+        // 分享到Facebook
+        window.shareToFacebook = function() {
+            const url = encodeURIComponent(window.location.href);
+            const text = encodeURIComponent(`我在超美蛋糕店發現了美味的蛋糕！`);
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${text}`, '_blank');
+        };
+        
+        // 分享到Instagram
+        window.shareToInstagram = function() {
+            alert('請打開Instagram應用程式分享此連結。');
+        };
+        
+        // 分享到Twitter
+        window.shareToTwitter = function() {
+            const url = encodeURIComponent(window.location.href);
+            const text = encodeURIComponent(`我在超美蛋糕店發現了美味的蛋糕！`);
+            window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank');
+        };
+        
+        // 獲取類別名稱
+        function getCategoryName(category) {
+            switch(category) {
+                case 'chocolate': return '巧克力系列';
+                case 'fruit': return '水果系列';
+                case 'cheese': return '芝士系列';
+                case 'wedding': return '婚禮蛋糕';
+                case 'seasonal': return '季節限定';
+                default: return '其他';
+            }
+        }
+        
+        // 獲取標籤名稱
+        function getTagName(tag) {
+            switch(tag) {
+                case 'new': return '新品上市';
+                case 'bestseller': return '人氣推薦';
+                case 'vegan': return '純素選擇';
+                case 'glutenfree': return '無麩質';
+                default: return tag;
+            }
+        }
+        
+        // 獲取評價星星
+        function getRatingStars(rating) {
+            let stars = '';
+            const fullStars = Math.floor(rating);
+            const hasHalfStar = rating % 1 >= 0.5;
+            
+            for (let i = 0; i < fullStars; i++) {
+                stars += '<i class="bi bi-star-fill"></i>';
+            }
+            
+            if (hasHalfStar) {
+                stars += '<i class="bi bi-star-half"></i>';
+            }
+            
+            const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+            for (let i = 0; i < emptyStars; i++) {
+                stars += '<i class="bi bi-star"></i>';
+            }
+            
+            return stars;
+        }
+        
+        // 檢查元素是否進入視窗
+        function checkFadeIn() {
+            $('.fade-in').each(function() {
+                const elementTop = $(this).offset().top;
+                const windowBottom = $(window).scrollTop() + $(window).height();
+                
+                if (elementTop < windowBottom - 100) {
+                    $(this).addClass('visible');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

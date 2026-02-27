@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>印度美食餐廳 - 潮流商場購物資訊</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+   
+    <style>
+        :root {
+            --primary-color: #FF6B35;
+            --secondary-color: #FFA500;
+            --accent-color: #8B4513;
+            --spice-color: #D35400;
+            --light-bg: #FFF8F0;
+            --dark-text: #5D4037;
+            --light-text: #fff;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+            --indian-red: #E74C3C;
+            --indian-yellow: #F39C12;
+            --indian-green: #27AE60;
+            --indian-blue: #3498DB;
+            --indian-purple: #9B59B6;
+        }
+        
+        body {
+            font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+            color: var(--dark-text);
+            scroll-behavior: smooth;
+            background-color: var(--light-bg);
+        }
+        
+        /* 導航列樣式 */
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color), var(--spice-color));
+            box-shadow: var(--shadow);
+            padding: 15px 0;
+            transition: var(--transition);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--light-text) !important;
+        }
+        
+        .navbar-nav .nav-link {
+            color: rgba(255, 255, 255, 0.85) !important;
+            font-weight: 500;
+            margin: 0 8px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: var(--transition);
+        }
+        
+        .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active {
+            background-color: rgba(255, 255, 255, 0.15);
+            color: var(--light-text) !important;
+        }
+        
+        /* 印度餐廳首圖 */
+        .indian-hero {
+            background: linear-gradient(rgba(87, 45, 45, 0.7), rgba(0, 0, 0, 0.7)), url('image/Indian/curry_1.avif');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 150px 0 100px;
+            text-align: center;
+            margin-top: 80px;
+        }
+        
+        .indian-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--indian-yellow);
+        }
+        
+        /* 內容區塊通用樣式 */
+        .content-section {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            color: var(--primary-color);
+            position: relative;
+            font-weight: 700;
+            font-size: 2.5rem;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary-color), var(--spice-color));
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 3px;
+        }
+        
+        /* 印度餐廳內容樣式 */
+        .indian-content {
+            background-color: white;
+        }
+        
+        /* 菜式篩選器樣式 */
+        .food-filters {
+            background: #FFF5E6;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 100px;
+            border: 2px solid var(--indian-yellow);
+        }
+        
+        .filter-section {
+            margin-bottom: 25px;
+        }
+        
+        .filter-section h5 {
+            margin-bottom: 15px;
+            color: var(--spice-color);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .filter-option {
+            margin-bottom: 10px;
+        }
+        
+        /* 菜式網格樣式 */
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .food-item {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 2px solid transparent;
+            position: relative;
+        }
+        
+        .food-item:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(255, 107, 53, 0.15);
+            border-color: var(--primary-color);
+        }
+        
+        .food-image {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .food-item:hover .food-image {
+            transform: scale(1.05);
+        }
+        
+        .food-details {
+            padding: 20px;
+            background: white;
+        }
+        
+        .food-category {
+            color: var(--spice-color);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            display: inline-block;
+            background: #FFE5CC;
+            padding: 3px 10px;
+            border-radius: 20px;
+        }
+        
+        .food-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            height: 50px;
+            overflow: hidden;
+            color: var(--dark-text);
+        }
+        
+        .food-description {
+            color: #8d6e63;
+            margin-bottom: 15px;
+            height: 60px;
+            overflow: hidden;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .food-price {
+            color: var(--indian-red);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .food-badge {
+            display: inline-block;
+            background: var(--indian-green);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            margin-right: 5px;
+        }
+        
+        .spice-level {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 10px;
+        }
+        
+        .spice-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #ddd;
+        }
+        
+        .spice-dot.active {
+            background-color: var(--indian-red);
+        }
+        
+        .food-sort {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            background: #FFF5E6;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            border: 2px solid var(--indian-yellow);
+        }
+        
+        .sort-select {
+            width: 200px;
+            border: 2px solid var(--primary-color);
+            border-radius: 10px;
+            padding: 10px 15px;
+            color: var(--dark-text);
+            font-weight: 500;
+        }
+        
+        /* 印度餐廳頁腳樣式 */
+        .indian-footer {
+            background: linear-gradient(135deg, var(--accent-color), #5D4037);
+            color: var(--light-text);
+            padding: 60px 0 30px;
+            margin-top: 50px;
+        }
+        
+        .indian-footer h4 {
+            color: var(--indian-yellow);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .indian-footer p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+        }
+        
+        .contact-info {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+        
+        .contact-info li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .contact-info i {
+            font-size: 1.2rem;
+            color: var(--indian-yellow);
+            width: 25px;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .social-icon:hover {
+            background: var(--primary-color);
+            transform: translateY(-5px);
+        }
+        
+        /* 響應式調整 */
+        @media (max-width: 768px) {
+            .indian-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .content-section {
+                padding: 70px 0;
+            }
+            
+            .food-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .food-sort {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .sort-select {
+                width: 100%;
+            }
+        }
+        
+        /* 動畫效果 */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* 菜式特色標籤 */
+        .food-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--indian-red);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 10;
+        }
+        
+        .food-image-container {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* 查看詳情按鈕 */
+        .view-detail-btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--spice-color));
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: var(--transition);
+            display: block;
+            width: 100%;
+            text-align: center;
+            text-decoration: none;
+        }
+        
+        .view-detail-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 107, 53, 0.2);
+            color: white;
+        }
+        
+        /* 印度特色圖案裝飾 */
+        .indian-pattern {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            opacity: 0.05;
+            z-index: 0;
+        }
+        
+        .pattern-1 {
+            top: 10%;
+            left: 5%;
+            background: radial-gradient(circle, var(--indian-red) 0%, transparent 70%);
+        }
+        
+        .pattern-2 {
+            bottom: 10%;
+            right: 5%;
+            background: radial-gradient(circle, var(--indian-yellow) 0%, transparent 70%);
+        }
+    </style>
+</head>
+<body>
+    <!-- 導航列 -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="home.html">
+               <i class="material-icons" style="font-size:32px;color:blue">restaurant</i>香料印度餐廳
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="home.html"><i class="bi bi-house-door"></i> 主頁</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 印度餐廳首圖 -->
+    <section class="indian-hero">
+        <div class="container">
+            <h1>香料印度餐廳</h1>
+            <p class="lead">正宗北印度風味，精心調配的香料，帶給您最地道的印度美食體驗</p>
+            <div class="mt-4">
+                <span class="badge bg-warning me-2">Halal清真認證</span>
+                <span class="badge bg-success me-2">素食選擇</span>
+                <span class="badge bg-info">外賣服務</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 印度餐廳內容 -->
+    <section class="content-section indian-content">
+        <div class="container position-relative">
+            <!-- 印度特色圖案裝飾 -->
+            <div class="indian-pattern pattern-1"></div>
+            <div class="indian-pattern pattern-2"></div>
+            
+            <h2 class="section-title">精選印度菜式</h2>
+            <p class="text-center mb-5">15款正宗印度美食，從經典咖哩到特色燒烤，滿足您的味蕾</p>
+            
+            <div class="row">
+                <!-- 菜式篩選側邊欄 -->
+                <div class="col-lg-3">
+                    <div class="food-filters">
+                        <div class="filter-section">
+                            <h5><i class="bi bi-funnel"></i> 菜式分類</h5>
+                            <div class="filter-option">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="all" id="filterAll" checked>
+                                    <label class="form-check-label" for="filterAll">
+                                        全部菜式
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="filter-option">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="curry" id="filterCurry" checked>
+                                    <label class="form-check-label" for="filterCurry">
+                                        咖哩系列
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="filter-option">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="tandoor" id="filterTandoor" checked>
+                                    <label class="form-check-label" for="filterTandoor">
+                                        泥爐燒烤
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="filter-option">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="rice" id="filterRice" checked>
+                                    <label class="form-check-label" for="filterRice">
+                                        米飯主食
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="filter-option">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="bread" id="filterBread" checked>
+                                    <label class="form-check-label" for="filterBread">
+                                        印度烤餅
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="filter-option">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="starter" id="filterStarter" checked>
+                                    <label class="form-check-label" for="filterStarter">
+                                        前菜小食
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="filter-section">
+                            <h5><i class="bi bi-thermometer-high"></i> 辣度篩選</h5>
+                            <div class="filter-option">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="mild" id="filterMild" checked>
+                                    <label class="form-check-label" for="filterMild">
+                                        微辣
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="filter-option">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="medium" id="filterMedium" checked>
+                                    <label class="form-check-label" for="filterMedium">
+                                        中辣
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="filter-option">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="spicy" id="filterSpicy" checked>
+                                    <label class="form-check-label" for="filterSpicy">
+                                        辛辣
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="filter-section">
+                            <h5><i class="bi bi-tags"></i> 特色標籤</h5>
+                            <div class="filter-option">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="vegetarian" id="filterVegetarian">
+                                    <label class="form-check-label" for="filterVegetarian">
+                                        素食
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="filter-option">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="popular" id="filterPopular">
+                                    <label class="form-check-label" for="filterPopular">
+                                        人氣推薦
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="filter-option">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="chef" id="filterChef">
+                                    <label class="form-check-label" for="filterChef">
+                                        主廚推薦
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-warning w-100 mt-3" onclick="applyFoodFilters()">
+                            <i class="bi bi-check-circle"></i> 套用篩選
+                        </button>
+                        <button class="btn btn-outline-secondary w-100 mt-2" onclick="resetFoodFilters()">
+                            <i class="bi bi-arrow-clockwise"></i> 重設篩選
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- 菜式列表 -->
+                <div class="col-lg-9">
+                    <div class="food-sort">
+                        <div>
+                            顯示 <span id="foodCount">15</span> 個菜式
+                        </div>
+                        <div>
+                            <select class="form-select sort-select" id="sortSelect" onchange="sortFoods()">
+                                <option value="default">預設排序</option>
+                                <option value="name">名稱: A-Z</option>
+                                <option value="price-low">價格: 低至高</option>
+                                <option value="price-high">價格: 高至低</option>
+                                <option value="spice">辣度: 低至高</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div id="foodGrid" class="food-grid">
+                        <!-- 菜式將由JavaScript動態生成 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 印度餐廳頁腳 -->
+    <footer class="indian-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h4><i class="bi bi-egg-fried"></i> 香料印度餐廳</h4>
+                    <p>我們提供正宗的北印度美食，由印度主廚親自主理，使用傳統香料和烹飪方法，讓您在香港也能體驗到地道的印度風味。</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 mb-4">
+                    <h4><i class="bi bi-clock"></i> 營業時間</h4>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="bi bi-calendar-week"></i>
+                            <div>
+                                <strong>星期一至四</strong><br>
+                                11:30 - 22:00
+                            </div>
+                        </li>
+                        <li>
+                            <i class="bi bi-calendar-week"></i>
+                            <div>
+                                <strong>星期五至日及公眾假期</strong><br>
+                                11:00 - 23:00
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-4 mb-4">
+                    <h4><i class="bi bi-geo-alt"></i> 聯絡我們</h4>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="bi bi-geo-alt-fill"></i>
+                            <div>
+                                <strong>地址</strong><br>
+                                佐敦道 88  2F - 02
+                            </div>
+                        </li>
+                        <li>
+                            <i class="bi bi-telephone"></i>
+                            <div>
+                                <strong>電話</strong><br>
+                                +852 2345 6789
+                            </div>
+                        </li>
+                        <li>
+                            <i class="bi bi-envelope"></i>
+                            <div>
+                                <strong>電郵</strong><br>
+                                indian@trendmall.com
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="row mt-4 pt-4 border-top border-secondary">
+                <div class="col-md-6">
+                    <p>&copy; 2026 香料印度餐廳 - 潮流商場購物資訊 版權所有</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p>本網站僅供學習使用，圖片來源於Unsplash</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS 和 Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    
+    <script>
+        // 15個印度菜式數據
+        const foods = [
+            {
+                id: 1,
+                name: "牛油雞",
+                category: "curry",
+                image: "image/indian/curry.avif",
+                description: "經典北印度咖哩，奶油番茄醬汁搭配嫩滑雞肉。",
+                tags: ["popular", "chef"],
+                price: 128,
+                spice: 2,
+                vegetarian: false
+            },
+            {
+                id: 2,
+                name: "坦都里烤雞",
+                category: "tandoor",
+                image: "image/indian/tandoor.avif",
+                description: "傳統泥爐烤雞，用優格和多種香料醃製。",
+                tags: ["popular"],
+                price: 148,
+                spice: 3,
+                vegetarian: false
+            },
+            {
+                id: 3,
+                name: "印式咖哩角",
+                category: "starter",
+                image: "image/indian/starter.webp",
+                description: "酥脆外皮包裹香濃馬鈴薯和豌豆餡料。",
+                tags: ["vegetarian"],
+                price: 68,
+                spice: 1,
+                vegetarian: true
+            },
+            {
+                id: 4,
+                name: "印度烤餅",
+                category: "bread",
+                image: "image/indian/bread.avif",
+                description: "傳統泥爐烤製，口感鬆軟帶有麵粉香氣。",
+                tags: ["vegetarian"],
+                price: 38,
+                spice: 0,
+                vegetarian: true
+            },
+            {
+                id: 5,
+                name: "印式羊肉咖哩",
+                category: "curry",
+                image: "image/indian/curry_1.avif",
+                description: "濃郁香料燉煮的羊肉，口感軟嫩入味。",
+                tags: ["chef"],
+                price: 158,
+                spice: 3,
+                vegetarian: false
+            },
+            {
+                id: 6,
+                name: "印式香飯",
+                category: "rice",
+                image: "image/indian/rice.avif",
+                description: "長米與香料慢煮，香氣撲鼻。",
+                tags: ["vegetarian"],
+                price: 88,
+                spice: 1,
+                vegetarian: true
+            },
+            {
+                id: 7,
+                name: "印式烤魚",
+                category: "tandoor",
+                image: "image/indian/tandoor_1.avif",
+                description: "新鮮魚塊用香料醃製後泥爐烤製。",
+                tags: ["popular"],
+                price: 138,
+                spice: 2,
+                vegetarian: false
+            },
+            {
+                id: 8,
+                name: "菠菜芝士",
+                category: "curry",
+                image: "image/indian/curry_2.avif",
+                description: "新鮮菠菜與印度芝士製作的經典素食咖哩。",
+                tags: ["vegetarian", "popular"],
+                price: 108,
+                spice: 2,
+                vegetarian: true
+            },
+            {
+                id: 9,
+                name: "印式薄餅",
+                category: "bread",
+                image: "image/indian/bread_2.avif",
+                description: "酥脆印度薄餅，搭配咖哩享用絕佳。",
+                tags: ["vegetarian"],
+                price: 42,
+                spice: 0,
+                vegetarian: true
+            },
+            {
+                id: 10,
+                name: "香料烤雞塊",
+                category: "starter",
+                image: "image/indian/bread_1.avif",
+                description: "嫩滑雞肉塊用獨特香料醃製後烤製。",
+                tags: ["popular"],
+                price: 98,
+                spice: 3,
+                vegetarian: false
+            },
+            {
+                id: 11,
+                name: "瑪莎拉扁豆",
+                category: "curry",
+                image: "image/indian/curry_3.avif",
+                description: "印度特色扁豆咖哩，營養豐富。",
+                tags: ["vegetarian", "chef"],
+                price: 88,
+                spice: 2,
+                vegetarian: true
+            },
+            {
+                id: 12,
+                name: "印式烤羊架",
+                category: "tandoor",
+                image: "image/indian/tandoor_2.avif",
+                description: "優質羊架用香料醃製後泥爐烤製。",
+                tags: ["chef"],
+                price: 198,
+                spice: 2,
+                vegetarian: false
+            },
+            {
+                id: 13,
+                name: "印度奶茶",
+                category: "drink",
+                image: "image/indian/drink.avif",
+                description: "傳統印度香料奶茶，香濃暖胃。",
+                tags: ["vegetarian"],
+                price: 38,
+                spice: 0,
+                vegetarian: true
+            },
+            {
+                id: 14,
+                name: "印式椰汁咖哩蝦",
+                category: "curry",
+                image: "image/indian/curry_4.avif",
+                description: "新鮮大蝦與椰汁咖哩完美結合。",
+                tags: ["popular"],
+                price: 168,
+                spice: 2,
+                vegetarian: false
+            },
+            {
+                id: 15,
+                name: "印式甜點拼盤",
+                category: "dessert",
+                image: "image/indian/dessert.avif",
+                description: "多款印度傳統甜點組合，甜蜜滿足。",
+                tags: ["vegetarian"],
+                price: 78,
+                spice: 0,
+                vegetarian: true
+            }
+        ];
+        
+        // 頁面狀態
+        let filteredFoods = [...foods];
+        
+        $(document).ready(function() {
+            // 初始化菜式顯示
+            renderFoods();
+            
+            // 滾動動畫效果
+            function checkFadeIn() {
+                $('.fade-in').each(function() {
+                    const elementTop = $(this).offset().top;
+                    const windowBottom = $(window).scrollTop() + $(window).height();
+                    
+                    if (elementTop < windowBottom - 100) {
+                        $(this).addClass('visible');
+                    }
+                });
+            }
+            
+            checkFadeIn();
+            $(window).scroll(checkFadeIn);
+        });
+        
+        // 渲染菜式
+        function renderFoods() {
+            const foodGrid = $('#foodGrid');
+            foodGrid.empty();
+            
+            filteredFoods.forEach(food => {
+                // 獲取類別名稱
+                const categoryName = getCategoryName(food.category);
+                
+                // 生成標籤HTML
+                const badgesHTML = food.tags && food.tags.length > 0 
+                    ? food.tags.map(tag => `<span class="food-badge">${getTagName(tag)}</span>`).join('') 
+                    : '';
+                
+                // 生成辣度指示
+                const spiceLevelHTML = getSpiceLevelHTML(food.spice);
+                
+                // 素食標示
+                const vegetarianIcon = food.vegetarian ? '<span class="badge bg-success me-1">素食</span>' : '';
+                
+                const foodItem = `
+                    <div class="food-item fade-in">
+                        <div class="food-image-container">
+                            <img src="${food.image}" class="food-image" alt="${food.name}">
+                            ${food.tags.includes('popular') ? '<span class="food-tag">人氣</span>' : ''}
+                            ${food.tags.includes('chef') ? '<span class="food-tag" style="background-color: var(--indian-purple);">主廚推薦</span>' : ''}
+                        </div>
+                        <div class="food-details">
+                            <div class="food-category">${categoryName}</div>
+                            <h3 class="food-title">${food.name}</h3>
+                            <p class="food-description">${food.description}</p>
+                            <div class="food-price">HK$ ${food.price}</div>
+                            ${badgesHTML}
+                            ${vegetarianIcon}
+                            <div class="spice-level">
+                                <span class="me-2">辣度:</span>
+                                ${spiceLevelHTML}
+                            </div>
+                            <a href="shop5_product-detail.html?id=${food.id}" class="view-detail-btn mt-3">
+                                <i class="bi bi-eye"></i> 查看詳情
+                            </a>
+                        </div>
+                    </div>
+                `;
+                foodGrid.append(foodItem);
+            });
+            
+            // 更新菜式計數
+            $('#foodCount').text(filteredFoods.length);
+            
+            // 觸發淡入動畫
+            setTimeout(() => {
+                checkFadeIn();
+            }, 100);
+        }
+        
+        // 應用篩選
+        function applyFoodFilters() {
+            // 獲取篩選條件
+            const selectedCategories = [];
+            if ($('#filterAll').is(':checked')) {
+                // 如果選擇了"全部菜式"，則忽略其他類別篩選
+                selectedCategories.push('all');
+            } else {
+                if ($('#filterCurry').is(':checked')) selectedCategories.push('curry');
+                if ($('#filterTandoor').is(':checked')) selectedCategories.push('tandoor');
+                if ($('#filterRice').is(':checked')) selectedCategories.push('rice');
+                if ($('#filterBread').is(':checked')) selectedCategories.push('bread');
+                if ($('#filterStarter').is(':checked')) selectedCategories.push('starter');
+            }
+            
+            // 辣度篩選
+            const selectedSpiceLevels = [];
+            if ($('#filterMild').is(':checked')) selectedSpiceLevels.push(0, 1);
+            if ($('#filterMedium').is(':checked')) selectedSpiceLevels.push(2);
+            if ($('#filterSpicy').is(':checked')) selectedSpiceLevels.push(3);
+            
+            // 標籤篩選
+            const selectedTags = [];
+            if ($('#filterVegetarian').is(':checked')) selectedTags.push('vegetarian');
+            if ($('#filterPopular').is(':checked')) selectedTags.push('popular');
+            if ($('#filterChef').is(':checked')) selectedTags.push('chef');
+            
+            // 篩選菜式
+            filteredFoods = foods.filter(food => {
+                // 類別篩選
+                if (selectedCategories.length > 0 && !selectedCategories.includes('all')) {
+                    if (!selectedCategories.includes(food.category)) {
+                        return false;
+                    }
+                }
+                
+                // 辣度篩選
+                if (selectedSpiceLevels.length > 0) {
+                    if (!selectedSpiceLevels.includes(food.spice)) {
+                        return false;
+                    }
+                }
+                
+                // 標籤篩選
+                if (selectedTags.length > 0) {
+                    const foodTags = food.tags || [];
+                    const hasSelectedTag = selectedTags.some(tag => foodTags.includes(tag));
+                    
+                    // 特殊處理素食篩選
+                    if ($('#filterVegetarian').is(':checked') && !food.vegetarian) {
+                        return false;
+                    }
+                    
+                    // 其他標籤篩選
+                    const otherTags = selectedTags.filter(tag => tag !== 'vegetarian');
+                    if (otherTags.length > 0) {
+                        const hasOtherTag = otherTags.some(tag => foodTags.includes(tag));
+                        if (!hasOtherTag) {
+                            return false;
+                        }
+                    }
+                }
+                
+                return true;
+            });
+            
+            // 重新渲染
+            renderFoods();
+        }
+        
+        // 重設篩選
+        function resetFoodFilters() {
+            $('#filterAll, #filterCurry, #filterTandoor, #filterRice, #filterBread, #filterStarter').prop('checked', true);
+            $('#filterMild, #filterMedium, #filterSpicy').prop('checked', true);
+            $('#filterVegetarian, #filterPopular, #filterChef').prop('checked', false);
+            $('#sortSelect').val('default');
+            
+            filteredFoods = [...foods];
+            renderFoods();
+        }
+        
+        // 排序菜式
+        function sortFoods() {
+            const sortOption = $('#sortSelect').val();
+            
+            switch(sortOption) {
+                case 'name':
+                    filteredFoods.sort((a, b) => a.name.localeCompare(b.name, 'zh-Hant'));
+                    break;
+                case 'price-low':
+                    filteredFoods.sort((a, b) => a.price - b.price);
+                    break;
+                case 'price-high':
+                    filteredFoods.sort((a, b) => b.price - a.price);
+                    break;
+                case 'spice':
+                    filteredFoods.sort((a, b) => a.spice - b.spice);
+                    break;
+                default:
+                    // 保持原順序
+                    break;
+            }
+            
+            renderFoods();
+        }
+        
+        // 獲取類別名稱
+        function getCategoryName(category) {
+            switch(category) {
+                case 'curry': return '咖哩系列';
+                case 'tandoor': return '泥爐燒烤';
+                case 'rice': return '米飯主食';
+                case 'bread': return '印度烤餅';
+                case 'starter': return '前菜小食';
+                case 'dessert': return '甜品';
+                case 'drink': return '飲品';
+                default: return '其他';
+            }
+        }
+        
+        // 獲取標籤名稱
+        function getTagName(tag) {
+            switch(tag) {
+                case 'popular': return '人氣推薦';
+                case 'chef': return '主廚推薦';
+                case 'vegetarian': return '素食';
+                default: return tag;
+            }
+        }
+        
+        // 獲取辣度指示HTML
+        function getSpiceLevelHTML(spice) {
+            let html = '';
+            for (let i = 0; i < 3; i++) {
+                html += `<div class="spice-dot ${i < spice ? 'active' : ''}"></div>`;
+            }
+            return html;
+        }
+        
+        // 檢查元素是否進入視窗
+        function checkFadeIn() {
+            $('.fade-in').each(function() {
+                const elementTop = $(this).offset().top;
+                const windowBottom = $(window).scrollTop() + $(window).height();
+                
+                if (elementTop < windowBottom - 100) {
+                    $(this).addClass('visible');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

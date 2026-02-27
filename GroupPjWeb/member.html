@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>會員登入</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+         :root {
+            --primary-color: #6a11cb;
+            --secondary-color: #2575fc;
+            --accent-color: #00d2ff;
+            --dark-color: #0a0a1a;
+            --light-color: #f8f9fa;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --yellow-color: yellow;
+             --transition: all 0.3s ease;
+            
+        }
+        
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            overflow-x: hidden;
+        }
+        
+        /* 自定義導航欄 */
+        .navbar {
+            background: rgba(10, 10, 26, 0.95) !important;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(106, 17, 203, 0.3);
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .nav-link {
+            color: var(--light-color) !important;
+            font-weight: 500;
+            margin: 0 10px;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            color: var(--accent-color) !important;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--accent-color);
+            transition: width 0.3s;
+        }
+        
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+        
+        /* 英雄區域 */
+        .hero-section {
+            background-image: url(mainframe.jpg);
+                        
+            background-size: cover;
+            background-position: center;
+            padding: 120px 0 80px;
+            position: relative;
+        }
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        /* 卡片設計 */
+        .modern-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid rgba(106, 17, 203, 0.2);
+            padding: 30px;
+            transition: all 0.3s ease;
+            height: 100%;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            
+        }
+        
+        .modern-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(106, 17, 203, 0.5);
+            box-shadow: 0 15px 30px rgba(106, 17, 203, 0.3);
+        }
+        
+        /* 特色圖標 */
+        .feature-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        
+        /* 按鈕設計 */
+        .btn-neon {
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn-neon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+            transition: left 0.5s;
+            z-index: -1;
+        }
+        
+        .btn-neon:hover::before {
+            left: 0;
+        }
+        
+        .btn-neon:hover {
+            box-shadow: 0 5px 15px rgba(106, 17, 203, 0.4);
+        }
+        
+        /* 頁腳 */
+        .footer {
+            background: rgba(5, 5, 15, 0.95);
+            border-top: 1px solid rgba(106, 17, 203, 0.3);
+            padding: 60px 0 30px;
+        }
+        
+        .footer h5 {
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+        
+       
+        /* 首頁輪播樣式 */
+        .carousel-section {
+            padding: 0;
+            margin-top: 80px;
+        }
+        
+        .carousel-item {
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+            padding: 100px 0 60px;
+
+        }
+        
+        .carousel-caption {
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 15px;
+            padding: 25px;
+            bottom: 20%;
+            left: 10%;
+            right: 10%;
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            margin-top: 30px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--primary-color), var(--accent-color));
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -36px;
+            top: 5px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: var(--accent-color);
+        }
+        
+        /* 響應式調整 */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .modern-card {
+                margin-bottom: 20px;
+            }
+        }
+        
+        /* 頁面切換動畫 */
+        .page-content {
+            display: none;
+        }
+        
+        .page-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* 商店預覽 */
+        .store-preview {
+            overflow: hidden;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .store-preview img {
+            transition: transform 0.5s;
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .store-preview:hover img {
+            transform: scale(1.05);
+        }
+        
+        .store-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 26, 0.8);
+            padding: 15px;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+        
+        .store-preview:hover .store-overlay {
+            transform: translateY(0);
+        }
+        
+        
+        /* 區域標題樣式 */
+        .section-title {
+            text-align: center;
+            margin: 60px 0 40px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--primary-color);
+            display: inline-block;
+            padding-bottom: 15px;
+            position: relative;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary-color);
+        }
+        /* 商店區域樣式 */
+        .stores {
+            padding: 40px 0;
+            background-color: white;
+        }
+        
+        .store-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 40px;
+        }
+        .store-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .store-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .store-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .store-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .store-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .store-card:hover .store-img img {
+            transform: scale(1.05);
+        }
+        
+        .store-info {
+            padding: 25px;
+        }
+        
+        .store-category {
+            display: inline-block;
+            color: var(--secondary-color);
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .store-name {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        
+        .store-description {
+            color: rgb(36, 36, 43);
+            margin-bottom: 15px;
+            font-size: 15px;
+        }
+        
+        .store-floor {
+            display: flex;
+            align-items: center;
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+        
+        .store-floor i {
+            margin-right: 8px;
+        }
+        /* 活動區域樣式 */
+        .events {
+            padding: 60px 0;
+            background-color: #f5f7fa;
+        }
+        .filter-btn {
+            background-color: var(--light-color);
+            border: none;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        @media (max-width: 768px) {
+            .store-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+         @media (max-width: 576px) {
+            store-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+        /* 會員頁面樣式 */
+        .member-section {
+            flex: 1;
+            padding-top: 150px;
+            padding-bottom: 100px;
+        }
+        
+        /* 會員容器樣式 */
+        .auth-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+        
+        /* 會員標籤樣式 */
+        .auth-tabs {
+            display: flex;
+        }
+        
+        .auth-tab {
+            flex: 1;
+            text-align: center;
+            padding: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+            background: #f1f1f1;
+            color: #666;
+        }
+        
+        .auth-tab.active {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+        }
+        
+        /* 表單樣式 */
+        .auth-form {
+            padding: 40px;
+            display: none;
+        }
+        
+        .auth-form.active {
+            display: block;
+        }
+        
+        .form-control {
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+            transition: var(--transition);
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.25rem rgba(106, 17, 203, 0.25);
+        }
+        
+        /* 會員優點樣式 */
+        .member-benefits {
+            max-width: 800px;
+            margin: 50px auto 0;
+        }
+        
+        .benefit-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+            height: 100%;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .benefit-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        /* 社交登入按鈕 */
+        .social-login {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-btn {
+            flex: 1;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: var(--transition);
+        }
+        
+        .social-btn.google:hover {
+            background: #f8f9fa;
+            border-color: #ddd;
+        }
+        
+        .social-btn.facebook {
+            background: #1877f2;
+            color: white;
+            border-color: #1877f2;
+        }
+        
+        .social-btn.facebook:hover {
+            background: #166fe5;
+        }
+        
+
+    </style>
+</head>
+<body>
+    <header>
+      <!-- 導航欄 -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#" data-page="home">
+                <img src="image/logo/logo.png" class="logo" alt="logo" width="40" height="40"/>
+                <span>NeoMall</span></a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="home.html" data-page="home">首頁</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html" data-page="about">關於我們</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="onlineShop.html">網上商店</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="act.html">最新活動</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">會員登入</a>
+                    </li>
+                   
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+
+   
+        <!-- 會員登入/註冊 -->
+    <section class="member-section">
+        <div class="container">
+            <div class="auth-container fade-in">
+                <!-- 會員標籤 -->
+                <div class="auth-tabs">
+                    <div class="auth-tab active" id="loginTab">會員登入</div>
+                    <div class="auth-tab" id="registerTab">會員註冊</div>
+                </div>
+                
+                <!-- 登入表單 -->
+                <form id="loginForm" class="auth-form active">
+                    <h3 class="text-center mb-4">歡迎回來</h3>
+                    
+                    <div class="mb-3">
+                        <label for="loginEmail" class="form-label">電子郵件</label>
+                        <input type="email" class="form-control" id="loginEmail" placeholder="example@email.com" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="loginPassword" class="form-label">密碼</label>
+                        <input type="password" class="form-control" id="loginPassword" placeholder="請輸入密碼" required>
+                    </div>
+                    
+                    <div class="mb-3 form-check d-flex justify-content-between">
+                        <div>
+                            <input type="checkbox" class="form-check-input" id="rememberMe">
+                            <label class="form-check-label" for="rememberMe">記住我</label>
+                        </div>
+                        <a href="#" id="forgotPassword" class="text-decoration-none">忘記密碼？</a>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary w-100 py-3">登入</button>
+                    
+                    <!-- 社交登入 -->
+                    <div class="divider">
+                        <span>或使用以下方式登入</span>
+                    </div>
+                    
+                    <div class="social-login">
+                        <button type="button" class="social-btn google">
+                            <i class="bi bi-google"></i>
+                            <span>Google</span>
+                        </button>
+                        <button type="button" class="social-btn facebook">
+                            <i class="bi bi-facebook"></i>
+                            <span>Facebook</span>
+                        </button>
+                    </div>
+                    
+                    <div class="text-center mt-4">
+                        <p>還沒有帳戶？ <a href="#" id="switchToRegister" class="text-decoration-none">立即註冊</a></p>
+                    </div>
+                </form>
+                
+                <!-- 註冊表單 -->
+                <form id="registerForm" class="auth-form">
+                    <h3 class="text-center mb-4">加入會員</h3>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="registerFirstName" class="form-label">名字</label>
+                            <input type="text" class="form-control" id="registerFirstName" placeholder="王" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="registerLastName" class="form-label">姓氏</label>
+                            <input type="text" class="form-control" id="registerLastName" placeholder="小明" required>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="registerEmail" class="form-label">電子郵件</label>
+                        <input type="email" class="form-control" id="registerEmail" placeholder="example@email.com" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="registerPhone" class="form-label">電話號碼</label>
+                        <input type="tel" class="form-control" id="registerPhone" placeholder="+852 1234 5678" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="registerPassword" class="form-label">密碼</label>
+                        <input type="password" class="form-control" id="registerPassword" placeholder="至少8個字符" required>
+                        <div class="form-text">密碼必須包含至少8個字符，包括大寫字母、小寫字母和數字。</div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="registerConfirmPassword" class="form-label">確認密碼</label>
+                        <input type="password" class="form-control" id="registerConfirmPassword" placeholder="再次輸入密碼" required>
+                    </div>
+                    
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="agreeTerms" required>
+                        <label class="form-check-label" for="agreeTerms">
+                            我同意<a href="#" class="text-decoration-none">服務條款</a>和<a href="#" class="text-decoration-none">隱私政策</a>
+                        </label>
+                    </div>
+                    
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="newsletter" checked>
+                        <label class="form-check-label" for="newsletter">
+                            我希望收到最新商品資訊和優惠活動通知
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary w-100 py-3">註冊會員</button>
+                    
+                    <div class="text-center mt-4">
+                        <p>已經有帳戶？ <a href="#" id="switchToLogin" class="text-decoration-none">立即登入</a></p>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- 會員優點 -->
+            <div class="member-benefits fade-in">
+                <h3 class="text-center mb-5">成為會員享受專屬優惠</h3>
+                
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="benefit-card">
+                            <div class="benefit-icon">
+                                <i class="bi bi-percent"></i>
+                            </div>
+                            <h5>會員專屬折扣</h5>
+                            <p class="text-muted">享受全店商品95折優惠，特定商品還有額外折扣。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-4">
+                        <div class="benefit-card">
+                            <div class="benefit-icon">
+                                <i class="bi bi-gift"></i>
+                            </div>
+                            <h5>生日禮物</h5>
+                            <p class="text-muted">生日月份可獲專屬禮物和額外9折優惠券。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-4">
+                        <div class="benefit-card">
+                            <div class="benefit-icon">
+                                <i class="bi bi-lightning-charge"></i>
+                            </div>
+                            <h5>優先購買權</h5>
+                            <p class="text-muted">優先購買限量商品，不錯過任何收藏機會。</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="benefit-card">
+                            <div class="benefit-icon">
+                                <i class="bi bi-truck"></i>
+                            </div>
+                            <h5>免運費服務</h5>
+                            <p class="text-muted">會員專享免運費服務，購物更輕鬆。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-4">
+                        <div class="benefit-card">
+                            <div class="benefit-icon">
+                                <i class="bi bi-coin"></i>
+                            </div>
+                            <h5>積分獎勵計劃</h5>
+                            <p class="text-muted">消費可累積積分，兌換商品或折扣券。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-4">
+                        <div class="benefit-card">
+                            <div class="benefit-icon">
+                                <i class="bi bi-headset"></i>
+                            </div>
+                            <h5>專屬客服</h5>
+                            <p class="text-muted">24小時專屬客服，優先處理會員查詢。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+
+
+ <!-- 頁腳 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h3 class="navbar-brand">NeoMall</h3>
+                    <p class="mt-3" style="color:#f1f1f1">未來購物體驗的開創者。我們將科技與零售完美融合，為您提供前所未有的購物旅程。</p>
+                    <div class="mt-4">
+                        <a href="#" class="btn btn-neon btn-sm me-2"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="btn btn-neon btn-sm me-2"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="btn btn-neon btn-sm me-2"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="btn btn-neon btn-sm"><i class="bi bi-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5>快速連結</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" data-page="home" class="text-decoration-none text-light">首頁</a></li>
+                        <li class="mb-2"><a href="#" data-page="about" class="text-decoration-none text-light">關於我們</a></li>
+                        <li class="mb-2"><a href="#" class="text-decoration-none text-light">商店</a></li>
+                        <li class="mb-2"><a href="#" class="text-decoration-none text-light">最新消息</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5>聯絡我們</h5>
+                    <ul class="list-unstyled" style="color:#f1f1f1;">
+                        <li class="mb-2"><i class="bi bi-geo-alt me-2" ></i>佐敦道 88 號</li>
+                        <li class="mb-2"><i class="bi bi-telephone me-2"></i>(852) 6666-8888</li>
+                        <li class="mb-2"><i class="bi bi-envelope me-2"></i>info@neomall.com</li>
+                        <li class="mb-2"><i class="bi bi-clock me-2"></i>每日 10:00 - 22:00</li>
+                    </ul>
+                </div>
+                
+                
+            </div>
+            <hr class="mt-4" style="border-color: rgba(255,255,255,0.1);">
+            <div class="row mt-4">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">&copy; 2026 NeoMall. 版權所有。</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <a href="#" class="text-decoration-none text-light me-3">隱私政策</a>
+                    <a href="#" class="text-decoration-none text-light me-3">使用條款</a>
+                    <a href="#" class="text-decoration-none text-light">網站地圖</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+     <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // 切換登入/註冊表單
+            $('#loginTab').on('click', function() {
+                switchToLogin();
+            });
+            
+            $('#registerTab').on('click', function() {
+                switchToRegister();
+            });
+            
+            $('#switchToLogin').on('click', function(e) {
+                e.preventDefault();
+                switchToLogin();
+            });
+            
+            $('#switchToRegister').on('click', function(e) {
+                e.preventDefault();
+                switchToRegister();
+            });
+            
+            // 登入表單提交
+            $('#loginForm').on('submit', function(e) {
+                e.preventDefault();
+                
+                const email = $('#loginEmail').val();
+                const password = $('#loginPassword').val();
+                const rememberMe = $('#rememberMe').is(':checked');
+                
+                // 簡單驗證
+                if (!email || !password) {
+                    showAlert('請填寫所有欄位', 'warning');
+                    return;
+                }
+                
+                // 模擬登入過程
+                showAlert('登入成功！正在跳轉...', 'success');
+                
+                // 清空表單
+                $('#loginForm')[0].reset();
+
+                let userLoggedIn = [];
+
+                localStorage.setItem('userLoggedIn', 'true');
+                console.log(userLoggedIn);
+                
+                // 模擬跳轉
+                setTimeout(() => {
+                    window.location.href = 'home.html';
+                }, 1500);
+            });
+            
+            // 註冊表單提交
+            $('#registerForm').on('submit', function(e) {
+                e.preventDefault();
+                
+                const firstName = $('#registerFirstName').val();
+                const lastName = $('#registerLastName').val();
+                const email = $('#registerEmail').val();
+                const phone = $('#registerPhone').val();
+                const password = $('#registerPassword').val();
+                const confirmPassword = $('#registerConfirmPassword').val();
+                const agreeTerms = $('#agreeTerms').is(':checked');
+                
+                // 驗證
+                if (!firstName || !lastName || !email || !phone || !password || !confirmPassword) {
+                    showAlert('請填寫所有欄位', 'warning');
+                    return;
+                }
+                
+                if (!agreeTerms) {
+                    showAlert('請同意服務條款和隱私政策', 'warning');
+                    return;
+                }
+                
+                if (password !== confirmPassword) {
+                    showAlert('密碼不一致', 'warning');
+                    return;
+                }
+                
+                // 密碼強度驗證
+                if (password.length < 8) {
+                    showAlert('密碼必須至少8個字符', 'warning');
+                    return;
+                }
+                
+                // 模擬註冊過程
+                showAlert('註冊成功！歡迎成為我們的會員！', 'success');
+                
+                // 清空表單
+                $('#registerForm')[0].reset();
+
+                // login success 26jan2026
+                //localStorage.setItem('userLoggedIn');
+                
+                // 切換到登入表單
+                setTimeout(() => {
+                    switchToLogin();
+                }, 1500);
+            });
+            
+            // 忘記密碼
+            $('#forgotPassword').on('click', function(e) {
+                e.preventDefault();
+                
+                const email = prompt('請輸入您的電子郵件以重設密碼：');
+                if (email) {
+                    showAlert('重設密碼連結已發送到您的電子郵件', 'success');
+                }
+            });
+            
+            // 社交登入按鈕
+            $('.social-btn.google').on('click', function() {
+                showAlert('Google 登入功能（演示）', 'info');
+            });
+            
+            $('.social-btn.facebook').on('click', function() {
+                showAlert('Facebook 登入功能（演示）', 'info');
+            });
+            
+            // 滾動動畫效果
+            function checkFadeIn() {
+                $('.fade-in').each(function() {
+                    const elementTop = $(this).offset().top;
+                    const windowBottom = $(window).scrollTop() + $(window).height();
+                    
+                    if (elementTop < windowBottom - 100) {
+                        $(this).addClass('visible');
+                    }
+                });
+            }
+            
+            checkFadeIn();
+            $(window).scroll(checkFadeIn);
+        });
+        
+        // 切換到登入表單
+        function switchToLogin() {
+            $('.auth-tab').removeClass('active');
+            $('#loginTab').addClass('active');
+            $('.auth-form').removeClass('active');
+            $('#loginForm').addClass('active');
+        }
+        
+        // 切換到註冊表單
+        function switchToRegister() {
+            $('.auth-tab').removeClass('active');
+            $('#registerTab').addClass('active');
+            $('.auth-form').removeClass('active');
+            $('#registerForm').addClass('active');
+        }
+        
+        // 顯示通知
+        function showAlert(message, type) {
+            // 移除現有的通知
+            $('.alert-notification').remove();
+            
+            // 設定顏色
+            let alertClass, icon;
+            if (type === 'success') {
+                alertClass = 'alert-success';
+                icon = 'bi-check-circle';
+            } else if (type === 'warning') {
+                alertClass = 'alert-warning';
+                icon = 'bi-exclamation-triangle';
+            } else {
+                alertClass = 'alert-info';
+                icon = 'bi-info-circle';
+            }
+            
+            // 創建新的通知
+            const alertHTML = `
+                <div class="alert ${alertClass} alert-notification alert-dismissible fade show position-fixed" 
+                     style="top: 100px; right: 20px; z-index: 1050; min-width: 300px;">
+                    <i class="bi ${icon}"></i> ${message}
+                    <button type="button" class="btn-close" onclick="$(this).parent().fadeOut()"></button>
+                </div>
+            `;
+            
+            $('body').append(alertHTML);
+            
+            // 3秒後自動移除
+            setTimeout(() => {
+                $('.alert-notification').fadeOut(function() {
+                    $(this).remove();
+                });
+            }, 3000);
+        }
+        
+        // 檢查元素是否進入視窗
+        function checkFadeIn() {
+            $('.fade-in').each(function() {
+                const elementTop = $(this).offset().top;
+                const windowBottom = $(window).scrollTop() + $(window).height();
+                
+                if (elementTop < windowBottom - 100) {
+                    $(this).addClass('visible');
+                }
+            });
+        }
+    </script>
+    </body>
+    </html>

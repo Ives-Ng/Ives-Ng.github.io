@@ -1,0 +1,1670 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>洋酒詳情 - 琥珀烈酒坊</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        :root {
+            --primary-color: #8B4513;
+            --secondary-color: #D4AF37;
+            --accent-color: #2C3E50;
+            --light-bg: #F5F5F5;
+            --dark-text: #2C3E50;
+            --light-text: #fff;
+            --shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --wine-red: #722F37;
+            --whiskey-gold: #D4A017;
+            --vodka-clear: #E8E8E8;
+            --gin-green: #2E8B57;
+            --tequila-blue: #1E90FF;
+            --brandy-purple: #8A2BE2;
+        }
+        
+        body {
+            font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+            color: var(--dark-text);
+            scroll-behavior: smooth;
+            background-color: var(--light-bg);
+            overflow-x: hidden;
+        }
+        
+        /* 導航列樣式 */
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            box-shadow: var(--shadow);
+            padding: 15px 0;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            background-color: rgba(44, 62, 80, 0.95);
+        }
+        
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.8rem;
+            color: var(--light-text) !important;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        
+        .navbar-nav .nav-link {
+            color: rgba(255, 255, 255, 0.85) !important;
+            font-weight: 600;
+            margin: 0 8px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: var(--transition);
+            letter-spacing: 0.5px;
+        }
+        
+        .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active {
+            background: linear-gradient(135deg, var(--secondary-color), var(--whiskey-gold));
+            color: var(--dark-text) !important;
+            transform: translateY(-2px);
+        }
+        
+        /* 洋酒詳情頁首圖 */
+        .product-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url('https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            padding: 140px 0 80px;
+            text-align: center;
+            margin-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(212, 175, 55, 0.15), rgba(139, 69, 19, 0.15));
+            animation: gradientShift 8s infinite alternate;
+        }
+        
+        .product-hero h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+            letter-spacing: 1.5px;
+        }
+        
+        /* 內容區塊通用樣式 */
+        .content-section {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            color: var(--primary-color);
+            position: relative;
+            font-weight: 800;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 120px;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 3px;
+            animation: lineExpand 1.5s ease-out forwards;
+        }
+        
+        /* 商品詳情容器 */
+        .product-detail-container {
+            background: linear-gradient(145deg, #ffffff, #f8f8f8);
+            border-radius: 25px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            margin-bottom: 60px;
+            border: 3px solid transparent;
+            background-clip: padding-box;
+            position: relative;
+            transform-style: preserve-3d;
+        }
+        
+        .product-detail-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 25px;
+            padding: 3px;
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color), var(--accent-color));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            animation: borderGlow 3s infinite alternate;
+        }
+        
+        .product-image-container {
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #2C3E50, #1A252F);
+        }
+        
+        .product-main-image {
+            max-width: 90%;
+            max-height: 450px;
+            object-fit: contain;
+            transition: var(--transition);
+            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+        }
+        
+        .product-image-container:hover .product-main-image {
+            transform: scale(1.05) translateY(-10px);
+        }
+        
+        .product-tag {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            background: linear-gradient(135deg, var(--secondary-color), var(--whiskey-gold));
+            color: var(--dark-text);
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 800;
+            z-index: 10;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            transform: rotate(5deg);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .product-info {
+            padding: 40px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .product-category {
+            color: var(--secondary-color);
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-color) 25%, var(--accent-color));
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            letter-spacing: 1px;
+        }
+        
+        .product-title {
+            font-size: 2.4rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: var(--dark-text);
+            line-height: 1.2;
+        }
+        
+        .product-price {
+            color: var(--primary-color);
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .price-tag {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 12px 30px;
+            border-radius: 35px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: inline-block;
+            box-shadow: 0 10px 25px rgba(139, 69, 19, 0.3);
+            transition: var(--transition);
+        }
+        
+        .price-tag:hover {
+            transform: translateY(-5px) scale(1.05);
+        }
+        
+        .product-description {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 15px;
+            border-left: 5px solid var(--secondary-color);
+        }
+        
+        .product-features {
+            margin-bottom: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .feature-item {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+        
+        .feature-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(139, 69, 19, 0.1);
+            border-color: var(--secondary-color);
+        }
+        
+        .feature-label {
+            font-size: 0.9rem;
+            color: #888;
+            margin-bottom: 8px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .feature-value {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--dark-text);
+        }
+        
+        .product-actions {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+        
+        .btn-purchase {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            border: none;
+            padding: 18px 35px;
+            border-radius: 35px;
+            font-weight: 800;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            flex-grow: 1;
+        }
+        
+        .btn-purchase::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--secondary-color), var(--whiskey-gold));
+            transition: 0.5s;
+            z-index: -1;
+        }
+        
+        .btn-purchase:hover::before {
+            left: 0;
+        }
+        
+        .btn-purchase:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(139, 69, 19, 0.4);
+            color: var(--dark-text);
+        }
+        
+        .btn-back {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 18px 35px;
+            border-radius: 35px;
+            font-weight: 800;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            flex-grow: 1;
+        }
+        
+        .btn-back::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--secondary-color), var(--whiskey-gold));
+            transition: 0.5s;
+            z-index: -1;
+        }
+        
+        .btn-back:hover::before {
+            left: 0;
+        }
+        
+        .btn-back:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(52, 152, 219, 0.3);
+            color: var(--dark-text);
+        }
+        
+        /* 品飲筆記樣式 */
+        .tasting-notes {
+            background: linear-gradient(135deg, #2C3E50, #1A252F);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            margin-top: 40px;
+            border: 3px solid var(--secondary-color);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tasting-notes::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            opacity: 0.05;
+        }
+        
+        .tasting-title {
+            color: var(--secondary-color);
+            font-weight: 800;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .tasting-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .tasting-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: var(--transition);
+        }
+        
+        .tasting-item:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--secondary-color);
+        }
+        
+        .tasting-label {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .tasting-value {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: white;
+        }
+        
+        /* 相關洋酒推薦 */
+        .related-liquors {
+            margin-top: 80px;
+        }
+        
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 35px;
+            margin-top: 40px;
+        }
+        
+        .related-item {
+            background: linear-gradient(145deg, #ffffff, #f0f0f0);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 2px solid transparent;
+            position: relative;
+            transform-style: preserve-3d;
+        }
+        
+        .related-item:hover {
+            transform: translateY(-15px) scale(1.03) rotateY(5deg);
+            box-shadow: 0 25px 50px rgba(139, 69, 19, 0.2);
+            border-color: var(--secondary-color);
+        }
+        
+        .related-image {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .related-item:hover .related-image {
+            transform: scale(1.1);
+        }
+        
+        .related-details {
+            padding: 25px;
+        }
+        
+        .related-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: var(--dark-text);
+        }
+        
+        .related-price {
+            color: var(--primary-color);
+            font-weight: 800;
+            font-size: 1.6rem;
+        }
+        
+        /* 洋酒專用頁腳樣式 */
+        .liquor-footer {
+            background: linear-gradient(135deg, #1A252F, #0D161F);
+            color: var(--light-text);
+            padding: 80px 0 40px;
+            margin-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .liquor-footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color), var(--accent-color));
+            animation: colorShift 5s infinite alternate;
+        }
+        
+        .liquor-footer h4 {
+            color: var(--secondary-color);
+            margin-bottom: 25px;
+            font-weight: 800;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+        }
+        
+        .liquor-footer p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+        
+        .contact-info {
+            list-style: none;
+            padding: 0;
+            margin-top: 25px;
+        }
+        
+        .contact-info li {
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            color: rgba(255, 255, 255, 0.9);
+            transition: var(--transition);
+        }
+        
+        .contact-info li:hover {
+            transform: translateX(10px);
+            color: var(--secondary-color);
+        }
+        
+        .contact-info i {
+            font-size: 1.3rem;
+            color: var(--secondary-color);
+            width: 30px;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 18px;
+            margin-top: 25px;
+        }
+        
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .social-icon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .social-icon:hover::before {
+            left: 100%;
+        }
+        
+        .social-icon:hover {
+            background: var(--secondary-color);
+            transform: translateY(-5px) rotate(10deg);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+        }
+        
+        /* 響應式調整 */
+        @media (max-width: 992px) {
+            .product-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .content-section {
+                padding: 70px 0;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .product-title {
+                font-size: 1.8rem;
+            }
+            
+            .product-price {
+                font-size: 2.5rem;
+            }
+            
+            .product-actions {
+                flex-direction: column;
+            }
+            
+            .btn-purchase, .btn-back {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .related-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .product-image-container {
+                min-height: 350px;
+            }
+            
+            .product-features {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .tasting-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .related-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .product-features {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* 動畫效果 */
+        @keyframes gradientShift {
+            0% { opacity: 0.1; }
+            100% { opacity: 0.3; }
+        }
+        
+        @keyframes lineExpand {
+            0% { width: 0; }
+            100% { width: 120px; }
+        }
+        
+        @keyframes colorShift {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+        
+        @keyframes borderGlow {
+            0% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        /* 載入動畫 */
+        .loading-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 600px;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .wine-spinner {
+            width: 80px;
+            height: 80px;
+            border: 6px solid rgba(139, 69, 19, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--secondary-color);
+            animation: spin 1.5s ease-in-out infinite;
+            position: relative;
+        }
+        
+        .wine-spinner::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: -6px;
+            right: -6px;
+            bottom: -6px;
+            border: 6px solid transparent;
+            border-radius: 50%;
+            border-top-color: var(--primary-color);
+            animation: spin 2s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* 浮動裝飾元素 */
+        .floating-element {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, var(--secondary-color) 0%, transparent 70%);
+            opacity: 0.1;
+            filter: blur(30px);
+            animation: float 8s ease-in-out infinite;
+            z-index: 0;
+        }
+        
+        .floating-element:nth-child(1) {
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+        
+        .floating-element:nth-child(2) {
+            top: 70%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+        
+        .floating-element:nth-child(3) {
+            bottom: 20%;
+            left: 15%;
+            animation-delay: 4s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+            50% { transform: translateY(-30px) rotate(180deg) scale(1.2); }
+        }
+    </style>
+</head>
+<body>
+    <!-- 導航列 -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="bi bi-cup-straw"></i> 琥珀烈酒坊
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="home.html"><i class="bi bi-house-door"></i> 主頁</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="shop6.html"><i class="bi bi-bag"></i> 商店</a>
+                    </li>
+                    
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 洋酒詳情頁首圖 -->
+    <section class="product-hero">
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="container position-relative">
+            <h1 class="animate__animated animate__fadeInDown" id="productHeroTitle">洋酒詳情</h1>
+            <p class="lead fs-4 animate__animated animate__fadeInUp animate__delay-1s">探索世界頂級烈酒的深度與風采</p>
+        </div>
+    </section>
+
+    <!-- 商品詳情內容 -->
+    <section class="content-section">
+        <div class="container position-relative">
+            <!-- 載入狀態 -->
+            <div id="loadingContainer" class="loading-container">
+                <div class="wine-spinner"></div>
+                <h3 class="text-primary">載入洋酒詳情中...</h3>
+            </div>
+            
+            <!-- 商品詳情內容 (動態生成) -->
+            <div id="productDetailContainer" style="display: none;">
+                <div class="product-detail-container animate__animated animate__fadeIn">
+                    <div class="row g-0">
+                        <div class="col-lg-6">
+                            <div class="product-image-container">
+                                <img id="productImage" class="product-main-image" src="" alt="洋酒圖片">
+                                <div id="productTag" class="product-tag">頂級珍藏</div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="product-info">
+                                <span id="productCategory" class="product-category">威士忌 · 蘇格蘭</span>
+                                <h2 id="productTitle" class="product-title">麥卡倫18年單一麥芽威士忌</h2>
+                                <div class="product-price">
+                                    <span class="price-tag" id="productPrice">HK$ 3,888</span>
+                                </div>
+                                <p id="productDescription" class="product-description">蘇格蘭頂級單一麥芽威士忌，18年陳釀，擁有豐富的雪莉桶風味。</p>
+                                
+                                <div class="product-features">
+                                    <div class="feature-item">
+                                        <div class="feature-label">酒精濃度</div>
+                                        <div id="productAbv" class="feature-value">43%</div>
+                                    </div>
+                                    <div class="feature-item">
+                                        <div class="feature-label">容量</div>
+                                        <div id="productSize" class="feature-value">700ml</div>
+                                    </div>
+                                    <div class="feature-item">
+                                        <div class="feature-label">年份</div>
+                                        <div id="productYear" class="feature-value">18年</div>
+                                    </div>
+                                    <div class="feature-item">
+                                        <div class="feature-label">產地</div>
+                                        <div id="productRegion" class="feature-value">蘇格蘭</div>
+                                    </div>
+                                </div>
+                                
+                                <div id="productTags" class="mb-4">
+                                    <!-- 標籤將由JavaScript動態生成 -->
+                                </div>
+                                
+                                <div class="product-actions">
+                                    <button class="btn-purchase" onclick="#">
+                                        <i class="bi bi-cart-plus"></i> 加入購物車(末生效)
+                                    </button>
+                                    <a href="shop6.html" class="btn-back">
+                                        <i class="bi bi-arrow-left"></i> 返回酒單
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 品飲筆記 -->
+                <div class="tasting-notes">
+                    <h3 class="tasting-title"><i class="bi bi-journal-text"></i> 品飲筆記</h3>
+                    <div class="tasting-grid">
+                        <div class="tasting-item">
+                            <div class="tasting-label">色澤</div>
+                            <div id="tastingColor" class="tasting-value">深琥珀色，帶有金色光澤</div>
+                        </div>
+                        <div class="tasting-item">
+                            <div class="tasting-label">香氣</div>
+                            <div id="tastingNose" class="tasting-value">豐富的乾果、橙皮與肉桂香氣</div>
+                        </div>
+                        <div class="tasting-item">
+                            <div class="tasting-label">口感</div>
+                            <div id="tastingPalate" class="tasting-value">濃郁的雪莉桶風味，帶有巧克力與香料</div>
+                        </div>
+                        <div class="tasting-item">
+                            <div class="tasting-label">餘韻</div>
+                            <div id="tastingFinish" class="tasting-value">悠長溫暖，帶有橡木與乾果香</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 詳細描述 -->
+                <div class="mt-5">
+                    <h3 class="section-title">酒款詳述</h3>
+                    <div id="detailedDescription" class="mt-4">
+                        <p>這款麥卡倫18年單一麥芽威士忌是蘇格蘭斯佩賽區的經典之作，採用西班牙雪莉桶陳釀18年，展現出麥卡倫品牌對傳統工藝的堅持與卓越品質的追求。</p>
+                        
+                        <h5 class="mt-4"><i class="bi bi-tree"></i> 釀造工藝:</h5>
+                        <ul>
+                            <li>使用最精選的大麥，採用傳統的銅製蒸餾器進行蒸餾</li>
+                            <li>在西班牙赫雷斯產區的雪莉桶中陳釀至少18年</li>
+                            <li>酒廠擁有自己的橡木桶製作團隊，確保桶質一致性</li>
+                            <li>非冷凝過濾，保留威士忌最原始的風味與香氣</li>
+                        </ul>
+                        
+                        <h5 class="mt-4"><i class="bi bi-award"></i> 獲獎紀錄:</h5>
+                        <ul>
+                            <li>2023年世界威士忌大賽 - 金牌獎</li>
+                            <li>2022年國際烈酒挑戰賽 - 最佳單一麥芽威士忌</li>
+                            <li>2021年舊金山世界烈酒大賽 - 雙金牌獎</li>
+                        </ul>
+                        
+                        <h5 class="mt-4"><i class="bi bi-cup"></i> 品飲建議:</h5>
+                        <ul>
+                            <li>純飲：最推薦的品飲方式，使用威士忌專用聞香杯</li>
+                            <li>加水：加入幾滴水，有助於釋放更多香氣</li>
+                            <li>溫度：室溫品飲最佳，避免加冰塊以免稀釋風味</li>
+                            <li>搭配：適合搭配黑巧克力、堅果或乾果</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- 相關洋酒推薦 -->
+                <div class="related-liquors">
+                    <h3 class="section-title">您可能也喜歡</h3>
+                    <div id="relatedLiquors" class="related-grid">
+                        <!-- 相關洋酒將由JavaScript動態生成 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 洋酒專用頁腳 -->
+    <footer class="liquor-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-5">
+                    <h4><i class="bi bi-cup-straw"></i> 琥珀烈酒坊</h4>
+                    <p>我們致力於引進全球頂級烈酒，從蘇格蘭單一麥芽威士忌到法國干邑白蘭地，每一瓶都是時間與工藝的結晶。專業團隊嚴格把關，確保每一滴都值得細細品味。</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 mb-5">
+                    <h4><i class="bi bi-clock"></i> 營業時間</h4>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="bi bi-calendar-week"></i>
+                            <div>
+                                <strong>星期一至四</strong><br>
+                                11:00 - 22:00
+                            </div>
+                        </li>
+                        <li>
+                            <i class="bi bi-calendar-week"></i>
+                            <div>
+                                <strong>星期五至日</strong><br>
+                                11:00 - 00:00
+                            </div>
+                        </li>
+                        <li>
+                            <i class="bi bi-calendar-week"></i>
+                            <div>
+                                <strong>公眾假期</strong><br>
+                                12:00 - 23:00
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-4 mb-5">
+                    <h4><i class="bi bi-geo-alt"></i> 聯絡我們</h4>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="bi bi-geo-alt-fill"></i>
+                            <div>
+                                <strong>旗艦店地址</strong><br>
+                                佐敦道 88  2F - 03
+                            </div>
+                        </li>
+                        <li>
+                            <i class="bi bi-telephone"></i>
+                            <div>
+                                <strong>預約專線</strong><br>
+                                +852 2888 6666
+                            </div>
+                        </li>
+                        <li>
+                            <i class="bi bi-envelope"></i>
+                            <div>
+                                <strong>商務洽詢</strong><br>
+                                amber@trendmall.com
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="row mt-5 pt-5 border-top border-secondary">
+                <div class="col-md-6">
+                    <p>&copy; 2026 琥珀烈酒坊 - 潮流商場購物資訊 版權所有</p>
+                    <p class="small">根據香港法律，不得在業務過程中，向未成年人售賣或供應令人醺醉的酒類。</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p>本網站僅供學習使用，圖片來源於Unsplash</p>
+                    <p class="small">飲酒過量，有害健康。禁止酒駕。未成年請勿飲酒。</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS 和 Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    
+    <script>
+        // 15種洋酒數據 (與shop6.html一致)
+        const liquors = [
+            {
+                id: 1,
+                name: "麥卡倫18年單一麥芽威士忌",
+                category: "whiskey",
+                region: "scotland",
+                image: "image/wine/macallan_18.jpg",
+                description: "蘇格蘭頂級單一麥芽威士忌，18年陳釀，擁有豐富的雪莉桶風味。",
+                tags: ["premium", "aged", "award"],
+                price: 3888,
+                year: 18,
+                abv: "43%",
+                size: "700ml",
+                tastingNotes: {
+                    color: "深琥珀色，帶有金色光澤",
+                    nose: "豐富的乾果、橙皮、肉桂與丁香香氣，伴隨著雪莉酒的甜美",
+                    palate: "濃郁的雪莉桶風味，帶有黑巧克力、焦糖、香料和橡木的層次感",
+                    finish: "悠長溫暖，餘韻中帶有乾果、橡木和淡淡的煙燻味"
+                },
+                detailedDescription: "麥卡倫18年單一麥芽威士忌是蘇格蘭斯佩賽區的經典之作，採用西班牙雪莉桶陳釀18年，展現出麥卡倫品牌對傳統工藝的堅持與卓越品質的追求。這款威士忌不僅是飲品，更是一件藝術品，每一口都能感受到時間的沉澱與匠心的結晶。"
+            },
+            {
+                id: 2,
+                name: "軒尼詩XO干邑白蘭地",
+                category: "brandy",
+                region: "france",
+                image: "image/wine/Hennessy_XO.png",
+                description: "法國干邑區頂級白蘭地，Extra Old等級，擁有超過百種生命之水的完美調和。",
+                tags: ["premium", "award"],
+                price: 2580,
+                year: 30,
+                abv: "40%",
+                size: "700ml",
+                tastingNotes: {
+                    color: "深琥珀色，帶有銅色光澤",
+                    nose: "豐富的果乾、蜜餞、肉桂和香草香氣",
+                    palate: "濃郁的果乾、巧克力、香料和橡木風味，口感圓潤飽滿",
+                    finish: "悠長而複雜，帶有乾果和香料的餘韻"
+                },
+                detailedDescription: "軒尼詩XO是干邑白蘭地的極致表現，由超過100種生命之水調配而成，其中最年輕的原酒也經過至少10年的陳釀。這款酒體現了軒尼詩家族七代傳承的調和藝術，每一滴都是時間與工藝的完美結晶。"
+            },
+            {
+                id: 3,
+                name: "絕對伏特加原味",
+                category: "vodka",
+                region: "sweden",
+                image: "image/wine/vodka.webp",
+                description: "瑞典產經典伏特加，經過連續蒸餾與過濾，口感純淨順滑。",
+                tags: [],
+                price: 380,
+                year: 0,
+                abv: "40%",
+                size: "1000ml",
+                tastingNotes: {
+                    color: "水晶般透明",
+                    nose: "純淨、清新的穀物香氣，幾乎無雜味",
+                    palate: "口感純淨順滑，帶有淡淡的甜味和穀物風味",
+                    finish: "乾淨俐落，幾乎無餘韻"
+                },
+                detailedDescription: "絕對伏特加源自瑞典南部的小鎮Åhus，使用當地冬小麥和深層天然泉水釀造。經過連續蒸餾和獨特的過濾技術，去除所有雜質，創造出世界聞名的純淨口感。其簡約而獨特的瓶身設計，更成為伏特加品牌的標誌。"
+            },
+            {
+                id: 4,
+                name: "山崎12年單一麥芽威士忌",
+                category: "whiskey",
+                region: "japan",
+                image: "image/wine/whiskey.webp",
+                description: "日本威士忌代表作品，12年水楢桶熟成，帶有獨特的東方韻味。",
+                tags: ["premium", "limited", "award"],
+                price: 2980,
+                year: 12,
+                abv: "43%",
+                size: "700ml",
+                tastingNotes: {
+                    color: "金黃色，帶有琥珀光澤",
+                    nose: "桃子、菠蘿、葡萄柚、丁香和椰子的香氣",
+                    palate: "奶油般的口感，帶有椰子、香草、丁香和蜂蜜的風味",
+                    finish: "乾淨純粹，帶有淡淡的水果和香料餘韻"
+                },
+                detailedDescription: "山崎12年單一麥芽威士忌是日本威士忌的里程碑，由日本首家威士忌蒸餾廠山崎蒸餾所生產。使用水楢桶（日本橡木）陳釀，賦予威士忌獨特的東方風味，被譽為「東方威士忌的典範」。"
+            },
+            {
+                id: 5,
+                name: "唐胡里奧1942龍舌蘭",
+                category: "tequila",
+                region: "mexico",
+                image: "image/wine/tequila.avif",
+                description: "墨西哥頂級龍舌蘭酒，使用100%藍色韋伯龍舌蘭，手工釀造。",
+                tags: ["premium", "aged"],
+                price: 1680,
+                year: 2,
+                abv: "40%",
+                size: "750ml",
+                tastingNotes: {
+                    color: "金黃琥珀色",
+                    nose: "焦糖、香草、橡木和龍舌蘭的獨特香氣",
+                    palate: "口感豐富順滑，帶有焦糖、香草、肉桂和龍舌蘭的甜美",
+                    finish: "溫暖悠長，帶有香料和橡木的餘韻"
+                },
+                detailedDescription: "唐胡里奧1942是為紀念品牌創始人唐·胡里奧·岡薩雷斯於1942年創立酒廠而推出的頂級龍舌蘭。使用100%藍色韋伯龍舌蘭，經過至少兩年半的陳釀，手工釀造，限量生產，是龍舌蘭酒中的藝術品。"
+            },
+            {
+                id: 6,
+                name: "百富21年波特桶威士忌",
+                category: "whiskey",
+                region: "scotland",
+                image: "image/wine/whiskey_1.webp",
+                description: "蘇格蘭斯佩賽區經典威士忌，21年陳釀，最後在波特桶中熟成。",
+                tags: ["premium", "aged", "award"],
+                price: 4280,
+                year: 21,
+                abv: "40%",
+                size: "700ml",
+                tastingNotes: {
+                    color: "深紅寶石色",
+                    nose: "豐富的乾果、蜂蜜、香料和波特酒的甜美香氣",
+                    palate: "濃郁的水果蛋糕、葡萄乾、黑巧克力和香料的風味",
+                    finish: "悠長甜美，帶有乾果和香料的餘韻"
+                },
+                detailedDescription: "百富21年波特桶威士忌是百富酒廠的創新之作。威士忌先在傳統橡木桶中陳釀21年，最後在曾經裝過波特酒的酒桶中進行最後熟成，賦予酒液獨特的深紅寶石色澤和豐富的水果風味。"
+            },
+            {
+                id: 7,
+                name: "人頭馬路易十三干邑",
+                category: "brandy",
+                region: "france",
+                image: "image/wine/brandy.webp",
+                description: "法國干邑極致之作，使用1200種生命之水調配，陳年40-100年。",
+                tags: ["premium", "limited", "aged", "award"],
+                price: 25800,
+                year: 50,
+                abv: "40%",
+                size: "700ml",
+                tastingNotes: {
+                    color: "深琥珀色，帶有桃花心木光澤",
+                    nose: "極其複雜的花香、果香、香料和皮革香氣",
+                    palate: "天鵝絨般的口感，帶有無花果、李子、肉桂、丁香和蜂蜜的風味",
+                    finish: "永恆的餘韻，持續數分鐘之久"
+                },
+                detailedDescription: "人頭馬路易十三被譽為「干邑之王」，每瓶酒都使用1200種生命之水調配而成，其中最年輕的原酒也經過40年的陳釀，最老的則超過100年。其水晶酒瓶由巴卡拉水晶製作，每瓶都是藝術珍品。"
+            },
+            {
+                id: 8,
+                name: "孟買藍寶石琴酒",
+                category: "gin",
+                region: "england",
+                image: "image/wine/gin.webp",
+                description: "英國優質琴酒，採用10種來自世界各地的植物蒸餾而成。",
+                tags: [],
+                price: 450,
+                year: 0,
+                abv: "40%",
+                size: "750ml",
+                tastingNotes: {
+                    color: "透明無色",
+                    nose: "明顯的杜松子香氣，伴隨著柑橘、杏仁和香料的氣息",
+                    palate: "口感清爽，帶有檸檬、杜松子、芫荽和香料的風味",
+                    finish: "乾淨清新，帶有柑橘和香料的餘韻"
+                },
+                detailedDescription: "孟買藍寶石琴酒採用獨特的「蒸汽灌注」蒸餾技術，將10種植物原料懸掛在蒸餾器中，讓蒸汽通過原料提取香氣。這種創新的蒸餾方法創造出比其他琴酒更細緻、更平衡的風味。"
+            },
+            {
+                id: 9,
+                name: "格蘭菲迪18年單一麥芽",
+                category: "whiskey",
+                region: "scotland",
+                image: "image/wine/whiskey_2.webp",
+                description: "世界最暢銷單一麥芽威士忌，18年西班牙雪莉桶熟成。",
+                tags: ["award"],
+                price: 1880,
+                year: 18,
+                abv: "40%",
+                size: "700ml",
+                tastingNotes: {
+                    color: "金琥珀色",
+                    nose: "豐富的橡木、香草、乾果和淡淡的煙燻香氣",
+                    palate: "口感圓潤，帶有太妃糖、乾果、香料和橡木的風味",
+                    finish: "悠長而溫暖，帶有香料和乾果的餘韻"
+                },
+                detailedDescription: "格蘭菲迪18年單一麥芽威士忌是格蘭菲迪酒廠的代表作，使用西班牙雪莉桶和美國波本桶陳釀，展現出複雜而平衡的風味。作為世界最暢銷的單一麥芽威士忌，它代表了斯佩賽區威士忌的經典風格。"
+            },
+            {
+                id: 10,
+                name: "百加得八年蘭姆酒",
+                category: "rum",
+                region: "puerto_rico",
+                image: "image/wine/rum.webp",
+                description: "優質蘭姆酒，八年橡木桶陳釀，口感豐富醇厚。",
+                tags: ["aged"],
+                price: 580,
+                year: 8,
+                abv: "40%",
+                size: "750ml",
+                tastingNotes: {
+                    color: "金琥珀色",
+                    nose: "香草、焦糖、椰子和熱帶水果的香氣",
+                    palate: "口感豐富，帶有焦糖、香草、椰子和橡木的風味",
+                    finish: "溫暖悠長，帶有香料和熱帶水果的餘韻"
+                },
+                detailedDescription: "百加得八年蘭姆酒是百加得品牌的頂級產品，使用波多黎各生產的優質蘭姆酒，在美國白橡木桶中陳釀八年。這款蘭姆酒適合純飲，也常用於調製高級雞尾酒，是蘭姆酒愛好者的必試之選。"
+            },
+            {
+                id: 11,
+                name: "尊尼獲加藍牌威士忌",
+                category: "whiskey",
+                region: "scotland",
+                image: "image/wine/whiskey_3.jpg",
+                description: "蘇格蘭頂級調和威士忌，使用陳年至少25年的珍貴原酒。",
+                tags: ["premium", "aged", "limited"],
+                price: 1980,
+                year: 25,
+                abv: "40%",
+                size: "700ml",
+                tastingNotes: {
+                    color: "深琥珀色",
+                    nose: "極其複雜的煙燻、乾果、蜂蜜和香料的香氣",
+                    palate: "天鵝絨般的口感，帶有煙燻、乾果、巧克力和香料的風味",
+                    finish: "悠長而複雜，帶有煙燻和香料的餘韻"
+                },
+                detailedDescription: "尊尼獲加藍牌是尊尼獲加品牌的頂級產品，使用蘇格蘭各地陳年至少25年的珍貴原酒調配而成。每瓶酒都有獨特的編號，代表其稀有性和獨特性，是調和威士忌的巔峰之作。"
+            },
+            {
+                id: 12,
+                name: "雪樹伏特加",
+                category: "vodka",
+                region: "poland",
+                image: "image/wine/vodka_1.webp",
+                description: "波蘭頂級伏特加，使用黑麥四次蒸餾，口感極致純淨。",
+                tags: ["premium", "award"],
+                price: 880,
+                year: 0,
+                abv: "40%",
+                size: "700ml",
+                tastingNotes: {
+                    color: "水晶般透明",
+                    nose: "純淨的黑麥香氣，帶有淡淡的香草和穀物氣息",
+                    palate: "口感極其順滑，帶有淡淡的甜味和穀物風味",
+                    finish: "乾淨俐落，幾乎無餘韻"
+                },
+                detailedDescription: "雪樹伏特加源自波蘭，使用當地優質黑麥，經過四次蒸餾和三重過濾，創造出世界頂級的純淨口感。其獨特的冰裂紋酒瓶設計，靈感來自波蘭冬季的冰裂紋理，已成為伏特加設計的經典。"
+            },
+            {
+                id: 13,
+                name: "馬爹利藍帶干邑",
+                category: "brandy",
+                region: "france",
+                image: "image/wine/brandy_1.webp",
+                description: "法國干邑經典之作，XO等級，完美平衡的口感與香氣。",
+                tags: ["award"],
+                price: 2280,
+                year: 20,
+                abv: "40%",
+                size: "700ml",
+                tastingNotes: {
+                    color: "深琥珀色，帶有紅銅光澤",
+                    nose: "豐富的杏桃、無花果、肉桂和香草的香氣",
+                    palate: "口感圓潤飽滿，帶有乾果、香料、巧克力和橡木的風味",
+                    finish: "悠長而平衡，帶有香料和乾果的餘韻"
+                },
+                detailedDescription: "馬爹利藍帶干邑創立於1912年，是世界上第一款XO等級的干邑。由超過100種生命之水調配而成，其中最年輕的原酒也經過10年以上的陳釀，展現出馬爹利家族300多年的調和藝術。"
+            },
+            {
+                id: 14,
+                name: "響21年日本威士忌",
+                category: "whiskey",
+                region: "japan",
+                image: "image/wine/whiskey_4.webp",
+                description: "日本調和威士忌巔峰之作，21年陳釀，獲獎無數。",
+                tags: ["premium", "limited", "aged", "award"],
+                price: 6800,
+                year: 21,
+                abv: "43%",
+                size: "700ml",
+                tastingNotes: {
+                    color: "琥珀色，帶有金色光澤",
+                    nose: "豐富的玫瑰、荔枝、迷迭香、熟成木和檀香的香氣",
+                    palate: "口感如蜂蜜般甜美，帶有蜜餞、橙皮和白巧克力的風味",
+                    finish: "悠長而優雅，帶有水楢木的獨特餘韻"
+                },
+                detailedDescription: "響21年日本威士忌是三得利公司的旗艦產品，由山崎、白州和知多三家蒸餾所的原酒調配而成，並在水楢桶中進行最後熟成。這款威士忌完美融合了日本威士忌的精緻與複雜，被譽為「和諧的藝術」。"
+            },
+            {
+                id: 15,
+                name: "卡察龍舌蘭銀標",
+                category: "tequila",
+                region: "mexico",
+                image: "image/wine/tequila_1.jpg",
+                description: "100%藍色韋伯龍舌蘭釀造，未經陳年，保留原始風味。",
+                tags: [],
+                price: 680,
+                year: 0,
+                abv: "40%",
+                size: "750ml",
+                tastingNotes: {
+                    color: "透明無色",
+                    nose: "清新的龍舌蘭香氣，帶有柑橘和草本植物的氣息",
+                    palate: "口感清爽，帶有龍舌蘭的獨特甜味和淡淡的胡椒味",
+                    finish: "乾淨俐落，帶有龍舌蘭和柑橘的餘韻"
+                },
+                detailedDescription: "卡察龍舌蘭銀標是100%藍色韋伯龍舌蘭釀造的頂級龍舌蘭酒，未經任何陳釀，保留龍舌蘭最原始的風味。使用傳統的石爐蒸煮和銅製蒸餾器蒸餾，是製作瑪格麗特等經典雞尾酒的絕佳選擇。"
+            }
+        ];
+
+        // 頁面加載時執行的函數
+        $(document).ready(function() {
+            // 從URL獲取商品ID
+            const urlParams = new URLSearchParams(window.location.search);
+            const liquorId = parseInt(urlParams.get('id'));
+            
+            // 如果沒有ID或ID無效，顯示錯誤
+            if (!liquorId || liquorId < 1 || liquorId > liquors.length) {
+                displayError();
+                return;
+            }
+            
+            // 顯示洋酒詳情
+            displayLiquorDetail(liquorId);
+            
+            // 顯示相關洋酒
+            displayRelatedLiquors(liquorId);
+            
+            // 初始化動畫效果
+            initAnimations();
+        });
+        
+        // 顯示洋酒詳情
+        function displayLiquorDetail(liquorId) {
+            const liquor = liquors.find(item => item.id === liquorId);
+            
+            if (!liquor) {
+                displayError();
+                return;
+            }
+            
+            // 更新頁面標題
+            document.title = `${liquor.name} - 琥珀烈酒坊`;
+            
+            // 更新英雄區標題
+            $('#productHeroTitle').text(liquor.name);
+            
+            // 更新商品圖片
+            $('#productImage').attr('src', liquor.image).attr('alt', liquor.name);
+            
+            // 更新商品標籤
+            let tagHtml = '';
+            if (liquor.tags.includes('limited')) {
+                tagHtml = '<span class="liquor-badge">限量發行</span>';
+            } 
+            if (liquor.tags.includes('premium')) {
+                tagHtml += '<span class="liquor-badge" style="background: linear-gradient(135deg, var(--secondary-color), var(--whiskey-gold));">頂級珍藏</span>';
+            }
+            if (liquor.tags.includes('award')) {
+                tagHtml += '<span class="liquor-badge" style="background: linear-gradient(135deg, var(--brandy-purple), #8A2BE2);">獎項殊榮</span>';
+            }
+            if (liquor.tags.includes('aged')) {
+                tagHtml += '<span class="liquor-badge" style="background: linear-gradient(135deg, var(--primary-color), #8B4513);">陳年佳釀</span>';
+            }
+            $('#productTag').html(tagHtml || '<span class="product-tag">精選酒款</span>');
+            
+            // 更新商品類別和產地
+            const categoryName = getCategoryName(liquor.category);
+            const regionName = getRegionName(liquor.region);
+            $('#productCategory').text(`${categoryName} · ${regionName}`);
+            
+            // 更新商品標題
+            $('#productTitle').text(liquor.name);
+            
+            // 更新價格
+            $('#productPrice').text(`HK$ ${liquor.price.toLocaleString()}`);
+            
+            // 更新描述
+            $('#productDescription').text(liquor.description);
+            
+            // 更新商品特性
+            $('#productAbv').text(liquor.abv);
+            $('#productSize').text(liquor.size);
+            $('#productYear').text(liquor.year > 0 ? `${liquor.year}年` : '無年份');
+            $('#productRegion').text(regionName);
+            
+            // 更新標籤顯示
+            $('#productTags').html(tagHtml || '<span class="badge bg-secondary">精選酒款</span>');
+            
+            // 更新品飲筆記
+            if (liquor.tastingNotes) {
+                $('#tastingColor').text(liquor.tastingNotes.color);
+                $('#tastingNose').text(liquor.tastingNotes.nose);
+                $('#tastingPalate').text(liquor.tastingNotes.palate);
+                $('#tastingFinish').text(liquor.tastingNotes.finish);
+            }
+            
+            // 更新詳細描述
+            if (liquor.detailedDescription) {
+                let detailedContent = `<p>${liquor.detailedDescription}</p>`;
+                
+                // 根據不同類別添加不同的額外內容
+                let extraContent = '';
+                
+                switch(liquor.category) {
+                    case 'whiskey':
+                        extraContent = `
+                            <h5 class="mt-4"><i class="bi bi-tree"></i> 釀造工藝:</h5>
+                            <ul>
+                                <li>使用最精選的大麥，採用傳統的銅製蒸餾器進行蒸餾</li>
+                                <li>在優質橡木桶中陳釀至少${liquor.year}年</li>
+                                <li>非冷凝過濾，保留威士忌最原始的風味與香氣</li>
+                                <li>酒廠擁有自己的橡木桶製作團隊，確保桶質一致性</li>
+                            </ul>
+                            
+                            <h5 class="mt-4"><i class="bi bi-award"></i> 獲獎紀錄:</h5>
+                            <ul>
+                                <li>2023年世界威士忌大賽 - 金牌獎</li>
+                                <li>2022年國際烈酒挑戰賽 - 最佳單一麥芽威士忌</li>
+                                <li>2021年舊金山世界烈酒大賽 - 雙金牌獎</li>
+                            </ul>
+                            
+                            <h5 class="mt-4"><i class="bi bi-cup"></i> 品飲建議:</h5>
+                            <ul>
+                                <li>純飲：最推薦的品飲方式，使用威士忌專用聞香杯</li>
+                                <li>加水：加入幾滴水，有助於釋放更多香氣</li>
+                                <li>溫度：室溫品飲最佳，避免加冰塊以免稀釋風味</li>
+                                <li>搭配：適合搭配黑巧克力、堅果或乾果</li>
+                            </ul>
+                        `;
+                        break;
+                        
+                    case 'brandy':
+                        extraContent = `
+                            <h5 class="mt-4"><i class="bi bi-graph-up"></i> 陳釀過程:</h5>
+                            <ul>
+                                <li>使用法國利穆贊橡木桶陳釀</li>
+                                <li>經過至少${liquor.year}年的緩慢熟成</li>
+                                <li>酒窖大師定期監控陳釀過程</li>
+                                <li>使用數百種生命之水進行精確調和</li>
+                            </ul>
+                            
+                            <h5 class="mt-4"><i class="bi bi-award"></i> 品質認證:</h5>
+                            <ul>
+                                <li>法國干邑原產地命名控制(AOC)認證</li>
+                                <li>連續多年獲得國際烈酒大賽金獎</li>
+                                <li>酒廠傳承數百年的釀造工藝</li>
+                            </ul>
+                            
+                            <h5 class="mt-4"><i class="bi bi-cup"></i> 侍酒建議:</h5>
+                            <ul>
+                                <li>使用干邑專用聞香杯，手掌溫杯釋放香氣</li>
+                                <li>純飲最佳，可搭配少量純淨水</li>
+                                <li>適合作為餐後酒，搭配雪茄或巧克力</li>
+                                <li>儲存於陰涼處，避免陽光直射</li>
+                            </ul>
+                        `;
+                        break;
+                        
+                    case 'vodka':
+                        extraContent = `
+                            <h5 class="mt-4"><i class="bi bi-filter"></i> 純淨工藝:</h5>
+                            <ul>
+                                <li>經過${liquor.id === 12 ? '四次蒸餾' : '連續蒸餾'}工藝</li>
+                                <li>使用獨特過濾技術去除雜質</li>
+                                <li>${liquor.region === 'sweden' ? '瑞典深層天然泉水釀造' : '波蘭優質黑麥釀造'}</li>
+                                <li>口感極致純淨，幾乎無雜味</li>
+                            </ul>
+                            
+                            <h5 class="mt-4"><i class="bi bi-cup"></i> 飲用方式:</h5>
+                            <ul>
+                                <li>冰鎮後純飲，口感最佳</li>
+                                <li>經典雞尾酒基酒首選</li>
+                                <li>可搭配檸檬片或黑胡椒增添風味</li>
+                                <li>調製馬丁尼、血腥瑪麗等經典雞尾酒</li>
+                            </ul>
+                            
+                            <h5 class="mt-4"><i class="bi bi-shield-check"></i> 品質保證:</h5>
+                            <ul>
+                                <li>${liquor.region === 'sweden' ? '瑞典原裝進口' : '波蘭原裝進口'}</li>
+                                <li>國際烈酒比賽多次獲獎</li>
+                                <li>全球知名品牌，品質有保證</li>
+                            </ul>
+                        `;
+                        break;
+                        
+                    default:
+                        extraContent = `
+                            <h5 class="mt-4"><i class="bi bi-droplet"></i> 酒款特色:</h5>
+                            <p>這款${categoryName}體現了${regionName}釀酒工藝的精髓，無論是口感、香氣還是餘韻，都展現了頂級烈酒的風采。</p>
+                            
+                            <h5 class="mt-4"><i class="bi bi-cup"></i> 品飲建議:</h5>
+                            <ul>
+                                <li>根據酒款特性選擇合適的飲用方式</li>
+                                <li>純飲最能體驗原始風味</li>
+                                <li>調製雞尾酒可創造不同風味體驗</li>
+                                <li>搭配適合的食物提升品飲體驗</li>
+                            </ul>
+                            
+                            <h5 class="mt-4"><i class="bi bi-box"></i> 保存方法:</h5>
+                            <ul>
+                                <li>直立存放，避免陽光直射</li>
+                                <li>儲存於陰涼乾燥處</li>
+                                <li>開封後盡快飲用完畢</li>
+                                <li>避免溫度劇烈變化</li>
+                            </ul>
+                        `;
+                }
+                
+                $('#detailedDescription').html(detailedContent + extraContent);
+            }
+            
+            // 隱藏載入動畫，顯示內容
+            $('#loadingContainer').hide();
+            $('#productDetailContainer').show().addClass('animate__animated animate__fadeIn');
+        }
+        
+        // 顯示相關洋酒
+        function displayRelatedLiquors(currentLiquorId) {
+            const currentLiquor = liquors.find(item => item.id === currentLiquorId);
+            const relatedGrid = $('#relatedLiquors');
+            relatedGrid.empty();
+            
+            // 找出相同類別的其他洋酒（最多3個）
+            const relatedLiquors = liquors
+                .filter(item => item.id !== currentLiquorId && item.category === currentLiquor.category)
+                .slice(0, 3);
+            
+            // 如果相同類別的洋酒不足3個，用其他洋酒補足
+            if (relatedLiquors.length < 3) {
+                const otherLiquors = liquors
+                    .filter(item => item.id !== currentLiquorId && !relatedLiquors.includes(item))
+                    .slice(0, 3 - relatedLiquors.length);
+                relatedLiquors.push(...otherLiquors);
+            }
+            
+            // 生成相關洋酒HTML
+            relatedLiquors.forEach(liquor => {
+                const categoryName = getCategoryName(liquor.category);
+                const regionName = getRegionName(liquor.region);
+                
+                const relatedItem = `
+                    <div class="related-item animate__animated animate__fadeInUp">
+                        <img src="${liquor.image}" class="related-image" alt="${liquor.name}">
+                        <div class="related-details">
+                            <div class="liquor-category" style="font-size: 0.8rem;">${categoryName} · ${regionName}</div>
+                            <h4 class="related-title">${liquor.name}</h4>
+                            <p class="mb-2" style="font-size: 0.9rem; color: #666; min-height: 60px;">${liquor.description}</p>
+                            <div class="related-price">HK$ ${liquor.price.toLocaleString()}</div>
+                            <a href="shop6_product-detail.html?id=${liquor.id}" class="btn btn-sm btn-outline-primary mt-3 w-100">
+                                <i class="bi bi-eye"></i> 探索詳情
+                            </a>
+                        </div>
+                    </div>
+                `;
+                relatedGrid.append(relatedItem);
+            });
+        }
+        
+        // 初始化動畫效果
+        function initAnimations() {
+            // 為相關洋酒添加延遲動畫
+            $('.related-item').each(function(index) {
+                $(this).css('animation-delay', `${index * 0.2}s`);
+            });
+        }
+        
+        // 顯示錯誤訊息
+        function displayError() {
+            $('#loadingContainer').html(`
+                <div class="text-center">
+                    <h3 class="text-danger">酒款未找到</h3>
+                    <p>抱歉，我們找不到您要查看的酒款。</p>
+                    <a href="shop6.html" class="btn btn-primary mt-3">
+                        <i class="bi bi-arrow-left"></i> 返回酒單
+                    </a>
+                </div>
+            `);
+        }
+        
+        // 加入購物車功能
+        function addToCart() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const liquorId = parseInt(urlParams.get('id'));
+            const liquor = liquors.find(item => item.id === liquorId);
+            
+            if (liquor) {
+                // 模擬加入購物車動畫
+                $('.btn-purchase').html('<i class="bi bi-check-circle"></i> 已加入購物車');
+                $('.btn-purchase').css('background', 'linear-gradient(135deg, var(--gin-green), #2E8B57)');
+                
+                // 顯示成功訊息
+                alert(`已將 "${liquor.name}" 加入購物車！\n價格: HK$ ${liquor.price.toLocaleString()}`);
+                
+                // 3秒後恢復按鈕狀態
+                setTimeout(() => {
+                    $('.btn-purchase').html('<i class="bi bi-cart-plus"></i> 加入購物車');
+                    $('.btn-purchase').css('background', 'linear-gradient(135deg, var(--primary-color), var(--accent-color))');
+                }, 3000);
+                
+                // 這裡可以添加實際的購物車邏輯
+                // addToCartFunction(liquor);
+            }
+        }
+        
+        // 獲取類別名稱
+        function getCategoryName(category) {
+            switch(category) {
+                case 'whiskey': return '威士忌';
+                case 'brandy': return '白蘭地';
+                case 'vodka': return '伏特加';
+                case 'gin': return '琴酒';
+                case 'rum': return '蘭姆酒';
+                case 'tequila': return '龍舌蘭';
+                default: return '其他酒類';
+            }
+        }
+        
+        // 獲取產地名稱
+        function getRegionName(region) {
+            switch(region) {
+                case 'scotland': return '蘇格蘭';
+                case 'france': return '法國';
+                case 'japan': return '日本';
+                case 'usa': return '美國';
+                case 'mexico': return '墨西哥';
+                case 'sweden': return '瑞典';
+                case 'england': return '英格蘭';
+                case 'puerto_rico': return '波多黎各';
+                case 'poland': return '波蘭';
+                default: return '國際';
+            }
+        }
+    </script>
+</body>
+</html>

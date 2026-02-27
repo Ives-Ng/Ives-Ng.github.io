@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>蛋糕商店 - 潮流商場購物資訊</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!--Bootstrap Icons-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #e91e63;
+            --secondary-color: #ff9800;
+            --accent-color: #9c27b0;
+            --light-bg: #fff8f6;
+            --dark-text: #5d4037;
+            --light-text: #fff;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+            --cake-pink: #f8bbd9;
+            --cake-brown: #8d6e63;
+            --cake-cream: #fff3e0;
+        }
+        
+        body {
+            font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+            color: var(--dark-text);
+            scroll-behavior: smooth;
+            background-color: var(--light-bg);
+        }
+        
+        /* 導航列樣式 */
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            box-shadow: var(--shadow);
+            padding: 15px 0;
+            transition: var(--transition);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--light-text) !important;
+        }
+        
+        .logo-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.2rem;
+            color: white;
+        }
+        
+        .navbar-nav .nav-link {
+            color: rgba(255, 255, 255, 0.85) !important;
+            font-weight: 500;
+            margin: 0 8px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: var(--transition);
+        }
+        
+        .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active {
+            background-color: rgba(255, 255, 255, 0.15);
+            color: var(--light-text) !important;
+        }
+        
+        /* 蛋糕商店首圖 */
+        .cake-shop-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 150px 0 100px;
+            text-align: center;
+            margin-top: 80px;
+        }
+        
+        .cake-shop-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        /* 內容區塊通用樣式 */
+        .content-section {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            color: var(--primary-color);
+            position: relative;
+            font-weight: 700;
+            font-size: 2.5rem;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 3px;
+        }
+        
+        /* 蛋糕商店內容樣式 */
+        .cake-shop-content {
+            background-color: white;
+        }
+        
+        /* 蛋糕篩選器樣式 */
+        .cake-filters {
+            background: var(--cake-cream);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 100px;
+        }
+        
+        .filter-section {
+            margin-bottom: 25px;
+        }
+        
+        .filter-section h5 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .filter-option {
+            margin-bottom: 10px;
+        }
+        
+        /* 蛋糕網格樣式 */
+        .cake-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .cake-item {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid #ffeaea;
+        }
+        
+        .cake-item:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(233, 30, 99, 0.15);
+        }
+        
+        .cake-image {
+            height: 220px;
+            width: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .cake-item:hover .cake-image {
+            transform: scale(1.05);
+        }
+        
+        .cake-details {
+            padding: 20px;
+            background: white;
+        }
+        
+        .cake-category {
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            display: inline-block;
+            background: var(--cake-pink);
+            padding: 3px 10px;
+            border-radius: 20px;
+        }
+        
+        .cake-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            height: 50px;
+            overflow: hidden;
+            color: var(--dark-text);
+        }
+        
+        .cake-description {
+            color: #8d6e63;
+            margin-bottom: 15px;
+            height: 60px;
+            overflow: hidden;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .cake-badge {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            margin-right: 5px;
+        }
+        
+        .cake-sort {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            background: var(--cake-cream);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+        }
+        
+        .sort-select {
+            width: 200px;
+            border: 2px solid var(--cake-pink);
+            border-radius: 10px;
+            padding: 10px 15px;
+            color: var(--dark-text);
+            font-weight: 500;
+        }
+        
+        /* 蛋糕專用頁腳樣式 */
+        .cake-footer {
+            background: linear-gradient(135deg, var(--cake-brown), #6d4c41);
+            color: var(--light-text);
+            padding: 60px 0 30px;
+            margin-top: 50px;
+        }
+        
+        .cake-footer h4 {
+            color: var(--cake-cream);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .cake-footer p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+        }
+        
+        .contact-info {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+        
+        .contact-info li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .contact-info i {
+            font-size: 1.2rem;
+            color: var(--cake-pink);
+            width: 25px;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .social-icon:hover {
+            background: var(--primary-color);
+            transform: translateY(-5px);
+        }
+        
+        /* 響應式調整 */
+        @media (max-width: 768px) {
+            .cake-shop-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .content-section {
+                padding: 70px 0;
+            }
+            
+            .cake-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cake-sort {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .sort-select {
+                width: 100%;
+            }
+        }
+        
+        /* 動畫效果 */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* 蛋糕特色標籤 */
+        .cake-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--primary-color);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 10;
+        }
+        
+        .cake-image-container {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* 查看詳情按鈕 */
+        .view-detail-btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: var(--transition);
+            display: block;
+            width: 100%;
+            text-align: center;
+            text-decoration: none;
+        }
+        
+        .view-detail-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(233, 30, 99, 0.2);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- 導航列 -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="home.html">
+                <i class='bi bi-cake' style='font-size:36px;color:green'></i>
+                <span class="logo-text">超美蛋糕店</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="home.html"><i class="bi bi-house-door"></i> 主頁</a>
+                    </li>
+                    
+                      
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 蛋糕商店首圖 -->
+    <section class="cake-shop-hero">
+        <div class="container">
+            <h1>甜蜜蛋糕工坊</h1>
+            <p class="lead">精緻手工蛋糕，每日新鮮製作，為您的生活增添甜蜜滋味</p>
+        </div>
+    </section>
+
+    <!-- 蛋糕商店內容 -->
+    <section class="content-section cake-shop-content">
+        <div class="container">
+            <h2 class="section-title">精選蛋糕系列</h2>
+            <p class="text-center mb-5">15款特色手工蛋糕，滿足您的味蕾與視覺享受</p>
+            
+            <div class="row">
+                <!-- 蛋糕篩選側邊欄 -->
+                <div class="col-lg-3">
+                    <div class="cake-filters">
+                        <div class="filter-section">
+                            <h5><i class="bi bi-funnel"></i> 蛋糕分類</h5>
+                            <div class="filter-option">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="all" id="filterAll" checked>
+                                    <label class="form-check-label" for="filterAll">
+                                        全部蛋糕
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="filter-option">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="chocolate" id="filterChocolate" checked>
+                                    <label class="form-check-label" for="filterChocolate">
+                                        巧克力系列
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="filter-option">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="fruit" id="filterFruit" checked>
+                                    <label class="form-check-label" for="filterFruit">
+                                        水果系列
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="filter-option">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="cheese" id="filterCheese" checked>
+                                    <label class="form-check-label" for="filterCheese">
+                                        芝士系列
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="filter-option">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="wedding" id="filterWedding" checked>
+                                    <label class="form-check-label" for="filterWedding">
+                                        婚禮蛋糕
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="filter-option">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="seasonal" id="filterSeasonal" checked>
+                                    <label class="form-check-label" for="filterSeasonal">
+                                        季節限定
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="filter-section">
+                            <h5><i class="bi bi-tags"></i> 特色標籤</h5>
+                            <div class="filter-option">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="new" id="filterNew">
+                                    <label class="form-check-label" for="filterNew">
+                                        新品上市
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="filter-option">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="bestseller" id="filterBestseller">
+                                    <label class="form-check-label" for="filterBestseller">
+                                        人氣推薦
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="filter-option">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="vegan" id="filterVegan">
+                                    <label class="form-check-label" for="filterVegan">
+                                        純素選擇
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="filter-option">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="glutenfree" id="filterGlutenFree">
+                                    <label class="form-check-label" for="filterGlutenFree">
+                                        無麩質
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-primary w-100 mt-3" onclick="applyCakeFilters()">
+                            <i class="bi bi-check-circle"></i> 套用篩選
+                        </button>
+                        <button class="btn btn-outline-secondary w-100 mt-2" onclick="resetCakeFilters()">
+                            <i class="bi bi-arrow-clockwise"></i> 重設篩選
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- 蛋糕列表 -->
+                <div class="col-lg-9">
+                    <div class="cake-sort">
+                        <div>
+                            顯示 <span id="cakeCount">15</span> 個蛋糕
+                        </div>
+                        <div>
+                            <select class="form-select sort-select" id="sortSelect" onchange="sortCakes()">
+                                <option value="default">預設排序</option>
+                                <option value="name">名稱: A-Z</option>
+                                <option value="popular">人氣最高</option>
+                                <option value="newest">最新上市</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div id="cakeGrid" class="cake-grid">
+                        <!-- 蛋糕將由JavaScript動態生成 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 蛋糕專用頁腳 -->
+    <footer class="cake-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h4><i class="bi bi-cake"></i> 甜蜜蛋糕工坊</h4>
+                    <p>我們專注於製作精緻美味的手工蛋糕，選用最優質的原料，每日新鮮製作，為您的生活增添甜蜜滋味。</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 mb-4">
+                    <h4><i class="bi bi-clock"></i> 營業時間</h4>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="bi bi-calendar-week"></i>
+                            <div>
+                                <strong>星期一至五</strong><br>
+                                10:00 - 20:00
+                            </div>
+                        </li>
+                        <li>
+                            <i class="bi bi-calendar-week"></i>
+                            <div>
+                                <strong>星期六、日及公眾假期</strong><br>
+                                09:00 - 21:00
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-4 mb-4">
+                    <h4><i class="bi bi-geo-alt"></i> 聯絡我們</h4>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="bi bi-geo-alt-fill"></i>
+                            <div>
+                                <strong>地址</strong><br>
+                                佐敦道 88 號 2F - 01
+                            </div>
+                        </li>
+                        <li>
+                            <i class="bi bi-telephone"></i>
+                            <div>
+                                <strong>電話</strong><br>
+                                +852 2345 6789
+                            </div>
+                        </li>
+                        <li>
+                            <i class="bi bi-envelope"></i>
+                            <div>
+                                <strong>電郵</strong><br>
+                                cake@trendmall.com
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="row mt-4 pt-4 border-top border-secondary">
+                <div class="col-md-6">
+                    <p>&copy; 2026 甜蜜蛋糕工坊 - 潮流商場購物資訊 版權所有</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p>本網站僅供學習使用，圖片來源於Unsplash</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS 和 Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    
+    <script>
+        // 15個蛋糕數據
+        const cakes = [
+            {
+                id: 1,
+                name: "經典巧克力蛋糕",
+                category: "chocolate",
+                image: "image/cake/chocolate.avif",
+                description: "濃郁黑巧克力搭配絲滑巧克力奶油，經典不敗的選擇。",
+                tags: ["bestseller", "new"],
+                rating: 4.9,
+                reviews: 128
+            },
+            {
+                id: 2,
+                name: "草莓鮮奶油蛋糕",
+                category: "fruit",
+                image: "image/cake/strawberry_milk.avif",
+                description: "新鮮草莓與輕盈鮮奶油的完美組合，口感清爽不甜膩。",
+                tags: ["bestseller"],
+                rating: 4.8,
+                reviews: 96
+            },
+            {
+                id: 3,
+                name: "紐約芝士蛋糕",
+                category: "cheese",
+                image: "image/cake/NW_Cheesecake.avif",
+                description: "濃郁芝士風味，口感綿密細緻，芝士愛好者首選。",
+                tags: ["bestseller"],
+                rating: 4.9,
+                reviews: 112
+            },
+            {
+                id: 4,
+                name: "三層婚禮蛋糕",
+                category: "wedding",
+                image: "image/cake/wedding.avif",
+                description: "優雅白色奶油裝飾，適合婚禮及重要慶典的三層蛋糕。",
+                tags: [],
+                rating: 4.7,
+                reviews: 45
+            },
+            {
+                id: 5,
+                name: "抹茶紅豆蛋糕",
+                category: "seasonal",
+                image: "image/cake/red_bean.avif",
+                description: "日式抹茶風味搭配甜蜜紅豆，充滿東方韻味的特色蛋糕。",
+                tags: ["new"],
+                rating: 4.6,
+                reviews: 78
+            },
+            {
+                id: 6,
+                name: "芒果慕斯蛋糕",
+                category: "fruit",
+                image: "image/cake/fruit.avif",
+                description: "新鮮芒果製作的慕斯蛋糕，口感輕盈，果香濃郁。",
+                tags: ["new"],
+                rating: 4.8,
+                reviews: 67
+            },
+            {
+                id: 7,
+                name: "榛果巧克力蛋糕",
+                category: "chocolate",
+                image: "image/cake/chocolate_1.avif",
+                description: "香脆榛果與濃郁巧克力的雙重享受，口感層次豐富。",
+                tags: [],
+                rating: 4.7,
+                reviews: 89
+            },
+            {
+                id: 8,
+                name: "純素巧克力蛋糕",
+                category: "chocolate",
+                image: "image/cake/chocolate_2.avif",
+                description: "無蛋奶製作的純素巧克力蛋糕，美味與健康兼顧。",
+                tags: ["vegan", "glutenfree"],
+                rating: 4.5,
+                reviews: 56
+            },
+            {
+                id: 9,
+                name: "藍莓芝士蛋糕",
+                category: "cheese",
+                image: "image/cake/blueberry_cheese.avif",
+                description: "酸甜藍莓果醬與濃郁芝士的完美平衡。",
+                tags: [],
+                rating: 4.8,
+                reviews: 74
+            },
+            {
+                id: 10,
+                name: "胡蘿蔔蛋糕",
+                category: "seasonal",
+                image: "image/cake/carrot.avif",
+                description: "健康胡蘿蔔搭配核桃與肉桂，美式經典風味。",
+                tags: [],
+                rating: 4.4,
+                reviews: 52
+            },
+            {
+                id: 11,
+                name: "檸檬杯子蛋糕",
+                category: "fruit",
+                image: "image/cake/lemon.avif",
+                description: "清新檸檬風味，小巧可愛的杯子蛋糕，適合派對分享。",
+                tags: ["new"],
+                rating: 4.6,
+                reviews: 63
+            },
+            {
+                id: 12,
+                name: "紅絲絨蛋糕",
+                category: "seasonal",
+                image: "image/cake/red_velvet.avif",
+                description: "經典紅絲絨蛋糕，搭配特製奶油芝士霜，視覺與味覺雙重享受。",
+                tags: ["bestseller"],
+                rating: 4.9,
+                reviews: 105
+            },
+            {
+                id: 13,
+                name: "伯爵茶蛋糕",
+                category: "seasonal",
+                image: "image/cake/earl_grey.avif",
+                description: "佛手柑香氣的伯爵茶融入蛋糕，獨特英式風味。",
+                tags: ["new"],
+                rating: 4.7,
+                reviews: 58
+            },
+            {
+                id: 14,
+                name: "雙層水果蛋糕",
+                category: "fruit",
+                image: "image/cake/double_layer_fruit.avif",
+                description: "多種新鮮水果裝飾，色彩繽紛的節日首選蛋糕。",
+                tags: [],
+                rating: 4.8,
+                reviews: 71
+            },
+            {
+                id: 15,
+                name: "焦糖海鹽蛋糕",
+                category: "chocolate",
+                image: "image/cake/salted.avif",
+                description: "焦糖的甜與海鹽的鹹完美融合，創造出獨特風味層次。",
+                tags: ["bestseller", "new"],
+                rating: 4.9,
+                reviews: 92
+            }
+        ];
+        
+        // 頁面狀態
+        let filteredCakes = [...cakes];
+        
+        $(document).ready(function() {
+            // 初始化蛋糕顯示
+            renderCakes();
+            
+            // 滾動動畫效果
+            function checkFadeIn() {
+                $('.fade-in').each(function() {
+                    const elementTop = $(this).offset().top;
+                    const windowBottom = $(window).scrollTop() + $(window).height();
+                    
+                    if (elementTop < windowBottom - 100) {
+                        $(this).addClass('visible');
+                    }
+                });
+            }
+            
+            checkFadeIn();
+            $(window).scroll(checkFadeIn);
+        });
+        
+        // 渲染蛋糕
+        function renderCakes() {
+            const cakeGrid = $('#cakeGrid');
+            cakeGrid.empty();
+            
+            filteredCakes.forEach(cake => {
+                // 獲取類別名稱
+                const categoryName = getCategoryName(cake.category);
+                
+                // 生成標籤HTML
+                const badgesHTML = cake.tags && cake.tags.length > 0 
+                    ? cake.tags.map(tag => `<span class="cake-badge">${getTagName(tag)}</span>`).join('') 
+                    : '';
+                
+                // 生成評價星星
+                const ratingStars = getRatingStars(cake.rating);
+                
+                const cakeItem = `
+                    <div class="cake-item fade-in">
+                        <div class="cake-image-container">
+                            <img src="${cake.image}" class="cake-image" alt="${cake.name}">
+                            ${cake.tags.includes('new') ? '<span class="cake-tag">新品</span>' : ''}
+                        </div>
+                        <div class="cake-details">
+                            <div class="cake-category">${categoryName}</div>
+                            <h3 class="cake-title">${cake.name}</h3>
+                            <p class="cake-description">${cake.description}</p>
+                            ${badgesHTML}
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <div class="text-warning">
+                                    ${ratingStars} <span class="text-muted">(${cake.reviews})</span>
+                                </div>
+                                <a href="shop4_product-detail.html?id=${cake.id}" class="view-detail-btn">
+                                    <i class="bi bi-eye"></i> 查看詳情
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                cakeGrid.append(cakeItem);
+            });
+            
+            // 更新蛋糕計數
+            $('#cakeCount').text(filteredCakes.length);
+            
+            // 觸發淡入動畫
+            setTimeout(() => {
+                checkFadeIn();
+            }, 100);
+        }
+        
+        // 應用篩選
+        function applyCakeFilters() {
+            // 獲取篩選條件
+            const selectedCategories = [];
+            if ($('#filterAll').is(':checked')) {
+                // 如果選擇了"全部蛋糕"，則忽略其他類別篩選
+                selectedCategories.push('all');
+            } else {
+                if ($('#filterChocolate').is(':checked')) selectedCategories.push('chocolate');
+                if ($('#filterFruit').is(':checked')) selectedCategories.push('fruit');
+                if ($('#filterCheese').is(':checked')) selectedCategories.push('cheese');
+                if ($('#filterWedding').is(':checked')) selectedCategories.push('wedding');
+                if ($('#filterSeasonal').is(':checked')) selectedCategories.push('seasonal');
+            }
+            
+            const selectedTags = [];
+            if ($('#filterNew').is(':checked')) selectedTags.push('new');
+            if ($('#filterBestseller').is(':checked')) selectedTags.push('bestseller');
+            if ($('#filterVegan').is(':checked')) selectedTags.push('vegan');
+            if ($('#filterGlutenFree').is(':checked')) selectedTags.push('glutenfree');
+            
+            // 篩選蛋糕
+            filteredCakes = cakes.filter(cake => {
+                // 類別篩選
+                if (selectedCategories.length > 0 && !selectedCategories.includes('all')) {
+                    if (!selectedCategories.includes(cake.category)) {
+                        return false;
+                    }
+                }
+                
+                // 標籤篩選
+                if (selectedTags.length > 0) {
+                    const cakeTags = cake.tags || [];
+                    const hasSelectedTag = selectedTags.some(tag => cakeTags.includes(tag));
+                    if (!hasSelectedTag) {
+                        return false;
+                    }
+                }
+                
+                return true;
+            });
+            
+            // 重新渲染
+            renderCakes();
+        }
+        
+        // 重設篩選
+        function resetCakeFilters() {
+            $('#filterAll, #filterChocolate, #filterFruit, #filterCheese, #filterWedding, #filterSeasonal').prop('checked', true);
+            $('#filterNew, #filterBestseller, #filterVegan, #filterGlutenFree').prop('checked', false);
+            $('#sortSelect').val('default');
+            
+            filteredCakes = [...cakes];
+            renderCakes();
+        }
+        
+        // 排序蛋糕
+        function sortCakes() {
+            const sortOption = $('#sortSelect').val();
+            
+            switch(sortOption) {
+                case 'name':
+                    filteredCakes.sort((a, b) => a.name.localeCompare(b.name, 'zh-Hant'));
+                    break;
+                case 'popular':
+                    filteredCakes.sort((a, b) => b.rating - a.rating);
+                    break;
+                case 'newest':
+                    // 假設id越大越新
+                    filteredCakes.sort((a, b) => b.id - a.id);
+                    break;
+                default:
+                    // 保持原順序
+                    break;
+            }
+            
+            renderCakes();
+        }
+        
+        // 獲取類別名稱
+        function getCategoryName(category) {
+            switch(category) {
+                case 'chocolate': return '巧克力系列';
+                case 'fruit': return '水果系列';
+                case 'cheese': return '芝士系列';
+                case 'wedding': return '婚禮蛋糕';
+                case 'seasonal': return '季節限定';
+                default: return '其他';
+            }
+        }
+        
+        // 獲取標籤名稱
+        function getTagName(tag) {
+            switch(tag) {
+                case 'new': return '新品上市';
+                case 'bestseller': return '人氣推薦';
+                case 'vegan': return '純素選擇';
+                case 'glutenfree': return '無麩質';
+                default: return tag;
+            }
+        }
+        
+        // 獲取評價星星
+        function getRatingStars(rating) {
+            let stars = '';
+            const fullStars = Math.floor(rating);
+            const hasHalfStar = rating % 1 >= 0.5;
+            
+            for (let i = 0; i < fullStars; i++) {
+                stars += '<i class="bi bi-star-fill"></i>';
+            }
+            
+            if (hasHalfStar) {
+                stars += '<i class="bi bi-star-half"></i>';
+            }
+            
+            const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+            for (let i = 0; i < emptyStars; i++) {
+                stars += '<i class="bi bi-star"></i>';
+            }
+            
+            return stars;
+        }
+        
+        // 檢查元素是否進入視窗
+        function checkFadeIn() {
+            $('.fade-in').each(function() {
+                const elementTop = $(this).offset().top;
+                const windowBottom = $(window).scrollTop() + $(window).height();
+                
+                if (elementTop < windowBottom - 100) {
+                    $(this).addClass('visible');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

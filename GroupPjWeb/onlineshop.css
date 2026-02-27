@@ -1,0 +1,440 @@
+
+:root {
+    /* Brand Colors – 藍色主調 */
+    --primary-color: #2563eb;   /* 主藍 */
+    --secondary-color: #38bdf8; /* 淺藍 */
+    --accent-color: #ff4081;
+
+    /* Backgrounds */
+    --light-bg: #f5f9ff;
+    --soft-bg: #eef4ff;
+    --card-bg: #ffffff;
+
+    /* Text */
+    --dark-text: #1f2937;
+    --muted-text: #6b7280;
+    --light-text: #ffffff;
+
+    /* UI */
+    --border-color: #e2e8f0;
+    --shadow: 0 12px 28px rgba(37, 99, 235, 0.12);
+    --transition: all 0.25s ease;
+
+    --product-blue: #096dca;
+    --product-brown: #8d6e63;
+    --product-cream: #fff3e0;
+}
+        
+body {
+    font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+    color: var(--dark-text);
+    scroll-behavior: smooth;
+    background-color: var(--light-bg);
+}
+
+/* 導航列樣式 */
+.navbar {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    box-shadow: var(--shadow);
+    padding: 15px 0;
+    transition: var(--transition);
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.8rem;
+    color: var(--light-text) !important;
+}
+
+.navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.85) !important;
+    font-weight: 500;
+    margin: 0 8px;
+    padding: 8px 16px;
+    border-radius: 20px;
+    transition: var(--transition);
+}
+
+.navbar-nav .nav-link:hover, .navbar-nav .nav-link.active {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: var(--light-text) !important;
+}
+
+/* 商店首圖 */
+.product-shop-hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('image/figures/ShopIcon.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 150px 0 100px;
+    text-align: center;
+    margin-top: 80px;
+}
+
+.product-shop-hero h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+/* 內容區塊通用樣式 */
+.content-section {
+    padding: 100px 0;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 60px;
+    color: var(--primary-color);
+    position: relative;
+    font-weight: 700;
+    font-size: 2.5rem;
+}
+
+.section-title:after {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 5px;
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 3px;
+}
+
+
+
+/* 蛋糕商店內容樣式 */
+.product-shop-content {
+    background-color: white;
+}
+
+/* 蛋糕篩選器樣式 */
+.product-filters {
+    background: var(--cake-cream);
+    padding: 25px;
+    border-radius: 15px;
+    margin-bottom: 40px;
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 100px;
+    border: 2px solid var(--secondary-color)
+}
+
+.filter-section {
+    margin-bottom: 25px;
+}
+
+.filter-section h5 {
+    margin-bottom: 15px;
+    color: var(--primary-color);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.filter-option {
+    margin-bottom: 10px;
+}
+
+/* 蛋糕網格樣式 */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.cake-item {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    border: 1px solid #ffeaea;
+}
+
+.cake-item:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(233, 30, 99, 0.15);
+}
+
+.product-image {
+    height: 220px;
+    width: 100%;
+    object-fit: contain;
+    transition: var(--transition);
+}
+
+.cake-item:hover .product-image {
+    transform: scale(1.05);
+}
+
+.product-details {
+    padding: 20px;
+    background: white;
+    
+}
+
+.product-category {
+    color: var(--accent-color);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: inline-block;
+    background: var(--border-color);
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-top: 10px;
+}
+
+.product-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    height: 50px;
+    overflow: hidden;
+    color: var(--dark-text);
+}
+
+.product-description {
+    color: #8d6e63;
+    margin-bottom: 15px;
+    height: 30px;
+    overflow: hidden;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.product-tag {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: var(--primary-color);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    z-index: 10;
+}
+
+.product-price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    margin-bottom: 15px;
+}
+
+.product-sort {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    background: var(--cake-cream);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    border: 2px solid var(--secondary-color)
+}
+
+.sort-select {
+    width: 200px;
+    border: 2px solid var(--product-blue);
+    border-radius: 10px;
+    padding: 10px 15px;
+    color: var(--dark-text);
+    font-weight: 500;
+}
+
+/* 頁腳樣式 */
+.product-footer {
+    background: linear-gradient(135deg, var(--product-brown), #6d4c41);
+    color: var(--light-text);
+    padding: 60px 0 30px;
+    margin-top: 50px;
+}
+
+.product-footer h4 {
+    color: var(--product-cream);
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.product-footer p {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.8;
+}
+
+.contact-info {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.contact-info li {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.contact-info i {
+    font-size: 1.2rem;
+    color: var(--product-blue);
+    width: 25px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.social-icon:hover {
+    background: var(--primary-color);
+    transform: translateY(-5px);
+}
+
+/* 響應式調整 */
+@media (max-width: 768px) {
+    .cake-shop-hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .content-section {
+        padding: 70px 0;
+    }
+    
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .cake-sort {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .sort-select {
+        width: 100%;
+    }
+}
+
+/* 動畫效果 */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 蛋糕特色標籤 */
+.cake-tag {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: var(--primary-color);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    z-index: 10;
+}
+
+.cake-image-container {
+    position: relative;
+    overflow: hidden;
+}
+
+
+/* 查看詳情按鈕 */
+.d-flex.justify-content-between.mt-3 {
+    display: flex;
+    flex-wrap: wrap;       /* allow wrapping on smaller screens */
+    gap: 10px;             /* spacing between buttons */
+}
+
+.view-detail-btn{
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: white;
+    border: none;
+    padding: 10px 10px;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: var(--transition);
+    display: block;
+    
+    flex: 1;
+
+    text-align: center;
+    text-decoration: none;
+}
+
+.view-detail-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(233, 30, 99, 0.2);
+    color: white;
+}
+
+.nav-link {
+    position: relative; /* anchor for absolute positioning */
+    display: inline-block;
+}
+
+.cart-indicator {
+    position: absolute;
+    top: 5px;           /* move slightly above */
+    right: -20px;        /* move slightly to the right */
+    background-color: var(--accent-color);
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    z-index: 1;          /* ensure it sits above */
+}
+
+.promo-input-group {
+  display: flex;
+  flex-direction: row;   
+  gap: 10px;             
+  width: 100%;           
+}
+
+.promo-input {
+  flex: 1;               
+  min-width: 0;          
+  box-sizing: border-box;
+}
+
+.promo-btn {
+  flex-shrink: 0;       
+}
+

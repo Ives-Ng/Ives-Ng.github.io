@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>電子產品展示 | 最新科技產品</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft JhengHei', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1c243f, #021554);
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: #4fc3f7;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 2rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 0;
+            position: relative;
+        }
+        
+        nav ul li a:hover {
+            color: #4fc3f7;
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #4fc3f7;
+            transition: width 0.3s;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(26, 42, 108, 0.85), rgba(42, 60, 127, 0.9)), url('https://images.unsplash.com/photo-1498049860654-af1a5c566876?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 5rem 0;
+            margin-bottom: 3rem;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #4fc3f7;
+            color: white;
+            padding: 12px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #29b6f6;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #1a2a6c;
+            font-size: 2.2rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: #4fc3f7;
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+        
+        .products {
+            padding: 4rem 0;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .product-img {
+            height: 220px;
+            overflow: hidden;
+        }
+        
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .product-card:hover .product-img img {
+            transform: scale(1.05);
+        }
+        
+        .product-info {
+            padding: 1.5rem;
+        }
+        
+        .product-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #1a2a6c;
+        }
+        
+        .product-category {
+            display: inline-block;
+            background-color: #e8f4fd;
+            color: #1a2a6c;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-bottom: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .product-price {
+            color: #4fc3f7;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .product-description {
+            color: #666;
+            margin-bottom: 1.2rem;
+            font-size: 0.95rem;
+        }
+        
+        .product-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature {
+            background-color: #f5f7fa;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            color: #555;
+        }
+        
+        .product-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .product-actions .btn {
+            padding: 8px 20px;
+            font-size: 0.9rem;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid #4fc3f7;
+            color: #4fc3f7;
+        }
+        
+        .btn-outline:hover {
+            background-color: #4fc3f7;
+            color: white;
+        }
+        
+        .featured-section {
+            padding: 4rem 0;
+            background-color: #e8f4fd;
+        }
+        
+        .featured-product {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .featured-img {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .featured-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .featured-content h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #1a2a6c;
+        }
+        
+        .featured-content p {
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+        
+        footer {
+            background-color: rgba(5,5, 15, 0.95);
+            color: white;
+            padding: 3rem 0 1.5rem;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.2rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background-color: #4fc3f7;
+        }
+        
+        .footer-column p, .footer-column a {
+            color: #cdd4e4;
+            margin-bottom: 0.8rem;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column a:hover {
+            color: #4fc3f7;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: #4fc3f7;
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #a0a9c7;
+            font-size: 0.9rem;
+        }
+        
+        /* 響應式設計 */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1.5rem;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 0.8rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+            }
+            
+            nav ul li {
+                margin: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 頁首 -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-microchip"></i>
+                   <a href="home.html"> <span>TechGadget</span></a>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="home.html">首頁</a></li>
+                        
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主視覺區 -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>探索最新電子產品</h1>
+            <p>從智能手機到筆記本電腦，從智能手錶到無線耳機，我們提供最新最熱門的電子產品，滿足您的科技需求。</p>
+            <a href="#products" class="btn">瀏覽產品</a>
+        </div>
+    </section>
+
+    <!-- 產品展示區 -->
+    <section class="products" id="products">
+        <div class="container">
+            <h2 class="section-title">熱門電子產品</h2>
+            <div class="products-grid">
+                <!-- 產品 1 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80" alt="智能手機">
+                    </div>
+                    <div class="product-info">
+                        <h3>旗艦智能手機</h3>
+                        <span class="product-category">手機</span>
+                        <div class="product-price">HK$ 9,999</div>
+                        <p class="product-description">6.7吋AMOLED顯示屏，搭載最新處理器，5000mAh大容量電池，支援120W快充。</p>
+                        <div class="product-features">
+                            <span class="feature">8GB RAM</span>
+                            <span class="feature">256GB 存儲</span>
+                            <span class="feature">5G 網絡</span>
+                            <span class="feature">四攝像頭</span>
+                        </div>
+                        <div class="product-actions">
+                            <a href="#" class="btn">購買</a>
+                            <a href="#" class="btn btn-outline">詳細資訊</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 產品 2 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" alt="筆記本電腦">
+                    </div>
+                    <div class="product-info">
+                        <h3>高性能筆記本電腦</h3>
+                        <span class="product-category">電腦</span>
+                        <div class="product-price">HK$ 25,999</div>
+                        <p class="product-description">15.6吋4K顯示屏，最新處理器，獨立顯卡，適合遊戲和專業工作。</p>
+                        <div class="product-features">
+                            <span class="feature">16GB RAM</span>
+                            <span class="feature">1TB SSD</span>
+                            <span class="feature">RTX 4060</span>
+                            <span class="feature">RGB 鍵盤</span>
+                        </div>
+                        <div class="product-actions">
+                            <a href="#" class="btn">購買</a>
+                            <a href="#" class="btn btn-outline">詳細資訊</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 產品 3 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1364&q=80" alt="智能手錶">
+                    </div>
+                    <div class="product-info">
+                        <h3>智能健康手錶</h3>
+                        <span class="product-category">穿戴裝置</span>
+                        <div class="product-price">HK$ 4,999</div>
+                        <p class="product-description">全天候健康監測，血氧檢測，睡眠追蹤，50米防水，14天長續航。</p>
+                        <div class="product-features">
+                            <span class="feature">心率監測</span>
+                            <span class="feature">GPS</span>
+                            <span class="feature">防水</span>
+                            <span class="feature">通知</span>
+                        </div>
+                        <div class="product-actions">
+                            <a href="#" class="btn">購買</a>
+                            <a href="#" class="btn btn-outline">詳細資訊</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 產品 4 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="無線耳機">
+                    </div>
+                    <div class="product-info">
+                        <h3>降噪無線耳機</h3>
+                        <span class="product-category">音訊</span>
+                        <div class="product-price">HK$ 3,499</div>
+                        <p class="product-description">主動降噪技術，高品質音效，30小時續航，舒適佩戴體驗。</p>
+                        <div class="product-features">
+                            <span class="feature">降噪</span>
+                            <span class="feature">藍牙 5.3</span>
+                            <span class="feature">30小時</span>
+                            <span class="feature">快充</span>
+                        </div>
+                        <div class="product-actions">
+                            <a href="#" class="btn">購買</a>
+                            <a href="#" class="btn btn-outline">詳細資訊</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 產品 5 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="相機">
+                    </div>
+                    <div class="product-info">
+                        <h3>專業數位相機</h3>
+                        <span class="product-category">攝影</span>
+                        <div class="product-price">HK$ 12,999</div>
+                        <p class="product-description">2400萬像素全片幅感光元件，4K影片拍攝，五軸防震系統。</p>
+                        <div class="product-features">
+                            <span class="feature">全片幅</span>
+                            <span class="feature">4K 影片</span>
+                            <span class="feature">Wi-Fi</span>
+                            <span class="feature">防震</span>
+                        </div>
+                        <div class="product-actions">
+                            <a href="#" class="btn">購買</a>
+                            <a href="#" class="btn btn-outline">詳細資訊</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 產品 6 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="image/computer/iPad_Mini_8.webp" alt="平板電腦">
+                        </div>
+                    <div class="product-info">
+                        <h3>多功能平板電腦</h3>
+                        <span class="product-category">平板</span>
+                        <div class="product-price">HK$ 8,999</div>
+                        <p class="product-description">11吋Liquid Retina顯示屏，Apple M1晶片，支援Apple Pencil和Magic Keyboard。</p>
+                        <div class="product-features">
+                            <span class="feature">M1 晶片</span>
+                            <span class="feature">128GB</span>
+                            <span class="feature">Wi-Fi+5G</span>
+                            <span class="feature">觸控筆</span>
+                        </div>
+                        <div class="product-actions">
+                            <a href="#" class="btn">購買</a>
+                            <a href="#" class="btn btn-outline">詳細資訊</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 精選產品區 -->
+    <section class="featured-section" id="featured">
+        <div class="container">
+            <h2 class="section-title">本月精選產品</h2>
+            <div class="featured-product">
+                <div class="featured-img">
+                    <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1528&q=80" alt="遊戲主機">
+                </div>
+                <div class="featured-content">
+                    <h2>次世代遊戲主機</h2>
+                    <p>體驗前所未有的遊戲性能，搭載客製化處理器與高速SSD，提供無與倫比的加載速度與圖形表現。支援4K/120fps遊戲，並向後兼容數千款遊戲。</p>
+                    <p>全新設計的控制器提供更沉浸的觸覺回饋，讓您感受遊戲中的每一個細節。</p>
+                    <div class="product-price">HK$ S5,999</div>
+                    <a href="#" class="btn">立即購買</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 頁尾 -->
+    <footer id="contact">
+        <div class="container">
+            
+                
+            <div class="copyright">
+                <p>&copy; 2026 TechGadget 電子產品展示網頁. 保留所有權利。</p>
+            </div>
+        </div>
+    </footer>
+
+    <!--<script>
+        // 簡單的互動效果
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // 產品卡片懸停效果增強
+        document.querySelectorAll('.product-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+        
+        // 表單提交處理
+        document.getElementById('newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input[type="email"]').value;
+            if(email) {
+                alert(`感謝您的訂閱！我們已將確認信發送至：${email}`);
+                this.reset();
+            }
+        });
+    </script>-->
+</body>
+</html>

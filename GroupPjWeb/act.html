@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeoMall 精彩活動 | 季節限定體驗</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft JhengHei', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f5f2;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: rgba(5, 5, 15, 0.95);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+        
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        .nav-link{
+            font-size: 30px;
+            color:cyan;
+        }
+            
+        
+        .activity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        @media (max-width: 1100px) {
+            .activity-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .activity-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .activity-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-image {
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .activity-card:hover .card-image img {
+            transform: scale(1.05);
+        }
+        
+        .card-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card-content h2 {
+            color: #b5825a;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0e6dd;
+        }
+        
+        .card-content p {
+            margin-bottom: 20px;
+            color: #555;
+            flex-grow: 1;
+        }
+        
+        .highlight-list {
+            list-style-type: none;
+            margin-bottom: 25px;
+        }
+        
+        .highlight-list li {
+            padding: 8px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .highlight-list li:before {
+            content: "•";
+            color: #d4a574;
+            font-size: 1.5rem;
+            position: absolute;
+            left: 10px;
+            top: 5px;
+        }
+        
+        .activity-info {
+            background-color: #f9f1e9;
+            padding: 15px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+        
+        .location {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #7a6a5c;
+            font-weight: 600;
+        }
+        
+        .date {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #7a6a5c;
+            font-weight: 600;
+        }
+        
+        footer {
+            background-color: rgba(5, 5, 15, 0.95);
+            color: #e6d6c5;
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 20px 20px 0 0;
+            margin-top: 30px;
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #d4a574;
+        }
+        
+        .footer-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .activity-icon {
+            font-size: 1.2rem;
+            color: #d4a574;
+            margin-right: 5px;
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .activity-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .activity-info {
+                flex-direction: column;
+                gap: 10px;
+                align-items: flex-start;
+            }
+        }
+        
+        .category-tag {
+            display: inline-block;
+            background-color: #d4a574;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .mac-tag { background-color: #cc3366; }
+        .game-tag { background-color: #4a6fa5; }
+        .food-tag { background-color: #e6a157; }
+        .shopping-tag { background-color: #7d9d6e; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><i class="fas fa-gift"></i> NeoMall 季節限定活動</h1>
+            <p>匯聚時尚美妝、沉浸娛樂、星級美食與購物優惠，為您帶來全方位體驗</p>
+             
+                  <a class="nav-link" href="home.html">首頁</a> 
+                      
+        </div>
+    </header>
+    
+    <main class="container">
+        <div class="activity-grid">
+            <!-- 活動 1: M.A.C 彩妝盛會 -->
+            <div class="activity-card">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="M.A.C 彩妝盛會">
+                </div>
+                <div class="card-content">
+                    <div class="category-tag mac-tag">時尚美妝</div>
+                    <h2>M.A.C 全球藝術家聯名彩妝盛會</h2>
+                    <p>國際一線美妝品牌M.A.C於本季推出多個與全球知名藝術家及名人的聯名系列，將時尚與彩妝藝術完美融合。</p>
+                    
+                    <ul class="highlight-list">
+                        <li><i class="activity-icon fas fa-palette"></i> 獨家新品：現場可體驗及購買最新的Electric Wonder系列及其他聯名限量產品。</li>
+                        <li><i class="activity-icon fas fa-magic"></i> 互動體驗：週末將有專業彩妝師提供免費妝容諮詢與潮流設計示範。</li>
+                        <li><i class="activity-icon fas fa-map-marker-alt"></i> 活動地點：1F iGlamour愛·迷人美妝複合專區。</li>
+                    </ul>
+                    
+                    <div class="activity-info">
+                        <div class="location">
+                            <i class="fas fa-map-pin"></i> 1F iGlamour專區
+                        </div>
+                        <div class="date">
+                            <i class="far fa-calendar-alt"></i> 即日起至 3月31日
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 活動 2: 墨香九週年主題樂園 -->
+            <div class="activity-card">
+                <div class="card-image">
+                    <img src="image/act/garden.webp" alt="墨香九週年沉浸式主題樂園">
+                </div>
+                <div class="card-content">
+                    <div class="category-tag game-tag">沉浸娛樂</div>
+                    <h2>墨香九週年沉浸式主題樂園</h2>
+                    <p>將線上遊戲的熱門活動實體化，打造充滿奇幻色彩的沉浸式體驗區。</p>
+                    
+                    <ul class="highlight-list">
+                        <li><i class="activity-icon fas fa-camera-retro"></i> 場景還原：打造遊戲中的經典場景，適合拍照打卡。</li>
+                        <li><i class="activity-icon fas fa-gift"></i> 限定兌換：參與現場互動任務，有機會獲得 "玖週年守護者"限定周邊及虛擬遊戲獎勵。</li>
+                        <li><i class="activity-icon fas fa-dice"></i> 幸運抽獎：現場設置"元寶狩獵"與"幸運基金"互動遊戲，獎品豐富。</li>
+                    </ul>
+                    
+                    <div class="activity-info">
+                        <div class="location">
+                            <i class="fas fa-map-pin"></i> 3F 遊戲娛樂區
+                        </div>
+                        <div class="date">
+                            <i class="far fa-calendar-alt"></i> 2月10日 - 3月15日
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 活動 3: 星級主廚美食節 -->
+            <div class="activity-card">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="星級主廚與名店美食節">
+                </div>
+                <div class="card-content">
+                    <div class="category-tag food-tag">星級美食</div>
+                    <h2>星級主廚與名店美食節</h2>
+                    <p>NeoMall彙集海內外餐飲名店，其中多家是首次拓展至本地市場，為食客帶來全新味覺體驗。</p>
+                    
+                    <ul class="highlight-list">
+                        <li><i class="activity-icon fas fa-utensils"></i> 名店首秀：特別引進香港人氣鍋物問鼎、頂級自助餐旭集等品牌。</li>
+                        <li><i class="activity-icon fas fa-user-chef"></i> 主廚盛宴：活動期間，多家餐廳將由星級主廚推出限定套餐與招牌菜。</li>
+                        <li><i class="activity-icon fas fa-map-marked-alt"></i> 美食地圖：可在服務台領取美食地圖，集章即可兌換甜點或飲品。</li>
+                    </ul>
+                    
+                    <div class="activity-info">
+                        <div class="location">
+                            <i class="fas fa-map-pin"></i> B1F 美食廣場 & 4F 餐廳區
+                        </div>
+                        <div class="date">
+                            <i class="far fa-calendar-alt"></i> 即日起至 2月28日
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 活動 4: 新春購物優惠 -->
+            <div class="activity-card">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="新春購物狂歡優惠">
+                </div>
+                <div class="card-content">
+                    <div class="category-tag shopping-tag">購物優惠</div>
+                    <h2>新春購物狂歡優惠</h2>
+                    <p>全場多元優惠活動，助您輕鬆購置新年禮物與新裝。</p>
+                    
+                    <ul class="highlight-list">
+                        <li><i class="activity-icon fas fa-shopping-bag"></i> 買十送三：於參與活動之專櫃購買指定商品滿十件，即額外贈送三件精選禮品。</li>
+                        <li><i class="activity-icon fas fa-gifts"></i> 消費贈禮：單日累計消費滿額，即可兌換NeoMall限量定制好禮。</li>
+                        <li><i class="activity-icon fas fa-credit-card"></i> 支付優惠：使用指定銀行信用卡或行動支付，享有額外折扣或回饋。</li>
+                    </ul>
+                    
+                    <div class="activity-info">
+                        <div class="location">
+                            <i class="fas fa-map-pin"></i> 全館專櫃適用
+                        </div>
+                        <div class="date">
+                            <i class="far fa-calendar-alt"></i> 即日起至 2月24日
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-logo">NeoMall 購物廣場</div>
+            <p>地址：佐敦道 88 號 | 服務電話：(852) 6666-8888</p>
+            <p>營業時間：週一 ～ 週日 11:00~21:30 | </p>
+            
+            <div class="footer-info">
+                <div class="info-item">
+                    <i class="fas fa-car"></i> 停車資訊：消費滿500元可免費停車1小時
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-wifi"></i> 免費WiFi：全館提供免費無線網路
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-phone-alt"></i> 客服專線：(852) 6666-2222
+                </div>
+            </div>
+            
+            <p style="margin-top: 20px; font-size: 0.9rem; opacity: 0.8;">© 2026 NeoMall 版權所有。本網頁僅供展示使用，活動內容以現場公告為準。</p>
+        </div>
+    </footer>
+
+    <script>
+        // 添加卡片互動效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.activity-card');
+            
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.zIndex = '10';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.zIndex = '1';
+                });
+            });
+            
+            // 添加點擊卡片顯示詳細資訊的功能
+            cards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const title = this.querySelector('h2').textContent;
+                    alert(`您點選了活動：「${title}」\n詳細資訊請至現場服務台諮詢。`);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

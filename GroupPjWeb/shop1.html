@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="zh-hk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>時尚之家 | 國際知名時尚品牌</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft JhengHei', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f8f8;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* 導航欄 */
+        header {
+            background-color:rgba(5,5,15,0.95);
+            color: #fff;
+            padding: 1.2rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #d4af37;
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: #fff;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 2.5rem;
+        }
+        
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+            letter-spacing: 1px;
+        }
+        
+        nav ul li a:hover {
+            color: #d4af37;
+        }
+        
+        /* 主視覺區域 */
+        .hero {
+            background: linear-gradient(rgba(5, 0, 17, 0.7), rgba(8, 6, 23, 0.7)), url('https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1771&q=80');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            text-align: center;
+            padding: 8rem 0;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        
+        .hero p {
+            font-size: 1.4rem;
+            max-width: 800px;
+            margin: 0 auto 2.5rem;
+            color: #ddd;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #d4af37;
+            color: #000;
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 1px;
+            border-radius: 0;
+            transition: all 0.3s;
+            text-transform: uppercase;
+        }
+        
+        .btn:hover {
+            background-color: #c19b2c;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* 品牌介紹 */
+        .about {
+            padding: 5rem 0;
+            background-color: #fff;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3.5rem;
+            font-size: 2.5rem;
+            position: relative;
+            color: #000;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background-color: #d4af37;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+            padding-right: 2rem;
+        }
+        
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: #222;
+        }
+        
+        .about-text p {
+            margin-bottom: 1.2rem;
+            font-size: 1.1rem;
+            color: #555;
+        }
+        
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            overflow: hidden;
+            border-radius: 5px;
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.5s;
+        }
+        
+        .about-image img:hover {
+            transform: scale(1.03);
+        }
+        
+        /* 產品系列 */
+        .collections {
+            padding: 5rem 0;
+            background-color: #f5f5f5;
+        }
+        
+        .category-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 1rem 2rem;
+            margin: 0 0.5rem 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .tab-btn.active, .tab-btn:hover {
+            color: #000;
+            border-bottom: 3px solid #d4af37;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .product-card {
+            background-color: #fff;
+            overflow: hidden;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .product-img {
+            height: 300px;
+            overflow: hidden;
+        }
+        
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .product-card:hover .product-img img {
+            transform: scale(1.05);
+        }
+        
+        .product-info {
+            padding: 1.5rem;
+        }
+        
+        .product-category {
+            color: #d4af37;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .product-name {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #222;
+        }
+        
+        .product-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #000;
+        }
+        
+        /* 頁腳 */
+        footer {
+            background-color:rgba(5,5,15,0.95 );
+            color: #fff;
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            color: #d4af37;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 2px;
+            background-color: #d4af37;
+            bottom: 0;
+            left: 0;
+        }
+        
+        .footer-column p, .footer-column a {
+            color: #bbb;
+            margin-bottom: 0.8rem;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column a:hover {
+            color: #d4af37;
+        }
+        
+        .social-icons {
+            display: flex;
+            margin-top: 1.5rem;
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #222;
+            color: #fff;
+            border-radius: 50%;
+            margin-right: 15px;
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background-color: #d4af37;
+            color: #000;
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            color: #888;
+            font-size: 0.9rem;
+        }
+        
+        /* 響應式設計 */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+            }
+            
+            .logo {
+                margin-bottom: 1.5rem;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 1rem 0.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-text {
+                padding-right: 0;
+                margin-bottom: 2rem;
+            }
+            
+            .footer-column {
+                flex: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero {
+                padding: 5rem 0;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 導航欄 -->
+    <header>
+        <div class="container nav-container">
+            <a href="home.html" class="logo">時尚<span>之家</span></a>
+            <nav>
+                <ul>
+                    <li><a href="home.html">首頁</a></li>               
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 主視覺區域 -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>國際知名時尚品牌</h1>
+            <p>時尚之家提供男女裝及配件系列，融合經典設計與現代時尚，為全球時尚愛好者打造獨一無二的風格體驗。</p>
+            <a href="#collections" class="btn">探索系列</a>
+        </div>
+    </section>
+
+    <!-- 品牌介紹 -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title">品牌故事</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>源自巴黎，風靡全球</h3>
+                    <p>時尚之家創立於1975年，從巴黎一家小型裁縫店開始，現已成為國際知名的時尚品牌。我們致力於將經典優雅與現代時尚完美融合，創造出令人驚艷的男女裝及配件系列。</p>
+                    <p>我們的設計師團隊來自世界各地，汲取多元文化靈感，每一件作品都經過精心設計與製作，確保品質與風格的完美呈現。</p>
+                    <p>從紅毯禮服到日常休閒，從精緻配飾到高端成衣，時尚之家為每一位顧客提供全方位的時尚解決方案，讓您在任何場合都能展現獨特魅力。</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="時尚之家品牌形象">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 產品系列 -->
+    <section class="collections" id="collections">
+        <div class="container">
+            <h2 class="section-title">產品系列</h2>
+            <div class="category-tabs">
+                <button class="tab-btn active" data-category="all">全部系列</button>
+                <button class="tab-btn" data-category="women">女裝系列</button>
+                <button class="tab-btn" data-category="men">男裝系列</button>
+                <button class="tab-btn" data-category="accessories">配件系列</button>
+            </div>
+            
+            <div class="products-grid">
+                <!-- 產品將會通過JavaScript動態生成 -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 頁腳 -->
+    <footer id="contact">
+        <div class="container">
+            <div class="copyright">
+                <p>&copy; 2026 時尚之家 版權所有。保留所有權利。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 產品數據
+        const products = [
+            { id: 1, name: "經典女士風衣", category: "women", price: "HK$ 12,800", image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" },
+            { id: 2, name: "男士商務西裝", category: "men", price: "HK$ 25,900", image: "image/man/suit.jpeg"},
+            { id: 3, name: "時尚女士手提包", category: "accessories", price: "HK$ 8,900", image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" },
+            { id: 4, name: "女士晚禮服", category: "women", price: "HK$ 32,500", image: "https://images.unsplash.com/photo-1539008835657-9e8e9680c956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" },
+            { id: 5, name: "男士休閒外套", category: "men", price: "HK$ 9,800", image: "https://images.unsplash.com/photo-1520975916090-3105956dac38?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHximwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" },
+            { id: 6, name: "精緻珍珠項鍊", category: "accessories", price: "HK$ 15,200", image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" },
+            { id: 7, name: "女士休閒套裝", category: "women", price: "HK$ 7,600", image: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" },
+            { id: 8, name: "男士皮鞋", category: "accessories", price: "HK$ 6,500", image: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" }
+        ];
+
+        // 分類標籤切換功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const productsGrid = document.querySelector('.products-grid');
+            
+            // 初始顯示所有產品
+            displayProducts(products);
+            
+            // 為每個標籤按鈕添加點擊事件
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // 更新活動狀態
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const category = this.getAttribute('data-category');
+                    
+                    // 根據選擇的分類篩選產品
+                    if (category === 'all') {
+                        displayProducts(products);
+                    } else {
+                        const filteredProducts = products.filter(product => product.category === category);
+                        displayProducts(filteredProducts);
+                    }
+                });
+            });
+            
+            // 顯示產品函數
+            function displayProducts(productsArray) {
+                productsGrid.innerHTML = '';
+                
+                productsArray.forEach(product => {
+                    let categoryName = '';
+                    switch(product.category) {
+                        case 'women':
+                            categoryName = '女裝系列';
+                            break;
+                        case 'men':
+                            categoryName = '男裝系列';
+                            break;
+                        case 'accessories':
+                            categoryName = '配件系列';
+                            break;
+                    }
+                    
+                    const productCard = document.createElement('div');
+                    productCard.className = 'product-card';
+                    productCard.innerHTML = `
+                        <div class="product-img">
+                            <img src="${product.image}" alt="${product.name}">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">${categoryName}</div>
+                            <h3 class="product-name">${product.name}</h3>
+                            <div class="product-price">${product.price}</div>
+                        </div>
+                    `;
+                    
+                    productsGrid.appendChild(productCard);
+                });
+            }
+            
+            // 平滑滾動
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if(targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

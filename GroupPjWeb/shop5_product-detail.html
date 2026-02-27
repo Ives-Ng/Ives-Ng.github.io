@@ -1,0 +1,1312 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>印度美食詳情 - 潮流商場購物資訊</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+   
+    <style>
+        :root {
+            --primary-color: #FF6B35;
+            --secondary-color: #FFA500;
+            --accent-color: #8B4513;
+            --spice-color: #D35400;
+            --light-bg: #FFF8F0;
+            --dark-text: #5D4037;
+            --light-text: #fff;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+            --indian-red: #E74C3C;
+            --indian-yellow: #F39C12;
+            --indian-green: #27AE60;
+            --indian-blue: #3498DB;
+            --indian-purple: #9B59B6;
+        }
+        
+        body {
+            font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+            color: var(--dark-text);
+            scroll-behavior: smooth;
+            background-color: var(--light-bg);
+        }
+        
+        /* 導航列樣式 */
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color), var(--spice-color));
+            box-shadow: var(--shadow);
+            padding: 15px 0;
+            transition: var(--transition);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--light-text) !important;
+        }
+        
+        .navbar-nav .nav-link {
+            color: rgba(255, 255, 255, 0.85) !important;
+            font-weight: 500;
+            margin: 0 8px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: var(--transition);
+        }
+        
+        .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active {
+            background-color: rgba(255, 255, 255, 0.15);
+            color: var(--light-text) !important;
+        }
+        
+        /* 商品詳情頁首圖 */
+        .product-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('image/Indian/tandoor.avif');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 120px 0 60px;
+            text-align: center;
+            margin-top: 80px;
+        }
+        
+        .product-hero h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--indian-yellow);
+        }
+        
+        /* 內容區塊通用樣式 */
+        .content-section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--primary-color);
+            position: relative;
+            font-weight: 700;
+            font-size: 2.2rem;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary-color), var(--spice-color));
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 3px;
+        }
+        
+        /* 商品詳情內容樣式 */
+        .product-detail-container {
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            margin-bottom: 50px;
+        }
+        
+        .product-image-container {
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            min-height: 400px;
+        }
+        
+        .product-main-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .product-image-container:hover .product-main-image {
+            transform: scale(1.05);
+        }
+        
+        .product-tag {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--indian-red);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            z-index: 10;
+        }
+        
+        .product-info {
+            padding: 40px;
+        }
+        
+        .product-category {
+            color: var(--spice-color);
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            display: inline-block;
+            background: #FFE5CC;
+            padding: 5px 15px;
+            border-radius: 20px;
+        }
+        
+        .product-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--dark-text);
+        }
+        
+        .product-price {
+            color: var(--indian-red);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+        }
+        
+        .product-description {
+            color: #8d6e63;
+            margin-bottom: 25px;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+        
+        .product-features {
+            margin-bottom: 25px;
+        }
+        
+        .feature-item {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .feature-icon {
+            width: 25px;
+            height: 25px;
+            background-color: var(--indian-yellow);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+        }
+        
+        .feature-text {
+            font-weight: 500;
+        }
+        
+        .spice-level {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+        
+        .spice-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #ddd;
+        }
+        
+        .spice-dot.active {
+            background-color: var(--indian-red);
+        }
+        
+        .product-actions {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .btn-order {
+            background: linear-gradient(135deg, var(--primary-color), var(--spice-color));
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .btn-order:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 107, 53, 0.3);
+            color: white;
+        }
+        
+        .btn-back {
+            background: var(--indian-blue);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        
+        .btn-back:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(52, 152, 219, 0.2);
+            color: white;
+        }
+        
+        /* 營養信息樣式 */
+        .nutrition-info {
+            background-color: #FFF5E6;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 40px;
+            border: 2px solid var(--indian-yellow);
+        }
+        
+        .nutrition-title {
+            color: var(--spice-color);
+            font-weight: 700;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .nutrition-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .nutrition-item {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .nutrition-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--indian-red);
+        }
+        
+        .nutrition-label {
+            font-size: 0.9rem;
+            color: var(--dark-text);
+            margin-top: 5px;
+        }
+        
+        /* 相關菜式推薦 */
+        .related-foods {
+            margin-top: 60px;
+        }
+        
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .related-item {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+        
+        .related-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(255, 107, 53, 0.15);
+            border-color: var(--primary-color);
+        }
+        
+        .related-image {
+            height: 180px;
+            width: 100%;
+            object-fit: cover;
+        }
+        
+        .related-details {
+            padding: 20px;
+        }
+        
+        .related-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .related-price {
+            color: var(--indian-red);
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+        
+        /* 印度餐廳頁腳樣式 */
+        .indian-footer {
+            background: linear-gradient(135deg, var(--accent-color), #5D4037);
+            color: var(--light-text);
+            padding: 60px 0 30px;
+            margin-top: 50px;
+        }
+        
+        .indian-footer h4 {
+            color: var(--indian-yellow);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .indian-footer p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+        }
+        
+        .contact-info {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+        
+        .contact-info li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .contact-info i {
+            font-size: 1.2rem;
+            color: var(--indian-yellow);
+            width: 25px;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .social-icon:hover {
+            background: var(--primary-color);
+            transform: translateY(-5px);
+        }
+        
+        /* 響應式調整 */
+        @media (max-width: 768px) {
+            .product-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .product-info {
+                padding: 25px;
+            }
+            
+            .product-title {
+                font-size: 1.8rem;
+            }
+            
+            .product-price {
+                font-size: 2rem;
+            }
+            
+            .product-actions {
+                flex-direction: column;
+            }
+            
+            .btn-order, .btn-back {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .nutrition-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .related-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .nutrition-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .related-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* 載入動畫 */
+        .loading-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 500px;
+        }
+        
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 5px solid rgba(255, 107, 53, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--primary-color);
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- 導航列 -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+               <i class="material-icons" style="font-size:32px;color:blue">restaurant</i>香料印度餐廳
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="home.html"><i class="bi bi-house-door"></i> 主頁</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="shop5.html"><i class="bi bi-bag"></i> 商店</a>
+                    </li>
+                   
+                   
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 商品詳情頁首圖 -->
+    <section class="product-hero">
+        <div class="container">
+            <h1 id="productHeroTitle">印度美食詳情</h1>
+            <p class="lead">探索正宗印度美食的獨特風味與文化</p>
+        </div>
+    </section>
+
+    <!-- 商品詳情內容 -->
+    <section class="content-section">
+        <div class="container">
+            <!-- 載入狀態 -->
+            <div id="loadingContainer" class="loading-container">
+                <div class="spinner"></div>
+            </div>
+            
+            <!-- 商品詳情內容 (動態生成) -->
+            <div id="productDetailContainer" style="display: none;">
+                <div class="product-detail-container">
+                    <div class="row g-0">
+                        <div class="col-lg-6">
+                            <div class="product-image-container">
+                                <img id="productImage" class="product-main-image" src="" alt="商品圖片">
+                                <div id="productTag" class="product-tag">主廚推薦</div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="product-info">
+                                <span id="productCategory" class="product-category">咖哩系列</span>
+                                <h2 id="productTitle" class="product-title">牛油雞</h2>
+                                <div id="productPrice" class="product-price">HK$ 128</div>
+                                <p id="productDescription" class="product-description">經典北印度咖哩，奶油番茄醬汁搭配嫩滑雞肉。</p>
+                                
+                                <div class="product-features">
+                                    <div class="feature-item">
+                                        <div class="feature-icon">
+                                            <i class="bi bi-thermometer-high"></i>
+                                        </div>
+                                        <div class="feature-text">
+                                            辣度: 
+                                            <span id="spiceLevelText">中辣</span>
+                                            <div id="spiceLevel" class="spice-level mt-2">
+                                                <!-- 辣度指示點將由JavaScript生成 -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="feature-item">
+                                        <div class="feature-icon">
+                                            <i class="bi bi-basket"></i>
+                                        </div>
+                                        <div class="feature-text">
+                                            類別: <span id="productCategoryText">咖哩系列</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="feature-item">
+                                        <div class="feature-icon">
+                                            <i class="bi bi-tags"></i>
+                                        </div>
+                                        <div class="feature-text">
+                                            特色: <span id="productTags">人氣推薦, 主廚推薦</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="feature-item">
+                                        <div class="feature-icon">
+                                            <i class="bi bi-info-circle"></i>
+                                        </div>
+                                        <div class="feature-text" id="vegetarianInfo">
+                                            素食: 非素食
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="product-actions">
+                                    <button class="btn-order">
+                                        <i class="bi bi-cart-plus"></i> 立即訂購(未生效)
+                                    </button>
+                                    <a href="shop5.html" class="btn-back">
+                                        <i class="bi bi-arrow-left"></i> 返回菜單
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 營養信息 -->
+                <div class="nutrition-info">
+                    <h3 class="nutrition-title">營養信息 (每份)</h3>
+                    <div class="nutrition-grid">
+                        <div class="nutrition-item">
+                            <div id="calories" class="nutrition-value">450</div>
+                            <div class="nutrition-label">卡路里 (kcal)</div>
+                        </div>
+                        <div class="nutrition-item">
+                            <div id="protein" class="nutrition-value">32g</div>
+                            <div class="nutrition-label">蛋白質</div>
+                        </div>
+                        <div class="nutrition-item">
+                            <div id="carbs" class="nutrition-value">25g</div>
+                            <div class="nutrition-label">碳水化合物</div>
+                        </div>
+                        <div class="nutrition-item">
+                            <div id="fat" class="nutrition-value">18g</div>
+                            <div class="nutrition-label">脂肪</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 詳細描述 -->
+                <div class="mt-5">
+                    <h3 class="section-title">詳細介紹</h3>
+                    <div id="detailedDescription" class="mt-4">
+                        <p>這道菜是印度北部最受歡迎的菜餚之一，以其濃郁的奶油番茄醬汁和嫩滑的雞肉而聞名。傳統做法是將雞肉先用酸奶和多種香料醃製，然後烤至金黃，最後放入由奶油、番茄和香料熬製的醬汁中慢煮。</p>
+                        
+                        <h5 class="mt-4">主要食材:</h5>
+                        <ul>
+                            <li>新鮮雞胸肉或雞腿肉</li>
+                            <li>新鮮番茄和奶油</li>
+                            <li>印度綜合香料 (Garam Masala)</li>
+                            <li>優格、大蒜和薑</li>
+                            <li>腰果泥 (增加濃稠度和風味)</li>
+                        </ul>
+                        
+                        <h5 class="mt-4">口味特色:</h5>
+                        <p>牛油雞以其溫和而豐富的口味著稱，奶油和番茄的結合創造出順滑的質地，而各種香料則提供了層次豐富的風味。這道菜通常不會太辣，適合各種口味的人士。</p>
+                        
+                        <h5 class="mt-4">建議搭配:</h5>
+                        <ul>
+                            <li>印度烤餅 (Naan) - 最佳搭配，可蘸取醬汁</li>
+                            <li>印度香飯 (Biryani) - 作為主食搭配</li>
+                            <li>印式優格飲料 (Lassi) - 平衡口味</li>
+                            <li>新鮮沙拉 - 提供清爽口感</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- 相關菜式推薦 -->
+                <div class="related-foods">
+                    <h3 class="section-title">您可能也喜歡</h3>
+                    <div id="relatedFoods" class="related-grid">
+                        <!-- 相關菜式將由JavaScript動態生成 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 印度餐廳頁腳 -->
+    <footer class="indian-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h4><i class="bi bi-egg-fried"></i> 香料印度餐廳</h4>
+                    <p>我們提供正宗的北印度美食，由印度主廚親自主理，使用傳統香料和烹飪方法，讓您在香港也能體驗到地道的印度風味。</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 mb-4">
+                    <h4><i class="bi bi-clock"></i> 營業時間</h4>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="bi bi-calendar-week"></i>
+                            <div>
+                                <strong>星期一至四</strong><br>
+                                11:30 - 22:00
+                            </div>
+                        </li>
+                        <li>
+                            <i class="bi bi-calendar-week"></i>
+                            <div>
+                                <strong>星期五至日及公眾假期</strong><br>
+                                11:00 - 23:00
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-4 mb-4">
+                    <h4><i class="bi bi-geo-alt"></i> 聯絡我們</h4>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="bi bi-geo-alt-fill"></i>
+                            <div>
+                                <strong>地址</strong><br>
+                                  佐敦道 88  2F - 02
+                            </div>
+                        </li>
+                        <li>
+                            <i class="bi bi-telephone"></i>
+                            <div>
+                                <strong>電話</strong><br>
+                                +852 2345 6789
+                            </div>
+                        </li>
+                        <li>
+                            <i class="bi bi-envelope"></i>
+                            <div>
+                                <strong>電郵</strong><br>
+                                indian@trendmall.com
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="row mt-4 pt-4 border-top border-secondary">
+                <div class="col-md-6">
+                    <p>&copy; 2026 香料印度餐廳 - 潮流商場購物資訊 版權所有</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p>本網站僅供學習使用，圖片來源於Unsplash</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS 和 Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    
+    <script>
+        // 15個印度菜式數據 (與shop5.html一致)
+        const foods = [
+            {
+                id: 1,
+                name: "牛油雞",
+                category: "curry",
+                image: "image/indian/curry.avif",
+                description: "經典北印度咖哩，奶油番茄醬汁搭配嫩滑雞肉。",
+                tags: ["popular", "chef"],
+                price: 128,
+                spice: 2,
+                vegetarian: false,
+                detailedDescription: "這道菜是印度北部最受歡迎的菜餚之一，以其濃郁的奶油番茄醬汁和嫩滑的雞肉而聞名。傳統做法是將雞肉先用酸奶和多種香料醃製，然後烤至金黃，最後放入由奶油、番茄和香料熬製的醬汁中慢煮。",
+                nutrition: {
+                    calories: 450,
+                    protein: "32g",
+                    carbs: "25g",
+                    fat: "18g"
+                }
+            },
+            {
+                id: 2,
+                name: "坦都里烤雞",
+                category: "tandoor",
+                image: "image/indian/tandoor.avif",
+                description: "傳統泥爐烤雞，用優格和多種香料醃製。",
+                tags: ["popular"],
+                price: 148,
+                spice: 3,
+                vegetarian: false,
+                detailedDescription: "坦都里烤雞是印度最著名的燒烤菜餚之一。雞肉經過優格和多種香料（包括薑黃、香菜、小茴香和辣椒粉）長時間醃製，然後在傳統的泥爐（tandoor）中高溫烤製。這種烹飪方法使雞肉外皮焦香，內部多汁。",
+                nutrition: {
+                    calories: 380,
+                    protein: "42g",
+                    carbs: "8g",
+                    fat: "20g"
+                }
+            },
+            {
+                id: 3,
+                name: "印式咖哩角",
+                category: "starter",
+                image: "image/indian/starter.webp",
+                description: "酥脆外皮包裹香濃馬鈴薯和豌豆餡料。",
+                tags: ["vegetarian"],
+                price: 68,
+                spice: 1,
+                vegetarian: true,
+                detailedDescription: "印式咖哩角是印度最受歡迎的街頭小吃之一。酥脆的三角麵皮包裹著用馬鈴薯、豌豆、洋蔥和多種香料炒製的餡料。通常搭配薄荷醬或羅望子醬一起食用，是完美的開胃小食。",
+                nutrition: {
+                    calories: 280,
+                    protein: "6g",
+                    carbs: "32g",
+                    fat: "15g"
+                }
+            },
+            {
+                id: 4,
+                name: "印度烤餅",
+                category: "bread",
+                image: "image/indian/bread.avif",
+                description: "傳統泥爐烤製，口感鬆軟帶有麵粉香氣。",
+                tags: ["vegetarian"],
+                price: 38,
+                spice: 0,
+                vegetarian: true,
+                detailedDescription: "印度烤餅是印度北部最常見的麵包，在泥爐中高溫烤製而成。製作時將麵團擀平，然後貼在泥爐的內壁上烤製，使其產生獨特的氣泡和焦點。新鮮出爐的烤餅柔軟有彈性，帶有淡淡的麵粉香氣，是搭配各種咖哩的理想選擇。",
+                nutrition: {
+                    calories: 260,
+                    protein: "8g",
+                    carbs: "48g",
+                    fat: "4g"
+                }
+            },
+            {
+                id: 5,
+                name: "印式羊肉咖哩",
+                category: "curry",
+                image: "image/indian/curry_1.avif",
+                description: "濃郁香料燉煮的羊肉，口感軟嫩入味。",
+                tags: ["chef"],
+                price: 158,
+                spice: 3,
+                vegetarian: false,
+                detailedDescription: "這道羊肉咖哩使用優質的羊肩肉或羊腿肉，與洋蔥、番茄和多種香料（包括小豆蔻、肉桂、丁香和月桂葉）慢火燉煮數小時，直到肉質變得極為軟嫩。濃郁的醬汁完美滲透到羊肉中，創造出豐富層次的味道。",
+                nutrition: {
+                    calories: 520,
+                    protein: "38g",
+                    carbs: "18g",
+                    fat: "35g"
+                }
+            },
+            {
+                id: 6,
+                name: "印式香飯",
+                category: "rice",
+                image: "image/indian/rice.avif",
+                description: "長米與香料慢煮，香氣撲鼻。",
+                tags: ["vegetarian"],
+                price: 88,
+                spice: 1,
+                vegetarian: true,
+                detailedDescription: "印式香飯是印度最經典的米飯菜餚。使用巴斯馬蒂長米，與小豆蔻、肉桂、丁香、月桂葉等香料一同烹煮，使米飯充分吸收香料的香氣。有時還會加入番紅花，賦予米飯美麗的金黃色澤和獨特風味。",
+                nutrition: {
+                    calories: 320,
+                    protein: "6g",
+                    carbs: "68g",
+                    fat: "5g"
+                }
+            },
+            {
+                id: 7,
+                name: "印式烤魚",
+                category: "tandoor",
+                image: "image/indian/tandoor_1.avif",
+                description: "新鮮魚塊用香料醃製後泥爐烤製。",
+                tags: [],
+                price: 138,
+                spice: 2,
+                vegetarian: false,
+                detailedDescription: "選用新鮮的海魚（如鯛魚或鱸魚），用優格、大蒜、薑和多種香料醃製數小時，然後在泥爐中烤製。這種烹飪方法保留了魚肉的鮮嫩多汁，同時賦予了獨特的煙燻風味。通常搭配新鮮的檸檬片和洋蔥沙拉一同上桌。",
+                nutrition: {
+                    calories: 290,
+                    protein: "35g",
+                    carbs: "6g",
+                    fat: "14g"
+                }
+            },
+            {
+                id: 8,
+                name: "菠菜芝士",
+                category: "curry",
+                image: "image/indian/curry_2.avif",
+                description: "新鮮菠菜與印度芝士製作的經典素食咖哩。",
+                tags: ["vegetarian", "popular"],
+                price: 108,
+                spice: 2,
+                vegetarian: true,
+                detailedDescription: "這道菜是印度最受歡迎的素食咖哩之一。將新鮮菠菜煮軟後打成泥，加入印度芝士（Paneer）和多種香料一同烹煮。菠菜的清香與芝士的濃郁完美結合，創造出營養豐富且美味的菜餚。印度芝士是一種未經熟化的新鮮芝士，質地紮實，不會在烹飪過程中融化。",
+                nutrition: {
+                    calories: 340,
+                    protein: "22g",
+                    carbs: "18g",
+                    fat: "22g"
+                }
+            },
+            {
+                id: 9,
+                name: "印式薄餅",
+                category: "bread",
+                image: "image/indian/bread_2.avif",
+                description: "酥脆印度薄餅，搭配咖哩享用絕佳。",
+                tags: ["vegetarian"],
+                price: 42,
+                spice: 0,
+                vegetarian: true,
+                detailedDescription: "印式薄餅是一種酥脆的扁平面包，由全麥麵粉製成，通常會刷上少許油或酥油（ghee）後烤製。與印度烤餅不同，薄餅更加酥脆，帶有堅果香氣。它是印度南部地區的主食，但現在在全印度都很受歡迎，特別適合搭配濃郁的咖哩食用。",
+                nutrition: {
+                    calories: 220,
+                    protein: "7g",
+                    carbs: "36g",
+                    fat: "6g"
+                }
+            },
+            {
+                id: 10,
+                name: "香料烤雞塊",
+                category: "starter",
+                image: "image/indian/bread_1.avif",
+                description: "嫩滑雞肉塊用獨特香料醃製後烤製。",
+                tags: ["popular"],
+                price: 98,
+                spice: 3,
+                vegetarian: false,
+                detailedDescription: "這些烤雞塊選用去骨雞腿肉，切成一口大小，用優格、大蒜、薑和多種香料（包括香菜、小茴香、辣椒粉和薑黃）長時間醃製。然後在高温下烤製至外皮焦香，內部多汁。是完美的開胃菜或酒吧小食，通常搭配薄荷醬或優格醬一同上桌。",
+                nutrition: {
+                    calories: 310,
+                    protein: "28g",
+                    carbs: "8g",
+                    fat: "18g"
+                }
+            },
+            {
+                id: 11,
+                name: "瑪莎拉扁豆",
+                category: "curry",
+                image: "image/indian/curry_3.avif",
+                description: "印度特色扁豆咖哩，營養豐富。",
+                tags: ["vegetarian", "chef"],
+                price: 88,
+                spice: 2,
+                vegetarian: true,
+                detailedDescription: "瑪莎拉扁豆是印度家庭中最常見的菜餚之一。使用黃扁豆（Moong Dal）或紅扁豆（Masoor Dal），與洋蔥、番茄、大蒜和綜合香料一同熬煮至濃稠。這道菜營養豐富，蛋白質含量高，是素食者的理想選擇。通常搭配米飯或烤餅一起食用。",
+                nutrition: {
+                    calories: 280,
+                    protein: "18g",
+                    carbs: "42g",
+                    fat: "6g"
+                }
+            },
+            {
+                id: 12,
+                name: "印式烤羊架",
+                category: "tandoor",
+                image: "image/indian/tandoor_2.avif",
+                description: "優質羊架用香料醃製後泥爐烤製。",
+                tags: ["chef"],
+                price: 198,
+                spice: 2,
+                vegetarian: false,
+                detailedDescription: "這道豪華菜餚選用優質的羊架，用優格、大蒜、薑、石榴籽粉和多種香料醃製過夜。然後在泥爐中高溫烤製，使外皮焦香，內部保持粉嫩多汁。石榴籽粉（Anardana）賦予羊肉微酸的味道，平衡了羊肉的豐潤感。通常搭配烤蔬菜和薄荷醬一同上桌。",
+                nutrition: {
+                    calories: 480,
+                    protein: "45g",
+                    carbs: "12g",
+                    fat: "30g"
+                }
+            },
+            {
+                id: 13,
+                name: "印度奶茶",
+                category: "drink",
+                image: "image/indian/drink.avif",
+                description: "傳統印度香料奶茶，香濃暖胃。",
+                tags: ["vegetarian"],
+                price: 38,
+                spice: 0,
+                vegetarian: true,
+                detailedDescription: "印度奶茶（Masala Chai）是印度的國飲，將紅茶與新鮮牛奶、糖和多種香料（包括小豆蔻、肉桂、丁香、生薑和黑胡椒）一同熬煮。每種香料的比例因地區和家庭而異，創造出獨特的風味。這種奶茶香濃溫暖，既能提神又能暖胃，是印度人日常生活中不可或缺的一部分。",
+                nutrition: {
+                    calories: 120,
+                    protein: "6g",
+                    carbs: "18g",
+                    fat: "4g"
+                }
+            },
+            {
+                id: 14,
+                name: "印式椰汁咖哩蝦",
+                category: "curry",
+                image: "image/indian/curry_4.avif",
+                description: "新鮮大蝦與椰汁咖哩完美結合。",
+                tags: ["popular"],
+                price: 168,
+                spice: 2,
+                vegetarian: false,
+                detailedDescription: "這道菜來自印度西南海岸地區，結合了新鮮的海蝦和濃郁的椰奶。醬汁以椰奶為基礎，加入洋蔥、番茄、大蒜和多種香料（包括香菜、小茴香和咖哩葉）熬製而成。椰奶的甜味平衡了香料的辛辣，創造出溫和而豐富的風味。通常搭配米飯或烤餅一起食用。",
+                nutrition: {
+                    calories: 340,
+                    protein: "32g",
+                    carbs: "15g",
+                    fat: "18g"
+                }
+            },
+            {
+                id: 15,
+                name: "印式甜點拼盤",
+                category: "dessert",
+                image: "image/indian/dessert.avif",
+                description: "多款印度傳統甜點組合，甜蜜滿足。",
+                tags: ["vegetarian"],
+                price: 78,
+                spice: 0,
+                vegetarian: true,
+                detailedDescription: "這個拼盤包含了三種最受歡迎的印度甜點：Gulab Jamun（油炸奶球浸泡在玫瑰糖漿中）、Ras Malai（輕乳酪餅浸泡在調味牛奶中）和Kheer（印度米布丁）。每種甜點都有獨特的質地和風味，從濃郁的奶香到花香，提供了完整的印度甜點體驗。是完美的一餐結束方式。",
+                nutrition: {
+                    calories: 420,
+                    protein: "12g",
+                    carbs: "68g",
+                    fat: "14g"
+                }
+            }
+        ];
+
+        // 頁面加載時執行的函數
+        $(document).ready(function() {
+            // 從URL獲取商品ID
+            const urlParams = new URLSearchParams(window.location.search);
+            const foodId = parseInt(urlParams.get('id'));
+            
+            // 如果沒有ID或ID無效，顯示錯誤
+            if (!foodId || foodId < 1 || foodId > foods.length) {
+                displayError();
+                return;
+            }
+            
+            // 顯示商品詳情
+            displayFoodDetail(foodId);
+            
+            // 顯示相關菜式
+            displayRelatedFoods(foodId);
+        });
+        
+        // 顯示商品詳情
+        function displayFoodDetail(foodId) {
+            const food = foods.find(item => item.id === foodId);
+            
+            if (!food) {
+                displayError();
+                return;
+            }
+            
+            // 更新頁面標題
+            document.title = `${food.name} - 香料印度餐廳`;
+            
+            // 更新英雄區標題
+            $('#productHeroTitle').text(food.name);
+            
+            // 更新商品圖片
+            $('#productImage').attr('src', food.image).attr('alt', food.name);
+            
+            // 更新商品標籤
+            let tagHtml = '';
+            if (food.tags.includes('popular')) {
+                tagHtml = '<span class="product-tag">人氣推薦</span>';
+            } else if (food.tags.includes('chef')) {
+                tagHtml = '<span class="product-tag" style="background-color: var(--indian-purple);">主廚推薦</span>';
+            } else if (food.tags.includes('vegetarian')) {
+                tagHtml = '<span class="product-tag" style="background-color: var(--indian-green);">素食</span>';
+            }
+            $('#productTag').html(tagHtml);
+            
+            // 更新商品類別
+            const categoryName = getCategoryName(food.category);
+            $('#productCategory').text(categoryName);
+            $('#productCategoryText').text(categoryName);
+            
+            // 更新商品標題
+            $('#productTitle').text(food.name);
+            
+            // 更新價格
+            $('#productPrice').text(`HK$ ${food.price}`);
+            
+            // 更新描述
+            $('#productDescription').text(food.description);
+            
+            // 更新辣度
+            const spiceLevelText = getSpiceLevelText(food.spice);
+            $('#spiceLevelText').text(spiceLevelText);
+            
+            // 更新辣度指示點
+            const spiceLevelHtml = getSpiceLevelHTML(food.spice);
+            $('#spiceLevel').html(spiceLevelHtml);
+            
+            // 更新標籤
+            const tagsText = food.tags.map(tag => getTagName(tag)).join(', ');
+            $('#productTags').text(tagsText);
+            
+            // 更新素食信息
+            $('#vegetarianInfo').html(`素食: ${food.vegetarian ? '素食' : '非素食'}`);
+            
+            // 更新營養信息
+            if (food.nutrition) {
+                $('#calories').text(food.nutrition.calories);
+                $('#protein').text(food.nutrition.protein);
+                $('#carbs').text(food.nutrition.carbs);
+                $('#fat').text(food.nutrition.fat);
+            }
+            
+            // 更新詳細描述
+            if (food.detailedDescription) {
+                $('#detailedDescription').html(`<p>${food.detailedDescription}</p>`);
+                
+                // 添加詳細描述的額外內容
+                let extraContent = '';
+                
+                // 根據不同類別添加不同的額外內容
+                switch(food.category) {
+                    case 'curry':
+                        extraContent = `
+                            <h5 class="mt-4">主要食材:</h5>
+                            <ul>
+                                <li>新鮮肉類/蔬菜</li>
+                                <li>洋蔥、番茄和奶油</li>
+                                <li>印度綜合香料 (Garam Masala)</li>
+                                <li>優格、大蒜和薑</li>
+                                <li>腰果泥或杏仁粉</li>
+                            </ul>
+                            
+                            <h5 class="mt-4">口味特色:</h5>
+                            <p>這道咖哩以其豐富的口味層次著稱，各種香料完美融合，創造出獨特的印度風味。</p>
+                            
+                            <h5 class="mt-4">建議搭配:</h5>
+                            <ul>
+                                <li>印度烤餅 (Naan) - 最佳搭配，可蘸取醬汁</li>
+                                <li>印度香飯 (Biryani) - 作為主食搭配</li>
+                                <li>印式優格飲料 (Lassi) - 平衡口味</li>
+                            </ul>
+                        `;
+                        break;
+                        
+                    case 'tandoor':
+                        extraContent = `
+                            <h5 class="mt-4">主要食材:</h5>
+                            <ul>
+                                <li>優質肉類/海鮮</li>
+                                <li>優格、大蒜和薑</li>
+                                <li>綜合香料醃料</li>
+                                <li>新鮮檸檬汁</li>
+                            </ul>
+                            
+                            <h5 class="mt-4">烹飪方法:</h5>
+                            <p>使用傳統的泥爐（tandoor）高溫烤製，這種烹飪方法使食物外皮焦香，內部多汁，並帶有獨特的煙燻風味。</p>
+                            
+                            <h5 class="mt-4">建議搭配:</h5>
+                            <ul>
+                                <li>新鮮沙拉 - 提供清爽口感</li>
+                                <li>薄荷醬或優格醬 - 增添風味</li>
+                                <li>印度烤餅 - 作為主食</li>
+                            </ul>
+                        `;
+                        break;
+                        
+                    case 'starter':
+                        extraContent = `
+                            <h5 class="mt-4">主要食材:</h5>
+                            <ul>
+                                <li>新鮮蔬菜或肉類</li>
+                                <li>多種印度香料</li>
+                                <li>酥油或植物油</li>
+                            </ul>
+                            
+                            <h5 class="mt-4">口味特色:</h5>
+                            <p>這些開胃小食通常具有濃郁的香料風味，口感酥脆或軟嫩，是完美的餐前選擇。</p>
+                            
+                            <h5 class="mt-4">建議搭配:</h5>
+                            <ul>
+                                <li>薄荷醬或羅望子醬 - 經典搭配</li>
+                                <li>印式優格飲料 (Lassi) - 平衡口味</li>
+                                <li>作為酒吧小食 - 搭配啤酒或雞尾酒</li>
+                            </ul>
+                        `;
+                        break;
+                        
+                    default:
+                        extraContent = `
+                            <h5 class="mt-4">主要特色:</h5>
+                            <p>這道菜體現了印度美食的豐富多樣性，無論是口味、質地還是香氣，都帶給您獨特的印度飲食體驗。</p>
+                            
+                            <h5 class="mt-4">建議搭配:</h5>
+                            <ul>
+                                <li>根據菜式選擇合適的搭配</li>
+                                <li>考慮口味平衡和質地對比</li>
+                                <li>體驗完整的印度餐飲體驗</li>
+                            </ul>
+                        `;
+                }
+                
+                $('#detailedDescription').append(extraContent);
+            }
+            
+            // 隱藏載入動畫，顯示內容
+            $('#loadingContainer').hide();
+            $('#productDetailContainer').show();
+            
+            // 為訂購按鈕添加點擊事件
+            $('.btn-order').click(function() {
+                alert(`已將 "${food.name}" 加入購物車！\n價格: HK$ ${food.price}`);
+                // 這裡可以添加實際的購物車邏輯
+            });
+        }
+        
+        // 顯示相關菜式
+        function displayRelatedFoods(currentFoodId) {
+            const currentFood = foods.find(item => item.id === currentFoodId);
+            const relatedGrid = $('#relatedFoods');
+            relatedGrid.empty();
+            
+            // 找出相同類別的其他菜式（最多3個）
+            const relatedFoods = foods
+                .filter(item => item.id !== currentFoodId && item.category === currentFood.category)
+                .slice(0, 3);
+            
+            // 如果相同類別的菜式不足3個，用其他菜式補足
+            if (relatedFoods.length < 3) {
+                const otherFoods = foods
+                    .filter(item => item.id !== currentFoodId && !relatedFoods.includes(item))
+                    .slice(0, 3 - relatedFoods.length);
+                relatedFoods.push(...otherFoods);
+            }
+            
+            // 生成相關菜式HTML
+            relatedFoods.forEach(food => {
+                const relatedItem = `
+                    <div class="related-item">
+                        <img src="${food.image}" class="related-image" alt="${food.name}">
+                        <div class="related-details">
+                            <h4 class="related-title">${food.name}</h4>
+                            <p class="mb-2" style="font-size: 0.9rem; color: #8d6e63;">${food.description}</p>
+                            <div class="related-price">HK$ ${food.price}</div>
+                            <a href="shop5_product-detail.html?id=${food.id}" class="btn btn-sm btn-outline-primary mt-3">查看詳情</a>
+                        </div>
+                    </div>
+                `;
+                relatedGrid.append(relatedItem);
+            });
+        }
+        
+        // 顯示錯誤訊息
+        function displayError() {
+            $('#loadingContainer').html(`
+                <div class="text-center">
+                    <h3 class="text-danger">商品未找到</h3>
+                    <p>抱歉，我們找不到您要查看的商品。</p>
+                    <a href="shop5.html" class="btn btn-primary mt-3">
+                        <i class="bi bi-arrow-left"></i> 返回菜單
+                    </a>
+                </div>
+            `);
+        }
+        
+        // 獲取類別名稱
+        function getCategoryName(category) {
+            switch(category) {
+                case 'curry': return '咖哩系列';
+                case 'tandoor': return '泥爐燒烤';
+                case 'rice': return '米飯主食';
+                case 'bread': return '印度烤餅';
+                case 'starter': return '前菜小食';
+                case 'dessert': return '甜品';
+                case 'drink': return '飲品';
+                default: return '其他';
+            }
+        }
+        
+        // 獲取標籤名稱
+        function getTagName(tag) {
+            switch(tag) {
+                case 'popular': return '人氣推薦';
+                case 'chef': return '主廚推薦';
+                case 'vegetarian': return '素食';
+                default: return tag;
+            }
+        }
+        
+        // 獲取辣度文字描述
+        function getSpiceLevelText(spice) {
+            switch(spice) {
+                case 0: return '不辣';
+                case 1: return '微辣';
+                case 2: return '中辣';
+                case 3: return '辛辣';
+                default: return '微辣';
+            }
+        }
+        
+        // 獲取辣度指示HTML
+        function getSpiceLevelHTML(spice) {
+            let html = '';
+            for (let i = 0; i < 3; i++) {
+                html += `<div class="spice-dot ${i < spice ? 'active' : ''}"></div>`;
+            }
+            return html;
+        }
+    </script>
+</body>
+</html>
