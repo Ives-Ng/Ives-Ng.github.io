@@ -1,2 +1,2 @@
-# Ives-Ng-Ives-Ng.github.io
+# Ives-Ng.github.io
 Website Profolio
